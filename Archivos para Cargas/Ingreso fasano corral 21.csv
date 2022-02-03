@@ -1,0 +1,31 @@
+Núm. Archivo: 1110;;;;;;;;;;;
+Nombre: Ingreso fasano corral 21;;;;;;;;;;;
+Fecha: 16/9/2020;;;;;;;;;;;
+F01IDE(16)isID;DW2Peso();C01Notas sobre el animal(128)notID;F13Raza()notID;F23Sexo()notID;C13Estado animal()notID;F33Proveedor()notID;C22Corral()notID;F42Numero DTe()notID;F51Origen(50)notID;C34Fecha(d/M/yyyy)notID;C44Hora(HH:mm:ss)notID
+IDE;Peso;Notas sobre el animal;Raza;Sexo;Estado animal;Proveedor;Corral;Numero DTe;Origen;Fecha;Hora
+982 126058225418;367;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:54:14
+982 126058225563;336;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:54:28
+982 126058225078;320;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:54:53
+982 126058228853;322;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:55:05
+982 126053808464;370;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:55:24
+982 126053808447;341;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:55:39
+982 126058229391;370;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:55:53
+982 126058225152;324;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;08:56:07
+982 126053808739;354;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:02:20
+982 126058225554;324;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:03:31
+982 126058229490;362;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:03:51
+982 126053809619;327;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:04:05
+982 126058225038;363;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:04:19
+982 126058229100;292;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:04:47
+982 126058225206;245;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:05:21
+982 126053792661;326;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:05:34
+982 126053792551;343;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:05:52
+982 126058224941;328;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:06:04
+982 126058229904;336;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:10:27
+982 126053809397;370;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:10:41
+982 126058225127;331;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:10:55
+982 126058228376;337;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:11:07
+982 126058228835;317;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:11:27
+982 126058229461;339;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:11:40
+982 126058229096;355;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:11:59
+982 126058225135;284;;Braford;Hembra;Regular;Fassano;21;9515;Vera santa fe;16/09/2020;09:12:16

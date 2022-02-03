@@ -1,0 +1,14 @@
+{
+    "name": "mauro/feedlot-composer",
+    "type": "excel",
+    "license": "-",
+    "authors": [
+        {
+            "name": "Mauro Gonzalez",
+            "email": "maurogt.dd@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.8"
+    }
+}

@@ -1,0 +1,60 @@
+<?php 
+include("./include/conexion.php")
+?>
+<!doctype html>
+<html>
+
+<head>
+	<title>Pie Chart</title>
+	<script src="../../dist/Chart.bundle.js"></script>
+	<script src="../utils.js"></script>
+</head>
+
+<body>
+	<div id="canvas-holder" style="width:40%">
+		<canvas id="chart-area"></canvas>
+	</div>
+	<button id="randomizeData">Randomize Data</button>
+	<button id="addDataset">Add Dataset</button>
+	<button id="removeDataset">Remove Dataset</button>
+	<script>
+		var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		};
+
+		var config = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+					],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
+						window.chartColors.yellow,
+						window.chartColors.green,
+
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Virus',
+					'Sequia',
+					'Neumo',
+					'Desconocida',
+				]
+			},
+			options: {
+				responsive: true
+			}
+		};
+		
+	</script>
+</body>
+
+</html>

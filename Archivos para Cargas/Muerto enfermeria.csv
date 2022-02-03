@@ -1,0 +1,6 @@
+Núm. Archivo: 969
+Nombre: Muerto enfermeria
+Fecha: 17/5/2020
+F01IDE(16)isID;DW2Peso();C01Notas sobre el animal(128)notID;F13Sexo()notID;F23Proveedor()notID;C11Corral(50)notID;F31Origen(50)notID;C22Total de días()notID;F43Causa de Muerte()notID;C34Fecha(d/M/yyyy)notID;C44Hora(HH:mm:ss)notID
+IDE;Peso;Notas sobre el animal;Sexo;Proveedor;Corral;Origen;Total de días;Causa de Muerte;Fecha;Hora
+982 126058229827;;;Macho;Tito;7;Nogoya;96;Neumo;17/5/2020;14:45:00
