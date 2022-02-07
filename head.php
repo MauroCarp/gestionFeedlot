@@ -19,6 +19,7 @@
 
 <link href="css/bootstrap.css" rel="stylesheet">
 
+<script src="js/jquery-2.2.4.min.js"></script>
 
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -36,7 +37,14 @@
 
 <script src="js/miselect.js"></script>
 
-<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/chart/dist/Chart.bundle.js"></script>
+
+<script src="js/chart/samples/utils.js"></script>
+
+<script src="js/functions.js"></script>
+    
+<script src="js/bootstrap.min.js"></script>
+
 
 <style type="text/css">
     body {

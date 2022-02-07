@@ -2,108 +2,13 @@
 
 require 'stock.backend.php';
 
+require 'head.php';
+
 ?>
-<!DOCTYPE html>
-
-<html lang="es">
-
-  <head>
-
-    <meta charset="utf-8">
-
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS</title>
-
-    <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
-
-    <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="js/jquery-2.2.4.min.js"></script>
-
-    <link href="css/bootstrap.css" rel="stylesheet">
-
-    <script src="js/chart/dist/Chart.bundle.js"></script>
-
-    <script src="js/chart/samples/utils.js"></script>
-
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
-    <link href="css/style.css" rel="stylesheet">
-
-    <style type="text/css">
-      
-      body {
-      
-              padding-top: 60px;
-      
-              padding-bottom: 10px;
-      
-            }
-
-    </style>
-
-    <script type="text/javascript">
-
-
-        function cambiar(id,info){
-        var pdrs = document.getElementById(id).files[0].name;
-        document.getElementById(info).innerHTML = pdrs;
-        }
-
-
-        function mostrar(id) {
-          $("#" + id).show(200);
-        }
-            
-
-        desde = (0 * 12);
-
-        function cargaIngresos(){
-          $('#paginadoIng').html('<br><div class="loading"><img src="img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
-          datosPag = 'desde=' + desde; 
-          var urlPaginador = 'paginador.php';
-          $.ajax({
-          type:'POST',
-          url:urlPaginador,
-          data:datosPag,
-          success: function(datosPag){
-            $('#paginadoIng').html(datosPag);
-          }
-          });
-        }
-
-        function cargaEgresos(){
-          $('#paginadoEgr').html('<br><div class="loading"><img src="img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
-          datosPagEgr = 'desde=' + desde; 
-          var urlPaginador = 'paginadorEgr.php';
-          $.ajax({
-          type:'POST',
-          url:urlPaginador,
-          data:datosPagEgr,
-          success: function(datosPagEgr){
-            $('#paginadoEgr').html(datosPagEgr);
-          }
-          });
-        }
-        function cargaMuertes(){
-          $('#paginadoMuertes').html('<br><div class="loading"><img src="img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
-          datosPagM = 'desde=' + desde; 
-          var urlPaginadorMuertes = 'paginadorMuertes.php';
-          $.ajax({
-          type:'POST',
-          url:urlPaginadorMuertes,
-          data:datosPagM,
-          success: function(datosPagM){
-            $('#paginadoMuertes').html(datosPagM);
-          }
-          });
-        }   
-    </script>
-
-  </head>
 
   <body>
+    
+  <script src="js/stock.js"></script>
 
   <div class="navbar navbar-inverse navbar-fixed-top">
   
@@ -322,66 +227,8 @@ require 'stock.backend.php';
 
     <script type="text/javascript">
 
-
-        
-        /* var ingresoManual = document.getElementById('abrirManual');
-        
-          ingresoManual.addEventListener('click',function(){
-        
-            $("#cargaManual").toggle(1);
-        
-          });
-
-
-        
-          var ingresoManualEgr = document.getElementById('abrirManualEgr');
-        
-          ingresoManualEgr.addEventListener('click',function(){
-        
-            $("#cargaManualEgr").toggle(1);
-        
-          });
-          */
-
-        
-          var ingresoBalanza = document.getElementById('abrirBalanza');
-        
-          ingresoBalanza.addEventListener('click',function(){
-        
-            $("#cargaBalanza").toggle(1);
-        
-          });
-
-
-        
-          //   var raza = document.getElementById('razas');
-          
-          //   raza.addEventListener('change',function(){
-          
-          //   var valorRaza = $(this).val();
-          
-          //   console.log(valorRaza);
-
-
-          
-          //   if (valorRaza == 'otro') {
-          
-          //     $("#otraRaza").show(1);
-          
-          //   }else{
-          
-          //     $("#otraRaza").hide(1);
-          
-          //   }
-          
-          // });
-
-
-        
             $(document).ready(function(){
 
-
-        
               // OTRA CAUSA MUERTE
         
                 $(".causaMuerteOtro").hide();
@@ -437,14 +284,6 @@ require 'stock.backend.php';
                   $("#contFiltrosM").toggle(500);
         
                 })
-
-
-
-
-
-
-
-
         
               <?php
         
@@ -486,13 +325,6 @@ require 'stock.backend.php';
         
             });
 
-
-
-
-
-
-
-
     
         function filtrarIng(){
     
@@ -502,19 +334,17 @@ require 'stock.backend.php';
     
           $('#contenedorIngresos').show();
 
-
+          let desde;
     
-          var desde;
+          let hasta;
     
-          var hasta;
+          let renspa;
     
-          var renspa;
+          let proveedor;
     
-          var proveedor;
+          let orden;
     
-          var orden;
-    
-          var datos = [];
+          let datos = [];
 
 
     
@@ -581,8 +411,6 @@ require 'stock.backend.php';
           });
     
         };
-
-
     
         function filtrarEgr(){
     
@@ -667,8 +495,6 @@ require 'stock.backend.php';
           });
     
         };
-
-
     
         function filtrarM(){
     
@@ -753,8 +579,6 @@ require 'stock.backend.php';
           });
     
         };
-
-
     
         function reset(seccion){
     
@@ -766,8 +590,6 @@ require 'stock.backend.php';
     
         }
 
-
-    
         function paginar(pagina,seccion){
     
           var datosPag;
@@ -834,10 +656,6 @@ require 'stock.backend.php';
     
         };
 
-
-
-
-    
         $(document).ready(function() {    
     
           $('.paginador').on('click', function(){
@@ -869,11 +687,7 @@ require 'stock.backend.php';
           });              
     
       }); 
-
-
-
-
-    
+   
         $(document).ready(function(){
  
 
@@ -908,31 +722,27 @@ require 'stock.backend.php';
     
         });
 
-
-    
-        var cargarIng = document.getElementById('btnIngresos');
+        let cargarIng = document.getElementById('btnIngresos');
     
         cargarIng.addEventListener('click',cargaIngresos());
 
 
     
-        var cargarEgr = document.getElementById('btnEgresos');
+        let cargarEgr = document.getElementById('btnEgresos');
     
         cargarEgr.addEventListener('click',cargaEgresos());
 
 
     
-        var cargarMuertes = document.getElementById('btnMuertes');
+        let cargarMuertes = document.getElementById('btnMuertes');
     
         cargarMuertes.addEventListener('click',cargaMuertes());
     
     </script>
-    
-    <script src="js/functions.js"></script>
-    
-    <script src="js/bootstrap.min.js"></script>
 
   </body>
+
+  <script src="js/muertes.js"></script>
 
 </html>
 
