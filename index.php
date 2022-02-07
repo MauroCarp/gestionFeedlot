@@ -3,26 +3,9 @@ include("includes/init_session.php");
 require("includes/conexion.php");
 require("includes/funciones.php");
 
+require 'head.php';
 
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS</title>
-    <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
   </head>
 
   <body>
