@@ -76,7 +76,7 @@
 
 
 .iconos:hover {
-  color:#009446;
+  color:#d1b900
 }
 
 
@@ -173,7 +173,6 @@ table.tablesorter thead tr .headerSortDown {
   text-decoration: none;
   list-style: none;
   font-size: 1.1em;
-  background-color: rgba(167,167,167,.2);
   padding: 5px 15px 5px 15px;
   border-radius: 5px;
   margin: 0;

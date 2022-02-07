@@ -207,15 +207,54 @@ require 'stock.backend.php';
             </div>
 
             <div class="tab-pane fade <?php if($seccion == 'egreso'){ echo 'active in';}?>" id="egresos">
-    
-              <?php 
+
+              <div class="row-fluid">
+
+                <div class="span6">
+
+                  <div class="bs-docs-example">
+                      
+                      <div class="breadcrumb">
+
+                        <?php 
+                        
+                          //include("egresos.php");
               
-                //include("egresos.php");
+                          include("egresosBalanza.php");
+              
+                        ?>
     
-                include("egresosBalanza.php");
-    
+                    </div>
+              
+                  </div>
+              
+                </div>
+
+                <div class="span6">
+
+                    <div class="bs-docs-example">
+                        
+                        <div class="breadcrumb">
+
+                          <?php 
+                                          
+                            include("infoEgresos.php");
+                
+                          ?>
+      
+                      </div>
+                
+                    </div>
+
+                </div>
+
+              </div>
+            
+              <?php 
+                
+                require 'tablaEgresos.php';
+
               ?>
-    
             </div>
 
             <div class="tab-pane fade <?php if($seccion == 'muerte'){ echo 'active in';}?>" id="muertes">

@@ -1,7 +1,5 @@
 <div id="cargaBalanza">
-
   <h3>Ingresos por Balanza</h3>
-  
   <form name="f1" class="form-horizontal" method="POST" action="subirIngreso.php" enctype="multipart/form-data"> 
 
     <div class="row-fluid">
@@ -40,13 +38,13 @@
 
       </div>
 
-      <div class="span5" id="infoIng" style="text-align: left;font-weight: bold;">Seleccionar archivo</div>
+      <div class="span5" id="infoIng" style="text-align: left;font-weight: bold;">No se eligi&oacute; archivo.</div>
 
       
       <div class="span3">
         
-        <button type="submit" class="btn btn-default btn-block" name="submitIng"><b>Cargar</b></button>
-
+        <input type="submit" class="btn btn-default btn-block" name="submitIng" value="Cargar" required="TRUE" />
+        
       </div>
 
     </div>

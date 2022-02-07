@@ -1,6 +1,12 @@
 <div class="row-fluid">
-
+    
     <div class="span12">
+    
+        <h3>Ingresos por Balanza</h3>
+   
+     </div>
+    
+     <div class="span12">
 
         <ul class="totales" style="background-color:transparent!important;">
 
@@ -15,8 +21,6 @@
                 <span style="float:right;"><a href="imprimir/stockGeneral.php" style="font-size:18px;" class="btn btn-default" target="_blank"><span class="icon-printer iconos"></span></a></span>
 
             </li>
-
-            <li>&nbsp</li>
 
         </ul>
                 
