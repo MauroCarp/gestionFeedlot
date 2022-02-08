@@ -312,6 +312,12 @@ require 'head.php';
           let renspa;
     
           let proveedor;
+          
+          let estado;
+          
+          let pesoMin;
+
+          let pesoMax;
     
           let orden;
     
@@ -328,6 +334,10 @@ require 'head.php';
           proveedor = $('#proveedor').val();
 
           estado = $('#estado').val();
+          
+          pesoMin = $('#pesoMin').val();
+          
+          pesoMax = $('#pesoMax').val();
     
           orden = $('input:radio[name=orden]:checked').val();
 
@@ -360,6 +370,13 @@ require 'head.php';
           if (proveedor != "") {
     
             datos.push('proveedor=' + proveedor);
+    
+          }
+    
+          if (pesoMax != 0 && pesoMin < pesoMax) {
+    
+            datos.push('pesoMin=' + pesoMin);
+            datos.push('pesoMax=' + pesoMax);
     
           }
     

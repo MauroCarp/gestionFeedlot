@@ -7,6 +7,9 @@ $desde = (array_key_exists('desde', $_POST)) ? $_POST['desde'] : "";
 $hasta = (array_key_exists('hasta', $_POST)) ? $_POST['hasta'] : "";
 $renspa = (array_key_exists('renspa', $_POST)) ? trim($_POST['renspa']) : "";
 $proveedor = (array_key_exists('proveedor', $_POST)) ? trim($_POST['proveedor']) : "";
+$estado = (array_key_exists('estado', $_POST)) ? trim($_POST['estado']) : "";
+$pesoMin = (array_key_exists('pesoMin', $_POST)) ? trim($_POST['pesoMin']) : "";
+
 $orden = $_POST['orden'];
 
 $sql = array();
@@ -22,6 +25,20 @@ if ($renspa != "") {
 if ($proveedor != "") {
 	$sql[] = "proveedor = '$proveedor'";
 	$filtros[] = "Proveedor: $proveedor";
+}
+
+if ($estado != "") {
+	$sql[] = "estado = '$estado'";
+	$filtros[] = "Estado: $estado";
+}
+
+if ($pesoMin != "") {
+	
+	$pesoMax = $_POST['pesoMax'];
+
+	$sql[] = "(pesoPromedio BETWEEN '$pesoMin' AND '$pesoMax')";
+	$filtros[] = "Rango Peso: $pesoMin Kg - $pesoMax Kg";
+
 }
 
 if ($desde != "" AND $hasta != "") {
@@ -40,10 +57,11 @@ $sqlQuery = "SELECT * FROM registroingresos $sql ORDER BY fecha $orden";
 $query = mysqli_query($conexion,$sqlQuery);
 //CREAMOS NUESTRA VISTA Y LA DEVOLVEMOS AL AJAX
 
-echo '<table class="table table-striped" style="box-shadow: 1px -2px 15px 1px;">
-        	<tr>
+echo '<table class="table table-striped" style="box-shadow:0px 7px 6px 0px #cbcbcb">
+			
+			<thead style="border-top:3px solid #fde327;border-bottom:3px solid #fde327";>
             	<th>Tropa</th>
-                <th style="width:100px;">Fecha</th>
+                <th style="width:100px;">Ingreso</th>
                 <th>Cantidad</th>
                 <th>Peso Prom.</th>
                 <th>Renspa</th>
@@ -52,7 +70,7 @@ echo '<table class="table table-striped" style="box-shadow: 1px -2px 15px 1px;">
                 <th>Proveedor</th>
                 <th></th>
                 <th></th>
-            </tr>';
+            </thead>';
 if(mysqli_num_rows($query)>0){
 
 	$totalCantidad = 0;
@@ -97,12 +115,16 @@ if(mysqli_num_rows($query)>0){
 		}
 	
 echo 	'<tr>
-		<td colspan=2><b>SubTotales:</b></td>
-		<td><b>'.number_format($totalCantidad,0,",",".").' Animales</b></td>
-		<td><b>'.number_format(($totalPNeto / $totalCantidad),2,",",".").' Kg</b></td>
-		<td><b>Peso Neto: '.number_format($totalPNeto,2,",",".").' Kg</b></td>
-		<td colspan=2><b><a href="exportar/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-primary btn-block">Exportar</a></b></td>
-		<td colspan=2><b><a href="imprimir/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-primary btn-block" target="_blank">Imprimir</a></b></td>
+			<td colspan=2><b>SubTotales:</b></td>
+			<td><b>'.number_format($totalCantidad,0,",",".").'</b></td>
+			<td><b>'.number_format(($totalPNeto / $totalCantidad),2,",",".").' Kg</b></td>
+			<td><b>Neto: '.number_format($totalPNeto,2,",",".").' Kg</b></td>
+			<td colspan="5"></td>
+			</tr>
+			<tr>
+			<td colspan="5"></td>
+			<td colspan="2"><b><a href="exportar/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block">Exportar</a></b></td>
+			<td colspan="3"><b><a href="imprimir/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block" target="_blank">Imprimir</a></b></td>
 		</tr>';
 }else{
 	echo '<tr>
