@@ -100,7 +100,7 @@ $precioInsumoTotal = 0;
     $pdf->SetAutoPageBreak(1,1);
     $pdf->SetFont('Helvetica','B',11);
     $pdf->SetX(10);
-    $pdf->Image('../img/logoAcopiadora.jpg',10,10,30);
+    $pdf->Image('../img/logo1.png',10,10,30);
     $pdf->Cell(130,7,utf8_decode(''),0,0,'L',0);
     $pdf->Cell(60,7,utf8_decode('Jorge Cornale'),0,1,'R',0);
     $pdf->Ln(6);

@@ -1,53 +1,67 @@
 <?php
 include("includes/conexion.php");
 
+
 $seEnvioInfo = sizeof($_REQUEST) > 0;
+
 $feedlotValido = array_key_exists('feedlot', $_GET);
+
 $accionValido = array_key_exists('accion', $_GET);
-if( $seEnvioInfo ) {
-  if($feedlotValido){ 
-    session_start();
-    $feedlot = $_GET['feedlot'];
-    $sqlTipo = "SELECT tipo FROM login WHERE feedlot = '$feedlot'";
-    $queryTipo = mysqli_query($conexion,$sqlTipo);
-    $tipo = mysqli_fetch_array($queryTipo);
 
-    $_SESSION['logged'] = TRUE;
-    $_SESSION['feedlot'] = $feedlot;
-    $_SESSION['tipo'] = $tipo['tipo'];
 
-    echo "<script>
+if(isset($_POST["btnIngresar"])){
 
-      let date = new Date()
+  if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"])){
 
-      date.setTime(date.getTime()+(30*24*60*60*1000))
+    $encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-      let expires = date.toGMTString()
-    
-      document.cookie = `feedlot = ".$feedlot.";path=/gestionFeedlot;Expires=` + expires
+    $tabla = "login";
+
+    $item = "user";
+
+    $valor = $_POST["ingUsuario"];
+
+    $sql = "SELECT * FROM $tabla  WHERE $item = '$valor'";
+
+    $query = mysqli_query($conexion,$sql);
+
+    $respuesta = mysqli_fetch_array($query);
+
+    if($respuesta["user"] == $_POST["ingUsuario"] && $respuesta["pass"] == $encriptar){
+
+      session_start();
+
+      $feedlot = $respuesta['feedlot'];
       
-	    window.location = 'index.php';
-
-    </script>";
-  }
-
-  if ($accionValido) {
-    $accion = $_GET['accion'];
-    if ($accion == 'nueva') {
+      $_SESSION['logged'] = TRUE;
+  
+      $_SESSION['feedlot'] = $feedlot;
+  
+      $_SESSION['tipo'] = $respuesta['tipo'];
+    
+      echo "<script>
+  
+        let date = new Date()
+  
+        date.setTime(date.getTime()+(30*24*60*60*1000))
+  
+        let expires = date.toGMTString()
+      
+        document.cookie = `feedlot = ".$feedlot.";path=/gestionFeedlot;Expires=` + expires
         
-    $feedlot = $_POST['feedlot'];
-    $tipo = $_POST['tipo'];
+        window.location = 'index.php'
+      
+      </script>";
 
-        $sql = "INSERT INTO login(feedlot,tipo) VALUES ('$feedlot','$tipo')";
-        $query = mysqli_query($conexion,$sql);
-        }
+    }else{
 
-        echo "<script>
-          window.location = 'login.php';
-        </script>";
+      echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
+
     }
-  }
 
+  }	
+
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -72,6 +86,7 @@ if( $seEnvioInfo ) {
         background-color: #f5f5f5;
         background-image: url(img/login-bg1.jpg);
         background-size: 100%;
+        overflow-y:hidden;
       }
 
       .form-signin {
@@ -102,25 +117,21 @@ if( $seEnvioInfo ) {
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
-      <img class="mb-4" src="img/logoAcopiadora.jpg" alt="" width="300" height="">
-      <h4 class="h3 mb-3 font-weight-ligth">Seleccione Feedlot</h4>
-      <select class="form-control" name="feedlot" required autofocus>
-        <?php
-          $sql = "SELECT feedlot FROM login ORDER BY feedlot ASC";
-          $query = mysqli_query($conexion,$sql);
-          while ($fila = mysqli_fetch_array($query)) { ?>
-          
-            <option value="<?php echo $fila['feedlot'];?>"><?php echo $fila['feedlot'];?> </option>
 
-         <?php }
-        ?>
-      </select>
-      <hr>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-      <br>
-      <p class="mt-5 mb-3 text-muted">&copy; Gestion de Feedlots 2019</p>
+    <form class="form-signin" method="POST" action="login.php">
+
+      <img class="mb-4" src="img/logo1.png" alt="" width="300" height="">
+
+      <h4 class="h3 mb-3 font-weight-ligth">Usuario</h4>
+      <input type="text" name="ingUsuario" id="ingUsuario" value="Jcornale" readOnly>
+
+      <h4 class="h3 mb-3 font-weight-ligth">Contrase&ntilde;a</h4>
+      <input type="password" name="ingPassword" id="ingPassword" required autofocus>
+      
+      <button class="btn btn-lg btn-default btn-block" type="submit" name="btnIngresar">Ingresar</button>
+
     </form>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>

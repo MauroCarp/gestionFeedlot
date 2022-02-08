@@ -26,11 +26,11 @@ $filtros = $_GET['filtros'];
 
     if($_SESSION['feedlot'] == 'Acopiadora Pampeana' OR $_SESSION['feedlot'] == 'Acopiadora Hoteleria'){
 
-        $pdf->Image('../img/logoAcopiadora.jpg',10,10,30);
+        $pdf->Image('../img/logo1.png',10,10,30);
     
     }else{
     
-        $pdf->Image('../img/logo.png',10,10,30);
+        $pdf->Image('../img/logo1.png',10,10,30);
 
     }
     $pdf->Cell(130,7,utf8_decode(''),0,0,'L',0);

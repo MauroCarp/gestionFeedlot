@@ -109,7 +109,7 @@ $hoja->setTitle("Egresos");
 // Generate an image
 if($_SESSION['feedlot'] == 'Acopiadora Pampeana' OR $_SESSION['feedlot'] == 'Acopiadora Hoteleria'){
 
-    $gdImage = imagecreatefromjpeg('../img/logoAcopiadora.jpg');
+    $gdImage = imagecreatefromjpeg('../img/logo1.png');
 
 }else{
 
