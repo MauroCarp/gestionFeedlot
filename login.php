@@ -17,7 +17,17 @@ if( $seEnvioInfo ) {
     $_SESSION['tipo'] = $tipo['tipo'];
 
     echo "<script>
+
+      let date = new Date()
+
+      date.setTime(date.getTime()+(30*24*60*60*1000))
+
+      let expires = date.toGMTString()
+    
+      document.cookie = `feedlot = ".$feedlot.";path=/gestionFeedlot;Expires=` + expires
+      
 	    window.location = 'index.php';
+
     </script>";
   }
 

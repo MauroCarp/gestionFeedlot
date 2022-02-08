@@ -81,8 +81,8 @@
 
         <div id="contenedorEgresos"></div>
                     
-        <table class="table table-striped" id="myTableEgresos" style="box-shadow: 1px -2px 15px 1px;">
-            
+        <table class="table table-striped" style="box-shadow:0px 7px 6px 0px #cbcbcb">
+        
             <thead style="border-top:3px solid #fde327;border-bottom:3px solid #fde327";>
                 <tr>
                 <th>Fecha Egreso</th>
@@ -115,6 +115,6 @@
 
         </div>
 
-  </div>
+    </div>
 
 </div>
