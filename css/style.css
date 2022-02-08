@@ -147,7 +147,9 @@ table.tablesorter thead tr .headerSortDown {
   background-position: center right;
 }
 
-
+a .dropdown-item::hover{
+  background-color: #d1b900;
+}
 
 .btn-index img{
   padding-top:20px;
@@ -338,5 +340,6 @@ transition: opacity 400ms ease-in;
 footer{
   line-height: 10px;
 }
+
 
 

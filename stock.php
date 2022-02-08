@@ -6,38 +6,8 @@ require 'head.php';
 
 ?>
 
-  <body>
-    
-  <script src="js/stock.js"></script>
+    <script src="js/stock.js"></script>
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
-  
-    <div class="navbar-inner">
-  
-      <div class="container">
-  
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-  
-          <span class="icon-bar"></span>
-
-          <span class="icon-bar"></span>
-
-          <span class="icon-bar"></span>
-
-        </button>
-  
-          <?php
-          
-          include("includes/nav.php");
-          
-          ?>
-  
-      </div>
-  
-    </div>
-  
-  </div>
-  
     <div class="container" style="padding-top: 50px;">
     
       <h1 style="display: inline-block;">STOCK</h1>

@@ -11,3 +11,8 @@ function cambiar(id,info){
     document.getElementById(info).innerHTML = pdrs;
 
 }
+
+
+function mostrar(id) {
+    $("#" + id).show(200);
+  }

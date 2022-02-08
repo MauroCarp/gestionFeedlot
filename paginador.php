@@ -7,7 +7,7 @@ $desde = $_POST['desde'];
 
 //EJECUTAMOS LA CONSULTA DE BUSQUEDA
 
-$sqlQuery = "SELECT * FROM registroingresos WHERE feedlot = '$feedlot' ORDER BY fecha DESC, tropa DESC LIMIT 12 OFFSET $desde";
+$sqlQuery = "SELECT * FROM registroingresos WHERE feedlot = '$feedlot' ORDER BY fecha DESC, tropa DESC LIMIT 8 OFFSET $desde";
 $query = mysqli_query($conexion,$sqlQuery);
 
 while($resultadosIng = mysqli_fetch_array($query)){

@@ -2961,16 +2961,16 @@ table th[class*="span"],
 .dropdown-menu > li > a:focus,
 .dropdown-submenu:hover > a,
 .dropdown-submenu:focus > a {
-  color: #ffffff;
+  color: #3b3b3b;
   text-decoration: none;
-  background-color: #318A00;
-  background-image: -moz-linear-gradient(top, #318A00, #3EA605);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#318A00), to(#3EA605));
-  background-image: -webkit-linear-gradient(top, #318A00, #3EA605);
-  background-image: -o-linear-gradient(top, #318A00, #3EA605);
-  background-image: linear-gradient(to bottom, #318A00, #3EA605);
+  background-color: #fae968;
+  background-image: -moz-linear-gradient(top, #fde327, #fae968);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fde327), to(#fae968));
+  background-image: -webkit-linear-gradient(top, #fde327, #fae968);
+  background-image: -o-linear-gradient(top, #fde327, #fae968);
+  background-image: linear-gradient(to bottom, #fde327, #fae968);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fde327', endColorstr='#fae968', GradientType=0);
 }
 
 .dropdown-menu > .active > a,

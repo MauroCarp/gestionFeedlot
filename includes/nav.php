@@ -1,49 +1,82 @@
-   <?php
+<?php
+
 $menu = array();
+
 $menu['Stock'] = 'stock.php';
+
 $menu['Status Sanitario'] = 'status.php';
+
 $menu['Raciones'] = 'raciones.php';
-//$menu['Imp/Exp'] = 'datos.php?seccion=todos';
+
 $menu['Salir'] = 'logout.php';
 
 
  ?>
+
  <a class="brand" href="index.php" style="font-size:25px;"><b>GESTION DE FEEDLOTS - JORGE CORNALE</b></a>
+
  <div class="nav-collapse collapse">
-            <ul class="nav">
+  
+  <ul class="nav">
+    <?php
+        foreach ($menu as $titulo => $valor) { 
+          
+          if ($titulo == 'Raciones' OR $titulo == 'Salir') { ?>
+          
+            <li class="nav-item dropdown">
+            
+              <a 
+              class="nav-link dropdown-toggle"
+              style="font-size:20px;"
+              href="<?php echo $valor;?>"><b><?php echo $titulo; ?></b>
+              </a>
+
+            </li>
+
+        <?php }else{
+        
+          $id = ($titulo != 'Stock') ? 'Status' : $titulo;
+
+        ?>
+
+          
+          <li class="nav-item dropdown">
+           
+            <a class="nav-link dropdown-toggle flecha" id="btn<?php echo $id;?>" style="font-size:20px;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><b><?php echo $titulo;?></b></a>
+            
+            <ul class="dropdown-menu" id="menu<?php echo $id?>">
+
               <?php
-                 foreach ($menu as $titulo => $valor) { 
-                  if ($titulo == 'Raciones' OR $titulo == 'Salir') { ?>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" style="font-size:20px;" 
-                       href="<?php echo $valor;?>"><b><?php echo $titulo; ?></b></a>
-                    </li>
-                  <?php }else{
-                  ?>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle flecha" style="font-size:20px;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><b><?php echo $titulo;?></b></a>
-                        <ul class="dropdown-menu">
-                          <?php
-                          if ($titulo == 'Status Sanitario') { ?>
-                          
-                          <li><a class="dropdown-item" style="font-size:18px;" href="<?php echo $valor;?>">Registros</a></li>
-                          <li><a class="dropdown-item" style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modal-StatusSanitario">Imprimir Status</a>
-                          </li>
-                          </li>                            
-                          <?php
-                          }else{ ?>
-                          <li><a class="dropdown-item" style="font-size:18px;" href="<?php echo $valor;?>">Ingresar Registro</a></li>
-                          <li><a class="dropdown-item" style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modal-<?php echo $titulo;?>">Informe</a>
-                          </li>
-                          <?php 
-                          }
-                          ?>
-                        </ul>
-                      </li>
-                          <?php
-                          }}
-                          ?>
+
+              if ($titulo == 'Status Sanitario') { ?>
+              
+                
+                <li><a class="dropdown-item" style="font-size:18px;" href="<?php echo $valor;?>">Registros</a></li>
+                
+                <li><a class="dropdown-item" style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modal-StatusSanitario">Imprimir Status</a></li>
+
+              <?php
+
+              }else{ ?>
+
+                <li><a class="dropdown-item" style="font-size:18px;" href="<?php echo $valor;?>">Ingresar Registro</a></li>
+                <li><a class="dropdown-item" style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modal-<?php echo $titulo;?>">Informe</a></li>
+
+              <?php 
+              }
+              ?>
+
             </ul>
+
+          </li>
+
+        <?php
+
+        }}
+
+      ?>
+  </ul>
+
 </div>
 
 <div class="modal fade" id="modal-Stock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -137,10 +170,6 @@ $menu['Salir'] = 'logout.php';
   </div>
 </div>
 
-
-
-
-<!--/.nav-collapse -->
 
 
 
