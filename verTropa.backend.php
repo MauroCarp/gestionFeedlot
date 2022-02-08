@@ -48,7 +48,7 @@ $kgEgrProm = 0;
 $diferenciaIngEgr = 0;
 if ($seccion == 'ingresos') {
 
-  $sqlIng = "SELECT renspa,adpv,peso,estado,fecha,proveedor,estado,origen,corral,notas, MAX(peso) as maximo, MIN(peso) as minimo, COUNT(id) as total, SUM(peso) as pesoTotal FROM ingresos WHERE tropa = '$tropa' AND feedlot = '$feedlot'";
+  $sqlIng = "SELECT renspa,adpv,peso,fecha,proveedor,estadoAnimal,origen,corral,notas, MAX(peso) as maximo, MIN(peso) as minimo, COUNT(id) as total, SUM(peso) as pesoTotal FROM ingresos WHERE tropa = '$tropa' AND feedlot = '$feedlot'";
   $queryIng = mysqli_query($conexion,$sqlIng);
   $resultados = mysqli_fetch_array($queryIng);
     $cantIng = $resultados['total'];
@@ -56,7 +56,7 @@ if ($seccion == 'ingresos') {
     $adpv = $resultados['adpv'];
     $totalPesoIng = $resultados['pesoTotal'];
     $fechaIngreso = $resultados['fecha'];
-    $estado = $resultados['estado'];
+    $estado = ($resultados['estadoAnimal'] == '') ? 'Varios' : $resultados['estadoAnimal'];
     $proveedor = $resultados['proveedor'];
     $origen = $resultados['origen'];
     $corral = $resultados['corral'];

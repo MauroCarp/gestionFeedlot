@@ -37,11 +37,6 @@ require 'head.php';
         include("alertas.php"); 
         ?>
      </div>
-      <hr>
-
-      <footer>
-        <p>Gesti&oacute;n de FeedLots - Jorge Cornale - 2018</p>
-      </footer>
     </div>
     
   </body>

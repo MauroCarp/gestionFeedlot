@@ -35,11 +35,11 @@
 
     <script src="js/chart/samples/utils.js"></script>
 
-
     <style type="text/css">
           body {
           padding-top: 60px;
           padding-bottom: 40px;
+          height:100%;
           background: rgb(255,245,173);
         background: linear-gradient(0deg, rgb(255, 245, 173) 0%, rgba(226,226,226,1) 30%);
           }

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?u8yxiw');
-  src:  url('../fonts/icomoon.eot?u8yxiw#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?u8yxiw') format('truetype'),
-    url('../fonts/icomoon.woff?u8yxiw') format('woff'),
-    url('../fonts/icomoon.svg?u8yxiw#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?jr88dk');
+  src:  url('../fonts/icomoon.eot?jr88dk#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?jr88dk') format('truetype'),
+    url('../fonts/icomoon.woff?jr88dk') format('woff'),
+    url('../fonts/icomoon.svg?jr88dk#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -26,10 +26,16 @@
 }
 
 .icon-pencil:before {
-  content: "\e905";
+  content: "\e906";
 }
 .icon-pencil2:before {
-  content: "\e906";
+  content: "\e907";
+}
+.icon-file-empty:before {
+  content: "\e924";
+}
+.icon-files-empty:before {
+  content: "\e925";
 }
 .icon-file-text2:before {
   content: "\e926";
@@ -55,6 +61,9 @@
 .icon-checkmark:before {
   content: "\ea10";
 }
+.icon-checkmark2:before {
+  content: "\ea11";
+}
 .icon-arrow-up:before {
   content: "\ea32";
 }
@@ -70,7 +79,9 @@
 .icon-filter:before {
   content: "\ea5b";
 }
-
+.icon-file-excel:before {
+  content: "\eae2";
+}
 
 
 
@@ -178,6 +189,7 @@ a .dropdown-item::hover{
   padding: 5px 15px 5px 15px;
   border-radius: 5px;
   margin: 0;
+  background-color: #f9f9f9;
 }
 
 ul.totales li{
