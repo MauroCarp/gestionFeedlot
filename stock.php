@@ -297,7 +297,8 @@ require 'head.php';
 
     
         function filtrarIng(){
-    
+          
+
           $('#myTableIngresos').hide();
     
           $('#paginadorIngresos').hide();
@@ -325,6 +326,8 @@ require 'head.php';
           renspa = $('#renspa').val();
     
           proveedor = $('#proveedor').val();
+
+          estado = $('#estado').val();
     
           orden = $('input:radio[name=orden]:checked').val();
 
@@ -345,6 +348,12 @@ require 'head.php';
           if (renspa != "") {
     
             datos.push('renspa=' + renspa);
+    
+          }
+    
+          if (estado != "") {
+    
+            datos.push('estado=' + estado);
     
           }
     

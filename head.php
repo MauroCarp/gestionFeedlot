@@ -40,6 +40,8 @@
           body {
           padding-top: 60px;
           padding-bottom: 40px;
+          background: rgb(255,245,173);
+        background: linear-gradient(0deg, rgb(255, 245, 173) 0%, rgba(226,226,226,1) 30%);
           }
     </style>
 
