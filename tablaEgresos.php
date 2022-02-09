@@ -81,29 +81,33 @@
 
         <div id="contenedorEgresos"></div>
                     
-        <table class="table table-striped" style="box-shadow:0px 7px 6px 0px #cbcbcb">
-        
-            <thead style="border-top:3px solid #fde327;border-bottom:3px solid #fde327";>
-                <tr>
-                <th>Fecha Egreso</th>
-                <th>Cantidad</th>
-                <th>Peso Prom.</th>
-                <th>GMD Prom</th>
-                <th>GPV Prom</th>
-                <td></td>
-                <td></td>
-                </tr>
-            </thead>
+        <div id="myTableEgresos">
 
-            <tbody id="paginadoEgr">
+            <table class="table table-striped" style="box-shadow:0px 7px 6px 0px #cbcbcb">
+            
+                <thead style="border-top:3px solid #fde327;border-bottom:3px solid #fde327";>
+                    <tr>
+                    <th>Fecha Egreso</th>
+                    <th>Cantidad</th>
+                    <th>Peso Prom.</th>
+                    <th>GMD Prom</th>
+                    <th>GPV Prom</th>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                </thead>
 
-                <script>
-                    cargaEgresos();
-                </script>
+                <tbody id="paginadoEgr">
 
-            </tbody>
+                    <script>
+                        cargaEgresos();
+                    </script>
 
-        </table>
+                </tbody>
+
+            </table>
+
+        </div>
 
         <div class="pagination pagination-mini pagination-centered">
 

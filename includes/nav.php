@@ -104,8 +104,8 @@ $menu['Salir'] = 'logout.php';
         </div>
 
         <div class="modal-footer" style="padding: 0; padding-right: 15px;">
-          <button type="submit" class="btn btn-primary">Generar</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-default"><b>Generar</b></button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
       </form>
     </div>

@@ -16,6 +16,8 @@ while($fila = mysqli_fetch_array($query)){
   <td><?php echo $fila['cantidad'];?></td>
   <td><?php echo $fila['causaMuerte'];?></td>
   <td><a href="stock.php?accion=eliminarMuerte&id=<?php echo $fila['id'];?>&tropa=<?php echo $fila['tropa'];?>" onclick="return confirm('¿Eliminar Registro?');"><span class="icon-bin2 iconos"></span></a></td>
+  <!-- <td><a href="stock.php?accion=editarCausa&id=<?php //echo $fila['id'];?>&tropa=<?php //echo $fila['tropa'];?>" onclick="return confirm('¿Eliminar Registro?');"><span class="icon-bin2 iconos"></span></a></td> -->
+  <td><a href="#"><span class="icon-pencil iconos"></span></a></td>
 </tr>
 <?php
 

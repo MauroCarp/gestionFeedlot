@@ -415,20 +415,16 @@ require 'head.php';
           $('#paginadorEgresos').hide();
     
           $('#contenedorEgresos').show();
-
-
     
-          var desde;
+          let desde;
     
-          var hasta;
+          let hasta;
     
-          var destino;
+          let destino;
     
-          var orden;
+          let orden;
     
-          var datosEgr = [];
-
-
+          let datosEgr = [];
     
           desde = $('#desdeEgr').val();
     
@@ -437,8 +433,6 @@ require 'head.php';
           destino = $('#destino').val();
     
           orden = $('input:radio[name=ordenEgr]:checked').val();
-
-
     
           if (desde != "") {
     
@@ -459,18 +453,10 @@ require 'head.php';
           }
     
           datosEgr.push('orden=' + orden);
-
-
     
           datosEgr = datosEgr.join('&');
     
-          console.log(datosEgr);
-
-
-
-
-    
-          var urlEgr = 'generarEgresos.php';
+          let urlEgr = 'generarEgresos.php';
     
           $('#contenedorEgresos').html('<br><div class="loading"><img src="img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
     

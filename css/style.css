@@ -90,7 +90,10 @@
   color:#d1b900
 }
 
-
+html{
+background-repeat: repeat-x;
+  background-color: rgb(255,245,173);
+}
 
 a{
   text-decoration: none;
@@ -248,7 +251,7 @@ ul.totales li{
 }
 
 .modal-body h4:hover{
-color:#1A9D00;
+color:#bba91e;
 }
 
 .cuerpo-modal{
@@ -262,14 +265,17 @@ color:#1A9D00;
 .ir-arriba {
   display:none;
   padding:20px;
-  background:#0E7A00;
+  background:#f9f9f9f9;
   border-radius: 15px;
   font-size:20px;
-  color:#fff;
+  font-weight:bolder;
+  color:#fde327;
   cursor:pointer;
   position: fixed;
   bottom:20px;
   right:20px;
+  box-shadow: 1px 1px 1px#3D3D3D;
+  text-shadow: 1px 1px 1px#3D3D3D;;
 }
 
 .formulas{

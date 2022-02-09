@@ -56,6 +56,7 @@
             <th scope="col">Cantidad</th>
             <th scope="col">Causa Muerte</th>
             <td scope="col"></td>
+            <td scope="col"></td>
             </tr>
         </thead>
 

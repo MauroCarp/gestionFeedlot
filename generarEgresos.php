@@ -33,28 +33,26 @@ if ($sql != "") {
 
 
 //EJECUTAMOS LA CONSULTA DE BUSQUEDA
-$sqlQuery = "SELECT DISTINCT(tropa) FROM egresos $sql feedlot = '$feedlot' ORDER BY fecha $orden";
 
-if ($feedlot == "Acopiadora Pampeana") {
+$sqlQuery = "SELECT * FROM registroegresos $sql feedlot = '$feedlot' ORDER BY fecha $orden";
 
-	$sqlQuery = "SELECT * FROM registroegresos $sql feedlot = '$feedlot' ORDER BY fecha $orden";
-	
-}
 
 $query = mysqli_query($conexion,$sqlQuery);
-echo $sqlQuery;
-//die();
+
 //CREAMOS NUESTRA VISTA Y LA DEVOLVEMOS AL AJAX
 
-echo '<table class="table table-striped" style="box-shadow: 1px -2px 15px 1px;">
-        	<tr>
+
+echo '<table class="table table-striped" style="box-shadow:0px 7px 6px 0px #cbcbcb">
+			
+			<thead style="border-top:3px solid #fde327;border-bottom:3px solid #fde327";>
                 <th>Fecha Egreso</th>
                 <th>Cantidad</th>
                 <th>Peso Prom.</th>
                 <th>Destino</th>
                 <th></th>
                 <th></th>
-            </tr>';
+            </thead>';
+
 if(mysqli_num_rows($query)>0){
 
 	$totalCantidad = 0;
@@ -62,73 +60,36 @@ if(mysqli_num_rows($query)>0){
 
 	while($registro2 = mysqli_fetch_array($query)){
 		
-		if ($feedlot == "Acopiadora Pampeana") {
-
-		
-			$tropa = $registro2['tropa'];
-			
-			$sql2 = "SELECT SUM(peso) AS pesoTotal FROM egresos WHERE tropa = '$tropa'";
-	
-			$query2 = mysqli_query($conexion,$sql2);
-	
-			$resultadosEgr = mysqli_fetch_array($query2);
-	
-				  
-			echo '<tr>
-					<td>'.formatearFecha($registro2['fecha']).'</td>
-					<td>'.$registro2['cantidad'].'</td>
-					<td>'.$registro2['pesoPromedio'].' Kg</td>
-					<td>'.$registro2['destino'].'</td>
-					<td><a href="verTropa.php?tropa='.$registro2['tropa'].'&seccion=egresos"><span class="icon-eye iconos"></span></a></td>
-					<td><a href="stock.php?accion=eliminarEgreso&id='.$registro2['id'].'&tropa='.$registro2['tropa'].'" onclick="return confirm(\'¿Eliminar Registro?\');"><span class="icon-bin2 iconos"></span></a></td>
-					</tr>';
+		echo '<tr>
+				<td>'.formatearFecha($registro2['fecha']).'</td>
+				<td>'.$registro2['cantidad'].'</td>
+				<td>'.$registro2['pesoPromedio'].' Kg</td>
+				<td>'.$registro2['destino'].'</td>
+				<td><a href="verTropa.php?tropa='.$registro2['tropa'].'&seccion=egresos"><span class="icon-eye iconos"></span></a></td>
+				<td><a href="stock.php?accion=eliminarEgreso&id='.$registro2['id'].'&tropa='.$registro2['tropa'].'" onclick="return confirm(\'¿Eliminar Registro?\');"><span class="icon-bin2 iconos"></span></a></td>
+				</tr>';
+				
+				$totalCantidad += $registro2['cantidad'];
 					
-					$totalCantidad += $registro2['cantidad'];
-						
-					$totalPNeto += ($registro2['pesoPromedio'] * $registro2['cantidad']);
-	
-	
-		}else{
-
-			$tropa = $registro2['tropa'];
-			
-			$sql2 = "SELECT SUM(peso) AS pesoTotal, COUNT(tropa) as cantidadTotal, fecha, destino, id FROM egresos WHERE tropa = '$tropa'";
-	
-			$query2 = mysqli_query($conexion,$sql2);
-	
-			$resultadosEgr = mysqli_fetch_array($query2);
-			
-			$pesoPromedio = $resultadosEgr['pesoTotal'] / $resultadosEgr['cantidadTotal'];
-
-				  
-			echo '<tr>
-					<td>'.formatearFecha($resultadosEgr['fecha']).'</td>
-					<td>'.$resultadosEgr['cantidadTotal'].'</td>
-					<td>'.$pesoPromedio.' Kg</td>
-					<td>'.$resultadosEgr['destino'].'</td>
-					<td><a href="verTropa.php?tropa='.$registro2['tropa'].'&seccion=egresos"><span class="icon-eye iconos"></span></a></td>
-					<td><a href="stock.php?accion=eliminarEgreso&id='.$resultadosEgr['id'].'&tropa='.$tropa.'" onclick="return confirm(\'¿Eliminar Registro?\');"><span class="icon-bin2 iconos"></span></a></td>
-					</tr>';
-					
-					$totalCantidad += $resultadosEgr['cantidadTotal'];
-					
-					$totalPNeto += $resultadosEgr['pesoTotal'];
-						
-					}
-
-					
+				$totalPNeto += ($registro2['pesoPromedio'] * $registro2['cantidad']);
+				
 	
 	}
 
 
 	echo 	'<tr>
-		<td><b>SubTotales:</b></td>
-		<td><b>'.number_format($totalCantidad,0,",",".").' Animales</b></td>
-		<td><b>'.number_format(($totalPNeto / $totalCantidad),2,",",".").' Kg</b></td>
-		<td><b>Peso Neto: '.number_format($totalPNeto,2,",",".").' Kg</b></td>
-		<td><b><a href="exportar/stockEgr.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-primary btn-block">Exportar</a></b></td>
-		<td><b><a href="imprimir/stockEgr.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-primary btn-block" target="_blank">Imprimir</a></b></td>
+			<td><b>SubTotales:</b></td>
+			<td><b>'.number_format($totalCantidad,0,",",".").'</b></td>
+			<td><b>'.number_format(($totalPNeto / $totalCantidad),2,",",".").' Kg</b></td>
+			<td colspan="2"><b>Neto: '.number_format($totalPNeto,0,",",".").' Kg</b></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+			<td><b><a href="exportar/stockEgr.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block"  style="font-size:1.3em;"><span class="icon-file-excel iconos"></span></a></b></td>
+			<td  colspan="2"><b><a href="imprimir/stockEgr.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block"  style="font-size:1.3em;" target="_blank"><span class="icon-printer iconos"></span></a></b></td>
 		</tr>';
+
 }else{
 	echo '<tr>
 				<td colspan="6">No se encontraron resultados</td>
