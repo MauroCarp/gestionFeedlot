@@ -122,9 +122,9 @@ echo 	'<tr>
 			<td colspan="5"></td>
 			</tr>
 			<tr>
-			<td colspan="5"></td>
-			<td colspan="2"><b><a href="exportar/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block">Exportar</a></b></td>
-			<td colspan="3"><b><a href="imprimir/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block" target="_blank">Imprimir</a></b></td>
+			<td colspan="7"></td>
+			<td><b><a href="exportar/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block" style="font-size:1.3em;"><span class="icon-file-excel iconos"></span></a></b></td>
+			<td colspan="2"><b><a href="imprimir/stockIng.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block" target="_blank" style="font-size:1.3em;"><span class="icon-printer iconos"></span></a></b></td>
 		</tr>';
 }else{
 	echo '<tr>

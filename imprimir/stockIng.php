@@ -15,7 +15,7 @@ function formatearFecha($fecha){
 
 $sql = $_GET['sql'];
 $filtros = $_GET['filtros'];
-    $pdf = new FPDF('P','mm','A4'); 
+    $pdf = new FPDF('L','mm','A4'); 
     $pdf->AddPage();
     $pdf->SetFillColor(222,222,222);
     $pdf->SetTitle(utf8_decode('Listado de Ingresos'));
@@ -46,16 +46,16 @@ $filtros = $_GET['filtros'];
     $pdf->Cell(190,10,utf8_decode('Listado de Ingresos - '.$filtros),0,1,'L',0);
     $pdf->SetFont('helvetica','B',10);
     $pdf->SetX(10);
-    $pdf->Cell(40,10,'Tropa',0,0,'L',0);
-    $pdf->Cell(20,10,'Fecha Ing.',0,0,'L',0);
+    $pdf->Cell(70,10,'Tropa',0,0,'C',0);
+    $pdf->Cell(20,10,'Fecha Ing.',0,0,'C',0);
     $pdf->Cell(23,10,'Cantidad',0,0,'C',0);
-    $pdf->Cell(22,10,'Peso Prom.',0,0,'L',0);
-    $pdf->Cell(27,10,'Renspa',0,0,'L',0);
-    $pdf->Cell(15,10,'ADPV',0,0,'L',0);
-    $pdf->Cell(20,10,'Estado',0,0,'L',0);
-    $pdf->Cell(20,10,'Proveedor',0,1,'L',0);
+    $pdf->Cell(22,10,'Peso Prom.',0,0,'C',0);
+    $pdf->Cell(30,10,'Renspa',0,0,'C',0);
+    $pdf->Cell(15,10,'ADPV',0,0,'C',0);
+    $pdf->Cell(20,10,'Estado',0,0,'C',0);
+    $pdf->Cell(30,10,'Proveedor',0,1,'C',0);
     $pdf->SetX(10);
-    $pdf->Cell(195,.01,'',1,1,'L',0);
+    $pdf->Cell(230,.01,'',1,1,'L',0);
     $pdf->SetX(10);
 
     $pdf->SetFont('Helvetica','',8);
@@ -77,15 +77,15 @@ $filtros = $_GET['filtros'];
             $query2 = mysqli_query($conexion,$sql2);
                 
             $resultadosIng = mysqli_fetch_array($query2);
-
-            $pdf->Cell(40,8,$fila['tropa'],0,0,'L',$color);
-            $pdf->Cell(20,8,formatearFecha($fila['fecha']),0,0,'L',$color);
+            $pdf->SetX(10);
+            $pdf->Cell(70,8,$fila['tropa'],0,0,'L',$color);
+            $pdf->Cell(20,8,formatearFecha($fila['fecha']),0,0,'C',$color);
             $pdf->Cell(23,8,$fila['cantidad'],0,0,'C',$color);
-            $pdf->Cell(22,8,$fila['pesoPromedio'].' Kg',0,0,'L',$color);
-            $pdf->Cell(27,8,$fila['renspa'],0,0,'L',$color);
-            $pdf->Cell(15,8,$fila['adpv'],0,0,'L',$color);
-            $pdf->Cell(20,8,$fila['estado'],0,0,'L',$color);
-            $pdf->Cell(28,8,$fila['proveedor'],0,1,'L',$color);
+            $pdf->Cell(22,8,$fila['pesoPromedio'].' Kg',0,0,'C',$color);
+            $pdf->Cell(30,8,$fila['renspa'],0,0,'L',$color);
+            $pdf->Cell(15,8,$fila['adpv'],0,0,'C',$color);
+            $pdf->Cell(20,8,$fila['estado'],0,0,'C',$color);
+            $pdf->Cell(30,8,$fila['proveedor'],0,1,'C',$color);
             
             $totalCantidad += $fila['cantidad'];
 				
@@ -106,12 +106,17 @@ $filtros = $_GET['filtros'];
             }
             
         }
-        $pdf->Cell(195,.01,'',1,1,'L',0);
+
+        $pdf->Cell(230,.01,'',1,1,'L',0);
         $pdf->SetFont('Helvetica','B',10);
-        $pdf->Cell(60,8,'Subtotales:',0,0,'R',0);
-        $pdf->Cell(23,8,number_format($totalCantidad,0,",","."),0,0,'L',0);
-        $pdf->Cell(22,8,number_format(($totalPNeto / $totalCantidad),2,",",".")." Kg",0,0,'L',0);
-        $pdf->Cell(40,8,'Peso Neto: '.number_format($totalPNeto,2,",",".")." Kg",0,0,'L',0);
+        $pdf->Cell(70,8,'',0,0,'',0);
+        $pdf->Cell(20,8,'Subtotales:',0,0,'R',0);
+        $pdf->Cell(23,8,number_format($totalCantidad,0,",","."),0,0,'C',0);
+        $pdf->Cell(22,8,number_format(($totalPNeto / $totalCantidad),2,",",".")." Kg",0,1,'C',0);
+        $pdf->Cell(70,8,'',0,0,'',0);
+        $pdf->Cell(20,8,'Peso Neto:',0,0,'L',0);
+        $pdf->Cell(23,8,'',0,0,'',0);
+        $pdf->Cell(23,8,number_format($totalPNeto,2,",",".")." Kg",0,0,'C',0);
     }
     $pdf->Output();
     
