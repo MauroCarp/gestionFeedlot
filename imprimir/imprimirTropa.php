@@ -1,7 +1,7 @@
 <?php
-include("includes/init_session.php");
-include("includes/conexion.php");
-include("lib/fpdf/fpdf.php");
+include("../includes/init_session.php");
+include("../includes/conexion.php");
+include("../lib/fpdf/fpdf.php");
 
 function formatearFecha($fecha){
 	if ($fecha == NULL) {
@@ -14,7 +14,7 @@ function formatearFecha($fecha){
 
 $tropa = $_GET['tropa'];
 
-$sql = "SELECT * FROM ingresos WHERE tropa = '$tropa' ORDER BY hora DESC";
+$sql = "SELECT * FROM ingresos WHERE tropa = '$tropa' ORDER BY hora ASC";
 
 $query = mysqli_query($conexion,$sql);
 
@@ -26,9 +26,10 @@ $pdf->SetDisplayMode('fullpage', 'single');
 $pdf->SetAutoPageBreak(1,1);
 $pdf->SetFont('Times','B',11);
 $pdf->SetX(10);
-$pdf->Cell(130,7,utf8_decode('Gestión de Feedlots'),0,0,'L',0);
+$pdf->Image('../img/logo1BN.png',10,10,30);
+$pdf->Cell(130,7,utf8_decode(''),0,0,'L',0);
 $pdf->Cell(60,7,utf8_decode('Jorge Cornale'),0,1,'R',0);
-$pdf->Ln(1);
+$pdf->Ln(5);
 $pdf->SetFont('Times','B',18);
 $pdf->Cell(190,10,'Feedlot: '.$feedlot,0,1,'L',0);
 $pdf->Cell(190,10,utf8_decode('Detalle de Tropa - Tropa: '.$tropa),0,1,'L',0);
@@ -43,7 +44,8 @@ $pdf->Cell(27,10,'Sexo',0,0,'L',0);
 $pdf->Cell(30,10,'Estado',0,0,'L',0);
 $pdf->Cell(20,10,'Hora',0,1,'L',0);
 $pdf->SetX(10);
-$pdf->Cell(190,.01,'',1,1,'L',0);
+$pdf->Cell(191,0.3,'',1,1,'L',1);
+$pdf->Ln(0.5);
 $pdf->SetX(10);
 $pdf->SetFont('helvetica','',10);
 

@@ -299,8 +299,8 @@ require 'head.php';
               <div id="detalleTropa" style="display:none;" class="row-fluid">
                 
                 <div class="span12" style="height: 250px;overflow-y: scroll;margin-top:10px;">
-                  <a  href="imprimirTropa.php?tropa=<?php echo $tropa;?>" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-printer iconos"></span></a>
-                  <a  href="excelTropa.php?tropa=<?php echo $tropa;?>" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-file-excel iconos"></span></a>
+                  <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-printer iconos"></span></a>
+                  <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-file-excel iconos"></span></a>
                   <table class="table table-striped table-hover">
                     <thead>
                       <th>IDE</th>
