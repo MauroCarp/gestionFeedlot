@@ -79,3 +79,87 @@
     </div>
 
 </div>
+
+<div class="modal fade" style="top:100px;z-index:99!important;" id="modalEditarCausa" tabindex="-1" role="dialog" aria-labelledby="modalEditarCausa" aria-hidden="true">
+
+    <div class="modal-dialog" style="width:auto;" role="document">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 class="modal-title">Editar Causa</h2>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row-fluid">
+                
+                <div class="span12">
+                    
+                    <div class="control-group"> 
+                    
+                        <label class="control-label" style="font-size:1.1em;"><b>Causa de Muerte:</b></label>
+                    
+                        <div class="controls">
+                    
+                            <select id="causaMuerteEdit" class="form-control input-large">
+                        
+                                <option value="">Seleccionar Causa Muerte</option>
+                        
+                                <option value="Accidente">Accidente</option>
+                        
+                                <option value="Digestivo">Digestivo</option>
+                        
+                                <option value="Ingreso">Ingreso</option>
+                        
+                                <option value="Nervioso">Nervioso</option>
+                        
+                                <option value="Rechazo">Rechazo</option>
+                        
+                                <option value="Respiratorio">Respiratorio</option>
+                        
+                                <option value="Sin Diagnostico">Sin Diagnostico</option>
+                        
+                                <option value="Sin Hallazgo">Sin Hallazgo</option>
+                        
+                                <option value="Otro">Otro</option>
+                        
+                            </select>
+                        
+                        </div>
+                    
+                    </div>           
+                    
+                </div>
+
+            </div>
+
+            <div class="row-fluid">
+            
+                <div class="span12">
+
+                    <div class="control-group"> 
+                                            
+                        <div class="controls">
+                    
+                            <button class="btn btn-default" id="btnEditarCausa" idMuerte="">Editar Causa</button>
+            
+                        </div>
+                    
+                    </div>        
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+</div>

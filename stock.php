@@ -305,25 +305,9 @@ require 'head.php';
     
           $('#contenedorIngresos').show();
 
-          let desde;
-    
-          let hasta;
-    
-          let renspa;
-    
-          let proveedor;
-          
-          let estado;
-          
-          let pesoMin;
-
-          let pesoMax;
-    
-          let orden;
+          let desde, hasta, renspa, proveedor, estado, pesoMin, pesoMax, orden
     
           let datos = [];
-
-
     
           desde = $('#desde').val();
     
@@ -668,12 +652,6 @@ require 'head.php';
     
           });              
     
-      }); 
-   
-        $(document).ready(function(){
- 
-
-    
           $('.ir-arriba').click(function(){
     
             $('body, html').animate({
@@ -683,8 +661,6 @@ require 'head.php';
             }, 300);
     
           });
-
-
     
           $(window).scroll(function(){
     
@@ -699,8 +675,6 @@ require 'head.php';
             }
     
           });
-
-
     
         });
 
@@ -720,6 +694,7 @@ require 'head.php';
     
         cargarMuertes.addEventListener('click',cargaMuertes());
     
+        
     </script>
 
   </body>

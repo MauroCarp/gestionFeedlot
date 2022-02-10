@@ -12,15 +12,17 @@ echo mysqli_error($conexion);
 while($fila = mysqli_fetch_array($query)){
 ?>
 <tr>
+
   <td><?php echo formatearFecha($fila['fecha']);?></td>
   <td><?php echo $fila['cantidad'];?></td>
   <td><?php echo $fila['causaMuerte'];?></td>
+  <td><a style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modalEditarCausa" onclick="editarCausa('<?php  echo $fila['id'];?>')"><span class="icon-pencil iconos"></span></a></td>
   <td><a href="stock.php?accion=eliminarMuerte&id=<?php echo $fila['id'];?>&tropa=<?php echo $fila['tropa'];?>" onclick="return confirm('¿Eliminar Registro?');"><span class="icon-bin2 iconos"></span></a></td>
-  <!-- <td><a href="stock.php?accion=editarCausa&id=<?php //echo $fila['id'];?>&tropa=<?php //echo $fila['tropa'];?>" onclick="return confirm('¿Eliminar Registro?');"><span class="icon-bin2 iconos"></span></a></td> -->
-  <td><a href="#"><span class="icon-pencil iconos"></span></a></td>
+
 </tr>
 <?php
 
 }
 
 ?>
+

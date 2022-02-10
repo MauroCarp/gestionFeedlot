@@ -54,8 +54,6 @@ $.ajax({
     success:(response)=>{
 
         let data = JSON.parse(response)
-
-        console.log(`${data.accidente}`,`${data.digestivo}`,`${data.ingreso}`,`${data.nervioso}`,`${data.rechazo}`,`${data.respiratorio}`,`${data.sinDiagnostico}`,`${data.sinHallazgo}`,`${data.otro}`);
         
         let config = {
             type: 'pie',
@@ -88,3 +86,50 @@ $.ajax({
 
     }
 })
+
+
+/*=============================================
+BTN EDITAR CUASA
+=============================================*/
+
+const editarCausa = (idMuerte)=>{
+    
+    document.getElementById('btnEditarCausa').attributes.idMuerte.value = idMuerte
+    
+}
+
+/*=============================================
+EDITAR CUASA
+=============================================*/
+
+const btnEditarCausa = document.getElementById('btnEditarCausa')
+
+btnEditarCausa.addEventListener(('click'),(e)=>{
+
+    let url = 'ajax/muertes.ajax.php'
+
+    let idMuerte = e.target.attributes.idmuerte.value
+    
+    let causaMuerte = document.getElementById('causaMuerteEdit').value
+
+    let data = `id=${idMuerte}&causa=${causaMuerte}`
+
+    $.ajax({
+        method:'post',
+        url,
+        data,
+        success:(resp)=>{
+
+            if(resp == 'ok'){
+
+                window.location = 'stock.php?seccion=muerte'
+                
+            }else{
+
+            }
+
+        }
+
+    })
+})
+
