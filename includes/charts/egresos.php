@@ -98,6 +98,13 @@ if(!$comparacionValido){
 				title: {
 					display: true,
 					text: 'Cant. Segun Sexo'
+				},
+				plugins: {
+					labels: {
+					render: 'value',
+				    fontColor: 'white',
+
+					}
 				}
 
 			}

@@ -299,8 +299,8 @@ require 'head.php';
               <div id="detalleTropa" style="display:none;" class="row-fluid">
                 
                 <div class="span12" style="height: 250px;overflow-y: scroll;margin-top:10px;">
-                  <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-printer iconos"></span></a>
-                  <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-file-excel iconos"></span></a>
+                  <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>&seccion=ingresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-printer iconos"></span></a>
+                  <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>&seccion=ingresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-file-excel iconos"></span></a>
                   <table class="table table-striped table-hover">
                     <thead>
                       <th>IDE</th>
@@ -348,13 +348,13 @@ require 'head.php';
               </div>
               
               <div class="row-fluid" style="background-color:#eeeeee">
-                <div class="span6"><b>- Kg Neto Egreso: </b><?php echo formatearNum($totalPesoEgr)." Kg";?></div>
+                <div class="span6"><b>- Kg Neto Egreso: </b><?php echo number_format($totalPesoEgr,0,'','.')." Kg";?></div>
                 <div class="span6"><b>- Kg Egreso Promedio: </b><?php echo formatearNum($kgEgrProm)." Kg";?></div>
               </div>
               
               <div class="row-fluid">
-                <div class="span6"><b>- Peso Min.: </b><?php echo formatearNum($pesoMinEgr)." Kg";?></div> 
-                <div class="span6"><b>- Peso Max.: </b><?php echo formatearNum($pesoMaxEgr)." Kg";?></div>
+                <div class="span6"><b>- Peso Min.: </b><?php echo $pesoMinEgr." Kg";?></div> 
+                <div class="span6"><b>- Peso Max.: </b><?php echo $pesoMaxEgr." Kg";?></div>
               </div>
 
             </div>
@@ -364,7 +364,10 @@ require 'head.php';
             <div id="detalleTropa" style="display:none;" class="row-fluid">
               
               <div class="span12" style="height: 250px;overflow-y: scroll;margin-top:10px;">
-
+                
+                <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>&seccion=egresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-printer iconos"></span></a>
+                <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>&seccion=egresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-file-excel iconos"></span></a>
+                
                 <table class="table table-striped table-hover">
                   <thead>
                     <th>IDE</th>
@@ -460,17 +463,29 @@ require 'head.php';
           }
           if ($seccion == 'egresos') { ?>
 
+            
             <div class="row-fluid">
+            
               <div class="span7">
+
                 <div id="canvas-holder" style="width:100%;display: inline-block;">
+
                   <canvas id="canvasRazaEgr"></canvas>
+
                 </div>
+
               </div>
+
               <div class="span5">
+
                 <div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
-                  <canvas id="chart-areaEgr"></canvas>
+
+                <canvas id="chart-areaEgr"></canvas>
+
                 </div>
+
               </div>
+
             </div>
 
             <hr>
@@ -875,7 +890,7 @@ require 'head.php';
 
               var razaEgr = document.getElementById('canvasRazaEgr').getContext('2d');
               window.myBar = new Chart(razaEgr, {
-                type: 'bar',
+                type: 'horizontalBar',
                 data: barChartDataEgr,
                 options: {
                   responsive: true,

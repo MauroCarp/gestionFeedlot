@@ -35,6 +35,8 @@
 
     <script src="js/chart/samples/utils.js"></script>
 
+    <script src="js/chartjs-plugin-labels.min.js"></script>
+    
     <style type="text/css">
           body {
           padding-top: 60px;

@@ -37,6 +37,11 @@
       title: {
         display: true,
         text: 'Cant. Segun Sexo'
+      },
+      plugins: {
+        labels: {
+          render: 'percentage'
+        }
       }
 
     }

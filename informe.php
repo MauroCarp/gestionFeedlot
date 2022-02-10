@@ -101,7 +101,7 @@ if($feedlot == 'Acopiadora Pampeana'){
             </div>
           </div>
         </div>
-        <button class="btn btn-primary" onclick="imprimir()">Imprimir</button>
+        <button class="btn btn-default" onclick="imprimir()">Imprimir</button>
           <span class="ir-arriba icon-arrow-up2"></span>
         </div>
         <hr>
@@ -305,7 +305,7 @@ if($feedlot == 'Acopiadora Pampeana'){
 
           var razaEgr = document.getElementById('canvasRazaEgr').getContext('2d');
           window.myBar = new Chart(razaEgr, {
-            type: 'bar',
+            type: 'horizontalBar',
             data: barChartDataEgr,
             options: {
               responsive: true,

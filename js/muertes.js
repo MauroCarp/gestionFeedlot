@@ -70,10 +70,16 @@ $.ajax({
             labels: ['Accidente','Digestivo','Ingreso','Nervioso','Rechazo','Respiratorio','Sin Diagnostico','Sin Hallazgo','Otro']
             },
             options: {
-            responsive: true,
-            legend: {
-                position: 'right',
-            },
+                responsive: true,
+                legend: {
+                    position: 'right',
+                },
+                plugins: {
+					labels: {
+					render: 'percentage',
+                    fontColor: 'white',
+					}
+				}
             }
         };
         

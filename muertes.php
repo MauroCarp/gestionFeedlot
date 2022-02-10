@@ -118,8 +118,14 @@
         options: {
           responsive: true,
           legend: {
-            position: 'right',
+            position: 'left',
           },
+          plugins: {
+            labels: {
+            render: 'value',
+            fontColor: 'white',
+            }
+          }
         }
       };
 
