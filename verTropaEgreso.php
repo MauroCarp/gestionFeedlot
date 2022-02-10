@@ -296,7 +296,7 @@ if ($seccion == 'egresos') {
     $labelsRaza = substr($labelsRaza, 1);
     $cantXraza = substr($cantXraza, 1);
     ?>
-    var RAZAS = [
+    let razas = [
     <?php
     echo $labelsRaza;
     ?>

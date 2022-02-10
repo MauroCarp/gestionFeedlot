@@ -2,12 +2,12 @@
 if(!$comparacionValido){
 ?>
 <div class="row-fluid">
-	<div class="span5">
+	<div class="span6">
 		<div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
 			<canvas id="chart-areaEgr"></canvas>
 		</div>
 	</div>
-	<div class="span7">
+	<div class="span6">
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
 			<canvas id="canvasRazaEgr"></canvas>
 		</div>
@@ -61,7 +61,7 @@ if(!$comparacionValido){
 <script type="text/javascript">
 	
 	// SEXO
-		var configEgr = {
+		let configEgr = {
 			type: 'pie',
 			data: {
 				datasets: [{
@@ -101,8 +101,8 @@ if(!$comparacionValido){
 				},
 				plugins: {
 					labels: {
-					render: 'value',
-				    fontColor: 'white',
+					render: 'percentage',
+					fontColor: 'white',
 
 					}
 				}
@@ -130,12 +130,12 @@ if(!$comparacionValido){
 		  $labelsRazaEgr = substr($labelsRazaEgr, 1);
 		  $cantXrazaEgr = substr($cantXrazaEgr, 1);
 		?>
-	  var RAZAS = [
+	  razas = [
 	  <?php
 		echo $labelsRazaEgr;
 	  ?>];
-	  var color = Chart.helpers.color;
-	  var barChartDataEgr = {
+
+	  let barChartDataEgr = {
 	    labels: [
 	    <?php
 	    echo $labelsRazaEgr;
@@ -155,7 +155,7 @@ if(!$comparacionValido){
 
 	  };
 	// EGRESOS 
-	   	var egresos = {
+	   	let egresos = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -246,9 +246,9 @@ if(!$comparacionValido){
 	 ?>   
     
 	// SEXO COMPARACION
-		var configEgrComp = {
-		type: 'pie',
-		data: {
+		let configEgrComp = {
+			type: 'pie',
+			data: {
 			datasets: [{
 				data: [
 				<?php
@@ -283,13 +283,19 @@ if(!$comparacionValido){
 				title: {
 					display: true,
 					text: 'Cant. Segun Sexo'
+				},
+				plugins:{
+					labels:{
+						render:'percentage',
+						fontColor:'white'
+					}
 				}
 
 			}
 		};
   	// RAZAS COMPARACION
-	  	var color = Chart.helpers.color;
-	  	var barChartDataRazaEgrC = {
+
+	  	let barChartDataRazaEgrC = {
 		    labels: [
 		    <?php
 		    echo $labelsRazaEgr;
@@ -319,7 +325,7 @@ if(!$comparacionValido){
 
 	  	};
 	// EGRESOS COMPARACION 
-	var egresosComp = {
+	let egresosComp = {
 	      type: 'line',
 	      data: {
 	        labels: [

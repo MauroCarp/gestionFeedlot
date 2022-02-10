@@ -62,7 +62,8 @@
 				},
 				plugins: {
                 labels: {
-                  render: 'value'
+                  render: 'percentage',
+				  fontColor:'white'
                 }
               }
 			}

@@ -79,7 +79,7 @@
 <script type="text/javascript">
 
 	// SEXO
-			var configEgr = {
+			let configEgr = {
 				type: 'pie',
 				data: {
 					datasets: [{
@@ -116,12 +116,18 @@
 					title: {
 						display: true,
 						text: 'Cant. Segun Sexo'
+					},
+					plugins:{
+						labels:{
+							render:'percentage',
+							fontColor:'white'
+						}
 					}
 
 				}
 			};		 
 	// EGRESOS 
-	   	var egresos = {
+	   	let egresos = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -209,7 +215,7 @@
 
 
 	// SEXO COMPARACION
-		var configEgrComp = {
+		let configEgrComp = {
 		type: 'pie',
 		data: {
 			datasets: [{
@@ -246,8 +252,13 @@
 				title: {
 					display: true,
 					text: 'Cant. Segun Sexo'
+				},
+				plugins:{
+					labels:{
+						render:'percentage',
+						fontColor:'white'
+					}
 				}
-
 			}
 		};
   	// RAZAS COMPARACION
@@ -272,8 +283,8 @@
 		  $labelsRazaEgr = substr($labelsRazaEgr, 1);
 		  $cantXrazaEgr = substr($cantXrazaEgr, 1);
 		?>
-	  	var color = Chart.helpers.color;
-	  	var barChartDataRazaEgrC = {
+
+	  	let barChartDataRazaEgrC = {
 		    labels: [
 		    <?php
 		    echo $labelsRazaEgr;
@@ -303,40 +314,40 @@
 
 	  	};
 	// EGRESOS COMPARACION 
-		var egresosComp = {
+		let egresosComp = {
 		      type: 'line',
 		      data: {
 		        labels: [
 
 		        <?php
-		      	if ($labelsMeses) {
-					echo implode(",",$mesesComp);
-		      	}else{
-			        $labelsEgrComp = "";
-			        $fechaTempEgrComp = "";
-			        $contadorEgrComp = 0;
-			        $cantidadEgrComp = 0;
-			        $sqlEgresosComp = "SELECT * FROM egresos WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
-			        $queryEgresosComp = mysqli_query($conexion,$sqlEgresosComp);
-			        while ($filaEgresosComp = mysqli_fetch_array($queryEgresosComp)) {
-
-			          if($fechaTempEgrComp != $filaEgresosComp['fecha']){
-			            $fechaTempEgrComp = $filaEgresosComp['fecha'];
-			            $labelsEgrComp = $labelsEgrComp."','".formatearFecha($fechaTempEgrComp);
-			            $cantidadEgrComp = $cantidadEgrComp.",".$contadorEgrComp;
-			            $contadorEgrComp = 0;
-			          }
-			          $contadorEgrComp++;
-			        }
-			        $cantidadEgrComp = $cantidadEgrComp.",".$contadorEgrComp;
-
-					$labelsEgrComp = substr($labelsEgrComp,2);
-					if ($labelsEgrComp == "") {
-					echo $labelsEgrComp;
+					if ($labelsMeses) {
+						echo implode(",",$mesesComp);
 					}else{
-					echo $labelsEgrComp."'";
+						$labelsEgrComp = "";
+						$fechaTempEgrComp = "";
+						$contadorEgrComp = 0;
+						$cantidadEgrComp = 0;
+						$sqlEgresosComp = "SELECT * FROM egresos WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
+						$queryEgresosComp = mysqli_query($conexion,$sqlEgresosComp);
+						while ($filaEgresosComp = mysqli_fetch_array($queryEgresosComp)) {
+
+						if($fechaTempEgrComp != $filaEgresosComp['fecha']){
+							$fechaTempEgrComp = $filaEgresosComp['fecha'];
+							$labelsEgrComp = $labelsEgrComp."','".formatearFecha($fechaTempEgrComp);
+							$cantidadEgrComp = $cantidadEgrComp.",".$contadorEgrComp;
+							$contadorEgrComp = 0;
+						}
+						$contadorEgrComp++;
+						}
+						$cantidadEgrComp = $cantidadEgrComp.",".$contadorEgrComp;
+
+						$labelsEgrComp = substr($labelsEgrComp,2);
+						if ($labelsEgrComp == "") {
+						echo $labelsEgrComp;
+						}else{
+						echo $labelsEgrComp."'";
+						}
 					}
-				}
 		        ?>
 
 		        ],
@@ -387,5 +398,5 @@
 		          }]
 		        }
 		      }
-		    };
+		};
 </script>

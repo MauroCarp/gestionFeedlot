@@ -62,7 +62,7 @@
   $cantXrazaEgr = substr($cantXrazaEgr, 1);
 
   ?>
-  var RAZASEGR = [
+  let razaEgr = [
   <?php
   echo $labelsRazaEgr;
   ?>

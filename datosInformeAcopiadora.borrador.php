@@ -1,8 +1,8 @@
 <?php
 $seccion = $_GET['seccion'];
 
-$desde = $_GET['desde'];
-$hasta = $_GET['hasta'];
+$desde = $_POST['desde'];
+$hasta = $_POST['hasta'];
 
 $fechaDesde = new DateTime($desde);
 $fechaHasta = new DateTime($hasta);
@@ -43,9 +43,8 @@ if ($labelsIngEgrMeses) {
 }
 
 
-$desdeComp = (array_key_exists('desdeComp', $_GET)) ? $_GET['desdeComp'] : "";
-$hastaComp = (array_key_exists('hastaComp', $_GET)) ? $_GET['hastaComp'] : "";
-
+$desdeComp = (array_key_exists('desdeComp', $_POST)) ? $_POST['desdeComp'] : "";
+$hastaComp = (array_key_exists('hastaComp', $_POST)) ? $_POST['hastaComp'] : "";
 
 $comparacionValido = ($desdeComp != '' AND $desdeComp != '') ? TRUE : FALSE;
 

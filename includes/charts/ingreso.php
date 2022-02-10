@@ -1,86 +1,162 @@
 <?php
 if(!$comparacionValido){
 ?>
+
 <div class="row-fluid">
-	<div class="span5">
+
+	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
+
 			<canvas id="chart-area"></canvas>
+
 		</div>
+
 	</div>
-	<div class="span7">
+
+	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasRaza"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
 <div class="row-fluid">
+
 	<div class="span12">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasCantidades"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
 <div class="row-fluid">
+
 	<div class="span12">
+
 		<div style="width:100%;">
-		<canvas id="canvasIngEgr"></canvas>
+
+			<canvas id="canvasIngEgr"></canvas>
+
+		</div>
+
 	</div>
-	</div>
+
 </div>
+
 <?php
+
 }else{
+
 ?>
+
 <div class="row-fluid">
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
+
 			<canvas id="chart-area"></canvas>
+
 		</div>
+
 	</div>
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
+
 			<canvas id="chart-areaComp"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
 <div class="row-fluid">
+
 	<div class="span12">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasRazaComparacion"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
 <div class="row-fluid">
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasCantidades"></canvas>
+
 		</div>
+
 	</div>
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasCantidadesComp"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
 <div class="row-fluid">
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 		<canvas id="canvasIngEgr"></canvas>
+
 		</div>
+
 	</div>
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 		<canvas id="canvasIngEgrComp"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
 <?php
 }
 ?>
 
 <script type="text/javascript">
-	
+	    
+	let  comparacionValido = <?php echo ($comparacionValido == TRUE) ? 1 : 0;?>;
+
+		
 	// SEXO
-		var config = {
+		let config = {
 			type: 'pie',
 			data: {
 				datasets: [{
@@ -117,62 +193,70 @@ if(!$comparacionValido){
 				title: {
 					display: true,
 					text: 'Cant. Segun Sexo'
+				},
+				plugins:{
+					labels:{
+						render:'percentage',
+						fontColor:'white'
+					}
 				}
 			}
 		};
 
 	// INGRESOS SEGUN SEXP Y PESO
 
-		var cantPesos = {
-		type: 'doughnut',
-		data: {
-		  datasets: [{
-		    data: [
-		    <?php echo $resultado;?>
-		    ],
-		    backgroundColor: [
-		      '#FF6D88',
-		      '#F8A233',
-		    ],
-		    label: 'Dataset 1'
-		  }],
-		  labels: [
-		    'Macho',
-		    'Hembra'
-		  ]
-		},
-		options: {
-		  circumference: Math.PI,
-		  rotation: -Math.PI,
-		  responsive: true,
-		  legend: {
-		    position: 'top',
-		  },
-		  title: {
-		    display: true,
-		    text: 'Cantidad según Sexo, y Peso'
-		  },
-		  animation: {
-		    animateScale: true,
-		    animateRotate: true
-		  },
-		  plugins:{
-			labels: {
-				render: 'value'
+		let cantPesos = {
+			type: 'doughnut',
+			data: {
+			datasets: [{
+				data: [
+				<?php echo $resultado;?>
+				],
+				backgroundColor: [
+				'#FF6D88',
+				'#F8A233',
+				],
+				label: 'Dataset 1'
+			}],
+			labels: [
+				'Macho',
+				'Hembra'
+			]
+			},
+			options: {
+			circumference: Math.PI,
+			rotation: -Math.PI,
+			responsive: true,
+			legend: {
+				position: 'top',
+			},
+			title: {
+				display: true,
+				text: 'Cantidad según Sexo, y Peso'
+			},
+			animation: {
+				animateScale: true,
+				animateRotate: true
+			},
+			plugins:{
+				labels: {
+					render: 'percentage',
+					fontColor:'white'
+				}
 			}
-		  }
 
-		}
+			}
 		};
 
-
 	// RAZAS 	
-	  	<?php 
+	  	
+		<?php 
 	  	  $sqlRazas = "SELECT raza FROM razas ORDER BY raza ASC";
 		  $queryRazas = mysqli_query($conexion,$sqlRazas);
 		  $labelsRaza = "";
 		  $cantXraza = "";
 		  $cantXrazaComp = "";
+
 		  while ($razas = mysqli_fetch_array($queryRazas)) {
 		    $labelsRaza = $labelsRaza.",'".$razas['raza']."'";  
 		    ${$razas['raza']} = cantRazaInforme($razas['raza'],'ingresos',$feedlot,$desde,$hasta,$conexion);
@@ -182,15 +266,19 @@ if(!$comparacionValido){
 		    	$cantXrazaComp = $cantXrazaComp.",".${$razas['raza']."Comp"};
 		    }
 		  }
+
 		  $labelsRaza = substr($labelsRaza, 1);
 		  $cantXraza = substr($cantXraza, 1);
+
 		?>
-	  var RAZAS = [
+	  let razas = [
 	  <?php
 		echo $labelsRaza;
 	  ?>];
-	  var color = Chart.helpers.color;
-	  var barChartData = {
+
+	  color = Chart.helpers.color;
+
+	  let barChartData = {
 	    labels: [
 	    <?php
 	    echo $labelsRaza;
@@ -209,8 +297,9 @@ if(!$comparacionValido){
 	    }]
 
 	  };
+
 	// INGRESOS 
-	   	var ingresos = {
+	   	let ingresos = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -297,57 +386,64 @@ if(!$comparacionValido){
 	        }
 	      }
 	    };
-
+		
 	 <?php
 	 if ($comparacionValido) {
 	 ?>   
 	
 
 	// SEXO COMPARACION
-		var configComp = {
-		type: 'pie',
-		data: {
-			datasets: [{
-				data: [
-				<?php
-				$sqlMachoIngresoC = "SELECT COUNT(sexo) AS macho FROM ingresos WHERE sexo = 'Macho' AND feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
-				$queryMachoIngresoC = mysqli_query($conexion,$sqlMachoIngresoC);
-				$resultadoIngresoC = mysqli_fetch_array($queryMachoIngresoC);
-				$machoIngresoC = $resultadoIngresoC['macho'];
+		let configComp = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [
+					<?php
+					$sqlMachoIngresoC = "SELECT COUNT(sexo) AS macho FROM ingresos WHERE sexo = 'Macho' AND feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
+					$queryMachoIngresoC = mysqli_query($conexion,$sqlMachoIngresoC);
+					$resultadoIngresoC = mysqli_fetch_array($queryMachoIngresoC);
+					$machoIngresoC = $resultadoIngresoC['macho'];
 
-				$sqHembIngresoC = "SELECT COUNT(sexo) AS hembra FROM ingresos WHERE sexo = 'Hembra' AND feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
-				$querHembIngresoC = mysqli_query($conexion,$sqHembIngresoC);
-				$resultadoIngresoC = mysqli_fetch_array($querHembIngresoC);
-				$hembraIngresoC = $resultadoIngresoC['hembra'];
+					$sqHembIngresoC = "SELECT COUNT(sexo) AS hembra FROM ingresos WHERE sexo = 'Hembra' AND feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
+					$querHembIngresoC = mysqli_query($conexion,$sqHembIngresoC);
+					$resultadoIngresoC = mysqli_fetch_array($querHembIngresoC);
+					$hembraIngresoC = $resultadoIngresoC['hembra'];
 
-				$resultadoC = $machoIngresoC.",".$hembraIngresoC.",";
-				echo $resultadoC;
+					$resultadoC = $machoIngresoC.",".$hembraIngresoC.",";
+					echo $resultadoC;
 
-				?>
-				],
-				backgroundColor: [
-				window.chartColors.red,
-				window.chartColors.orange,
-				],
-				label: 'Sexo'
-			}],
-			labels: [
-			'Macho',
-			'Hembra'
-			]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: true,
-					text: 'Cant. Segun Sexo'
+					?>
+					],
+					backgroundColor: [
+					window.chartColors.red,
+					window.chartColors.orange,
+					],
+					label: 'Sexo'
+				}],
+				labels: [
+				'Macho',
+				'Hembra'
+				]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: 'Cant. Segun Sexo'
+					},
+					plugins:{
+						labels:{
+							render:'percetage',
+							fontColor:'white'
+						}
+					}
+
 				}
-
-			}
 		};
+
   	// RAZAS COMPARACION
-	  	var color = Chart.helpers.color;
-	  	var barChartDataRazaC = {
+
+	  	let barChartDataRazaC = {
 		    labels: [
 		    <?php
 		    echo $labelsRaza;
@@ -378,7 +474,7 @@ if(!$comparacionValido){
 	  	};
 	  	
 	// INGRESOS COMPARACION 
-	   	var ingresosComp = {
+	   	let ingresosComp = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -479,6 +575,7 @@ if(!$comparacionValido){
 	        }
 	      }
 	    }; 
+		
 	    <?php
 	}
 	    ?>

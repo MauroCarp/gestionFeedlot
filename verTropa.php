@@ -647,7 +647,7 @@ require 'head.php';
           $labelsRaza = substr($labelsRaza, 1);
           $cantXraza = substr($cantXraza, 1);
           ?>
-          let RAZAS = [
+          let razas = [
           <?php
           echo $labelsRaza;
           ?>

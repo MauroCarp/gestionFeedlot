@@ -2,19 +2,20 @@
 if(!$comparacionValido){
 ?>
 <div class="row-fluid">
+
 	<div class="span12">
-		<div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
-			<canvas id="chart-areaTipo"></canvas>
-		</div>
-	</div>
-</div>
-<div class="row-fluid">
-	<div class="span12">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasMuertes"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
+
 <?php
 }else{
 ?>
@@ -123,6 +124,12 @@ if(!$comparacionValido){
 					display: true,
 					labels:{
 						boxWidth: 5
+					}
+				},
+				plugins:{
+					labels:{
+						render:'percentage',
+						fontColor: 'white'
 					}
 				}
 
