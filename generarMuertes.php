@@ -34,7 +34,7 @@ if ($sql != "") {
 }
 
 //EJECUTAMOS LA CONSULTA DE BUSQUEDA
-$sqlQuery = "SELECT id, fecha, cantidad, causaMuerte FROM registromuertes $sql ORDER BY fecha $orden";
+$sqlQuery = "SELECT id, fecha, cantidad, causaMuerte, tropa FROM registromuertes $sql ORDER BY fecha $orden";
 $query = mysqli_query($conexion,$sqlQuery);
 echo mysqli_error($conexion);
 //CREAMOS NUESTRA VISTA Y LA DEVOLVEMOS AL AJAX
@@ -44,6 +44,7 @@ echo '<table class="table table-striped" style="box-shadow: 1px -2px 15px 1px;">
                 <th>Fecha Muerte</th>
                 <th>Cantidad</th>
                 <th>Causa Muerte</th>
+                <th></th>
                 <th></th>
             </tr>';
 if(mysqli_num_rows($query)>0){
@@ -55,17 +56,20 @@ if(mysqli_num_rows($query)>0){
 				<td>'.formatearFecha($registro2['fecha']).'</td>
 				<td>'.$registro2['cantidad'].'</td>
 				<td>'.$registro2['causaMuerte'].'</td>
-            	<td><a href="stock.php?accion=eliminarMuerte&id='.$registro2['id'].'&id='.$registro2['id'].'" onclick="return confirm(\'¿Eliminar Registro?\');"><span class="icon-bin2 iconos"></span></a></td>
+				<td><a style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modalEditarCausa" onclick="editarCausa(\''.$registro2['id'].'\')"><span class="icon-pencil iconos"></span></a></td>
+            	<td><a href="stock.php?accion=eliminarMuerte&id='.$registro2['id'].'&tropa='.$registro2['tropa'].'" onclick="return confirm(\'¿Eliminar Registro?\');"><span class="icon-bin2 iconos"></span></a></td>
+            	
 				</tr>';
 				$totalMuertes += $registro2['cantidad'];
 		}
 		echo 	'<tr>
-		<td><b>SubTotales:</b></td>
-		<td><b>'.number_format($totalMuertes,0,",",".").' Animales</b></td>
-		<td></td>
-		<td><b><a href="exportar/stockMuertes.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-primary">Exportar</a></b>
-		<b><a href="imprimir/stockMuertes.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-primary" target="_blank">Imprimir</a></b></td>
+			<td><b>SubTotales:</b></td>
+			<td><b>'.number_format($totalMuertes,0,",",".").' Animales</b></td>
+			<td></td>
+			<td><b><a href="exportar/stockMuertes.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block"  style="font-size:1.3em;"><span class="icon-file-excel iconos"></span></a></b></td>
+			<td><b><a href="imprimir/stockMuertes.php?sql='.$sqlQuery.'&filtros='.$filtros.'" class="btn btn-default btn-block"  style="font-size:1.3em;" target="_blank"><span class="icon-printer iconos"></span></a></b></td>
 		</tr>';
+
 }else{
 	echo '<tr>
 				<td colspan="6">No se encontraron resultados</td>

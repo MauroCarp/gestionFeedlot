@@ -24,26 +24,16 @@ $filtros = $_GET['filtros'];
     $pdf->SetFont('Times','B',11);
     $pdf->SetX(10);
     
-    if($_SESSION['feedlot'] == 'Acopiadora Pampeana' OR $_SESSION['feedlot'] == 'Acopiadora Pampeana Hoteleria'){
+    $pdf->Image('../img/logo1.png',10,10,30);
 
-        $pdf->Image('../img/logo1.png',10,10,30);
-    
-    }else{
-    
-        $pdf->Image('../img/logo1.png',10,10,30);
-
-    }
 
     $pdf->Cell(130,7,utf8_decode(''),0,0,'L',0);
     $pdf->Cell(60,7,utf8_decode('Jorge Cornale'),0,1,'R',0);
     $pdf->Ln(6);
     $pdf->SetFont('Times','B',18);
-    if ($feedlot == 'Acopiadora Pampeana' OR $feedlot == 'Acopiadora Pampeana Hoteleria') {
-        # code...
-        $pdf->Cell(190,10,utf8_decode('Feedlot: '.$feedlot.' - Doña Juana'),0,1,'L',0);
-    }else{
-        $pdf->Cell(190,10,'Feedlot: '.$feedlot,0,1,'L',0);
-    }
+
+    $pdf->Cell(190,10,'Feedlot: '.$feedlot,0,1,'L',0);
+
     $pdf->Cell(190,10,utf8_decode('Listado de Muertes - '.$filtros),0,1,'L',0);
     $pdf->SetFont('helvetica','B',10);
     $pdf->SetX(10);
@@ -62,9 +52,10 @@ $filtros = $_GET['filtros'];
         $color = 0;
         $totalCantidad = 0;
         while($fila = mysqli_fetch_array($query)){
+                
                 $pdf->Cell(40,8,formatearFecha($fila['fecha']),0,0,'L',$color);
-                $pdf->Cell(25,8,$fila['cantidad'],0,0,'Cell',$color);
-                $pdf->Cell(100,8,$fila['causaMuerte'],0,1,'L',$color);
+                $pdf->Cell(25,8,$fila['cantidad'],0,0,'C',$color);
+                $pdf->Cell(130,8,$fila['causaMuerte'],0,1,'L',$color);
                 $totalCantidad += $fila['cantidad'];
 
                 if ($color == 1) {
