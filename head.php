@@ -31,7 +31,7 @@
 
     <script src="js/miselect.js"></script>
 
-    <script src="js/chart/dist/Chart.bundle.js"></script>
+    <script src="js/Chart.bundle.min.js"></script>
 
     <script src="js/chart/samples/utils.js"></script>
 

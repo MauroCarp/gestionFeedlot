@@ -19,6 +19,34 @@
 
           <div class="row-fluid">
 
+              <div class="span6"><b>- Total Muertes: </b></div>
+              <div class="span6"><span id="cantMuertes"><?php echo number_format($totalMuertes,0,",",".");?></span> Animales</div>
+  
+          </div>
+  
+        </div>
+
+      </div>
+  <?php
+  }else{
+  ?>
+
+      <div class='span12'>    
+
+        <div class='totales'>
+
+          <div class='row-fluid'>
+
+            <div class='span12'>
+
+              <b>Periodo: <?php echo formatearFecha($desde)." al ".formatearFecha($hasta); ?></b>
+
+            </div>
+
+          </div>
+
+          <div class="row-fluid">
+
             <div class="span6">
     
               <div class="row-fluid" style="background-color:#eeeeee">
@@ -43,21 +71,13 @@
           </div>
   
         </div>
+      
+      </div>
 
-  </div>
-  <?php
-  }else{
-  ?>
-      <div class='span12'>    
-        <div class='totales'>
   
   <?php
   }        
-  ?>
 
-  </div>
-
-  <?php
     if ($comparacionValido) {
   ?>
 
