@@ -99,11 +99,6 @@ require 'head.php';
           let fechaHasta = <?php echo "'".$hasta."'";?>;
           let datos = 'desde=' + desde + '&hasta=' + hasta + '&fDesde=' + fechaDesde + '&fHasta=' + fechaHasta;
           let url = 'cantidadSegunPesoInforme.php';
-          console.log(desde);
-          console.log(hasta);
-          console.log(fechaDesde);
-          console.log(fechaHasta);
-          console.log(url);
 
           $.ajax({
             type:'POST',
@@ -293,6 +288,8 @@ require 'head.php';
           let cantidadMuertes = document.getElementById('canvasMuertes').getContext('2d');
           window.myLine = new Chart(cantidadMuertes, muertes);
 
+        
+        
         }else{
 
             let cantIng = parseFloat($('#cantIng').html().replace(".",""));
@@ -303,9 +300,9 @@ require 'head.php';
 
             let cantEgrComp = parseFloat($('#cantEgrComp').html().replace(".",""));
 
-            // let cantMuertes = parseFloat($('#cantMuertes').html().replace(".",""));
+            let cantMuertes = parseFloat($('#cantMuertes').html().replace(".",""));
 
-            // let cantMuertesComp = parseFloat($('#cantMuertesComp').html().replace(".",""));
+            let cantMuertesComp = parseFloat($('#cantMuertesComp').html().replace(".",""));
 
             
 
@@ -315,12 +312,12 @@ require 'head.php';
             let maximoEgr = Math.max(cantEgr,cantEgrComp);
             let minimoEgr = Math.min(cantEgr,cantEgrComp);
 
-            // let maximoMuertes = Math.max(cantMuertes,cantMuertesComp);
-            // let minimoMuertes = Math.min(cantMuertes,cantMuertesComp);
+            let maximoMuertes = Math.max(cantMuertes,cantMuertesComp);
+            let minimoMuertes = Math.min(cantMuertes,cantMuertesComp);
 
             let difAnimalesIng = maximoIng - minimoIng;
             let difAnimalesEgr = maximoEgr - minimoEgr;
-            // let difAnimMuertos = maximoMuertes - minimoMuertes;
+            let difAnimMuertos = maximoMuertes - minimoMuertes;
 
             if (difAnimalesIng == 0) {
             $('#difAnimIng').html('0 Animales');
@@ -334,19 +331,19 @@ require 'head.php';
             $('#difAnimEgr').html(difAnimalesEgr + ' Animales');
             }
 
-            // if (difAnimMuertos == 0) {
-            // $('#difAnimMuertos').html('0 Animales');
-            // }else{
-            // $('#difAnimMuertos').html(difAnimMuertos + ' Animales');
-            // }
+            if (difAnimMuertos == 0) {
+            $('#difAnimMuertos').html('0 Animales');
+            }else{
+            $('#difAnimMuertos').html(difAnimMuertos + ' Animales');
+            }
 
             let porcentajeIng = ( cantIng != 0) ? ((difAnimalesIng * 100) / cantIng).toFixed(2) : 0;
             let porcentajeEgr = ( cantEgr != 0) ? ((difAnimalesEgr * 100) / cantEgr).toFixed(2) : 0;
-            // let porcentajeMuertes = ( cantMuertes != 0) ? ((difAnimMuertos * 100) / cantMuertes).toFixed(2) : 0;
+            let porcentajeMuertes = ( cantMuertes != 0) ? ((difAnimMuertos * 100) / cantMuertes).toFixed(2) : 0;
 
             let dataIng = porcentajeIng;
             let dataEgr = porcentajeEgr;          
-            // let dataMuertes = porcentajeMuertes;
+            let dataMuertes = porcentajeMuertes;
 
             if (cantIng < cantIngComp) {
             dataIng += ' % <span class="icon-arrow-up2" style="color:green;"></span>';
@@ -360,15 +357,15 @@ require 'head.php';
             dataEgr += ' % <span class="icon-arrow-down" style="color:red;"></span>';
             }
 
-            // if (cantMuertes < cantMuertesComp) {
-            // dataMuertes += ' % <span class="icon-arrow-up2" style="color:red;"></span>';
-            // }else{
-            // dataMuertes += ' % <span class="icon-arrow-down" style="color:green;"></span>';
-            // }
+            if (cantMuertes < cantMuertesComp) {
+            dataMuertes += ' % <span class="icon-arrow-up2" style="color:red;"></span>';
+            }else{
+            dataMuertes += ' % <span class="icon-arrow-down" style="color:green;"></span>';
+            }
 
             $('#difIng').html(dataIng);
             $('#difEgr').html(dataEgr);
-            // $('#difMuertes').html(dataMuertes);
+            $('#difMuertes').html(dataMuertes);
 
         
             //INGRESOS COMP
@@ -436,26 +433,25 @@ require 'head.php';
                 }
             });
 
-            var cantidadEgresos = document.getElementById('canvasCantidadesEgr').getContext('2d');
+            let cantidadEgresos = document.getElementById('canvasCantidadesEgr').getContext('2d');
             window.myLine = new Chart(cantidadEgresos, egresos);
 
-            var cantidadEgresosComp = document.getElementById('canvasCantidadesCompEgr').getContext('2d');
+            let cantidadEgresosComp = document.getElementById('canvasCantidadesCompEgr').getContext('2d');
             window.myLine = new Chart(cantidadEgresosComp, egresosComp);
 
 
-                //       // MUERTES COMP
+            // MUERTES COMP
+            // let tipoMuerte = document.getElementById('chart-areaTipo').getContext('2d');
+            // window.myPie = new Chart(tipoMuerte, configTipo);
 
-                //       var tipoMuerte = document.getElementById('chart-areaTipo').getContext('2d');
-                //       window.myPie = new Chart(tipoMuerte, configTipo);
+            let cantidadMuertes = document.getElementById('canvasMuertes').getContext('2d');
+            window.myLine = new Chart(cantidadMuertes, muertes);
 
-                //       var cantidadMuertes = document.getElementById('canvasMuertes').getContext('2d');
-                //       window.myLine = new Chart(cantidadMuertes, muertes);
+            // let tipoMuerteComp = document.getElementById('chart-areaCompTipo').getContext('2d');
+            // window.myPie = new Chart(tipoMuerteComp, configTipoComp);
 
-                //       var tipoMuerteComp = document.getElementById('chart-areaCompTipo').getContext('2d');
-                //       window.myPie = new Chart(tipoMuerteComp, configTipoComp);
-
-                //       var cantidadMuertesComp = document.getElementById('canvasMuertesComp').getContext('2d');
-                //       window.myLine = new Chart(cantidadMuertesComp, muertesComp);
+            let cantidadMuertesComp = document.getElementById('canvasMuertesComp').getContext('2d');
+            window.myLine = new Chart(cantidadMuertesComp, muertesComp);
         }
                 
     }

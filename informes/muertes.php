@@ -1,52 +1,59 @@
 <div class="row-fluid">
 
   <?php 
-    if($comparacionValido)
-      echo "<div class='span4'>";
-    else
-      echo "<div class='span12'>";
-
+    if($comparacionValido){ 
   ?>
+      <div class='span4'>
 
-    <div class="totales">
+        <div class='totales'>
 
-      <?php 
-          if($comparacionValido){
-            echo 
-            "<div class=\"row-fluid\">
-                <div class=\"span12\">
-                  <b>Periodo: ".formatearFecha($desde)." al ".formatearFecha($hasta)."</b>
-                </div>
-              </div>";
-            }
-      ?>
+          <div class='row-fluid'>
 
-      <div class="row-fluid">
+                  <div class='span12'>
 
-        <div class="span6">
+                    <b>Periodo: <?php echo formatearFecha($desde)." al ".formatearFecha($hasta); ?></b>
 
-          <div class="row-fluid" style="background-color:#eeeeee">
-
-              <div class="span6"><b>- Total Muertes: </b></div>
-              <div class="span6"><span id="cantMuertes"><?php echo number_format($totalMuertes,0,",",".");?></span> Animales</div>
-
-          </div>
-      
-        </div>
-      
-        <div class="span6">
-
-          <div id="canvas-holder">
-
-            <canvas id="chart-areaTipo"></canvas>
+                  </div>
 
           </div>
 
+          <div class="row-fluid">
+
+            <div class="span6">
+    
+              <div class="row-fluid" style="background-color:#eeeeee">
+    
+                  <div class="span6"><b>- Total Muertes: </b></div>
+                  <div class="span6"><span id="cantMuertes"><?php echo number_format($totalMuertes,0,",",".");?></span> Animales</div>
+    
+              </div>
+          
+            </div>
+          
+            <div class="span6">
+    
+              <div id="canvas-holder">
+    
+                <canvas id="chart-areaTipo"></canvas>
+    
+              </div>
+    
+            </div>
+  
+          </div>
+  
         </div>
 
-      </div>
-
-    </div>
+  </div>
+  <?php
+  }else{
+  ?>
+      <div class='span12'>    
+        <div class='totales'>
+  
+  <?php
+  }        
+  ?>
 
   </div>
 
@@ -54,6 +61,7 @@
     if ($comparacionValido) {
   ?>
 
+  <!-- CUADRO CENTRAL -->
   <div class="span4">
 
       <div class="totales">
@@ -72,6 +80,7 @@
 
   </div> 
 
+  <!-- CUADRO COMPARATIVO -->
   <div class="span4">
   
     <div class="totales comparacion">

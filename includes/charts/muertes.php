@@ -19,38 +19,64 @@ if(!$comparacionValido){
 <?php
 }else{
 ?>
+<!-- 
 <div class="row-fluid">
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
+
 			<canvas id="chart-areaTipo"></canvas>
+
 		</div>
+
 	</div>
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;vertical-align: top;">
+
 			<canvas id="chart-areaCompTipo"></canvas>
+
 		</div>
+
 	</div>
+
 </div>
+
+
 <div class="row-fluid">
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasMuertes"></canvas>
+
 		</div>
+
 	</div>
+
 	<div class="span6">
+
 		<div id="canvas-holder" style="width:100%;display: inline-block;">
+
 			<canvas id="canvasMuertesComp"></canvas>
+
 		</div>
+
 	</div>
-</div>
+
+</div> -->
+
 <?php
 }
 ?>
 
 <script type="text/javascript">
-	
-	// TIPO
-		var configTipo = {
+
+	// // TIPO
+		let configTipo = {
 			type: 'pie',
 			data: {
 				datasets: [{
@@ -104,7 +130,7 @@ if(!$comparacionValido){
 					?>
 					],
 					backgroundColor: [
-					<?php echo $colores.",";?>
+					<?php // echo $colores.",";?>
 					],
 					label: 'Tipo de Muerte'
 				}],
@@ -137,7 +163,7 @@ if(!$comparacionValido){
 		};
 
 	// MUERTES
-	   	var muertes = {
+	   	let muertes = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -207,17 +233,17 @@ if(!$comparacionValido){
 	      }
 	    };
 
-	 <?php
-	 if ($comparacionValido) {
-	 ?>   
-    
+	 if (comparacionValido) {
+	
 	// TIPO COMPARACION
-		var configTipoComp = {
+
+		let configTipoComp = {
 			type: 'pie',
 			data: {
 				datasets: [{
 					data: [
 					<?php
+
 					$cantMuertes = 0;
 
 					$labelsMuertes = "";
@@ -231,6 +257,8 @@ if(!$comparacionValido){
 					$queryTipoComp = mysqli_query($conexion,$sqlTipoComp);
 
 					$cantMuertesComp = array();
+
+					$coloresComp = array();
 
 					$labelsMuertesComp = array();
 
@@ -267,10 +295,13 @@ if(!$comparacionValido){
 					}
 
 					echo $cantMuertesComp;
+
 					?>
 					],
 					backgroundColor: [
-					<?php echo $coloresComp.",";?>
+					<?php 
+						echo $coloresComp.",";
+					?>
 					],
 					label: 'Tipo de Muerte'
 				}],
@@ -294,10 +325,10 @@ if(!$comparacionValido){
 				}
 
 			}
-		};
+		};		
   
 	// MUERTES COMPARACION 
-			var muertesComp = {
+		let muertesComp = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -362,7 +393,7 @@ if(!$comparacionValido){
 	        }
 	      }
 	    };
-	    <?php
+
 	}
-	    ?>
+
 </script>
