@@ -75,7 +75,7 @@ if(!$comparacionValido){
 
 <script type="text/javascript">
 
-	// // TIPO
+	// TIPO
 		let configTipo = {
 			type: 'pie',
 			data: {
@@ -424,19 +424,6 @@ if(!$comparacionValido){
 		}
 		}
 	};
-
-	options: {
-				scales: {
-					yAxes: [{
-						id: 'yScale0',
-						type: 'linear',
-						ticks: {
-							suggestedMax: 10,
-							suggestedMin: -10
-						}
-					}]
-				}
-			}
 
 
 </script>
