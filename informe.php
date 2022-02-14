@@ -441,15 +441,14 @@ require 'head.php';
 
 
             // MUERTES COMP
-            // let tipoMuerte = document.getElementById('chart-areaTipo').getContext('2d');
-            // window.myPie = new Chart(tipoMuerte, configTipo);
+            let tipoMuerte = document.getElementById('chart-areaTipo').getContext('2d');
+            window.myPie = new Chart(tipoMuerte, configTipo);
 
             let cantidadMuertes = document.getElementById('canvasMuertes').getContext('2d');
             window.myLine = new Chart(cantidadMuertes, muertes);
-
-            // let tipoMuerteComp = document.getElementById('chart-areaCompTipo').getContext('2d');
-            // window.myPie = new Chart(tipoMuerteComp, configTipoComp);
-
+            let tipoMuerteComp = document.getElementById('chart-areaCompTipo').getContext('2d');
+            window.myPie = new Chart(tipoMuerteComp, configTipoComp);
+            
             let cantidadMuertesComp = document.getElementById('canvasMuertesComp').getContext('2d');
             window.myLine = new Chart(cantidadMuertesComp, muertesComp);
         }

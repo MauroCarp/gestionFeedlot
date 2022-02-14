@@ -19,7 +19,7 @@ if(!$comparacionValido){
 <?php
 }else{
 ?>
-<!-- 
+
 <div class="row-fluid">
 
 	<div class="span6">
@@ -67,7 +67,7 @@ if(!$comparacionValido){
 
 	</div>
 
-</div> -->
+</div>
 
 <?php
 }
@@ -87,7 +87,7 @@ if(!$comparacionValido){
 
 					$labelsMuertes = "";
 
-					$colores = "";
+					$colores = array();
 
 					$sqlTipo = "SELECT DISTINCT causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY causaMuerte ASC";
 
@@ -99,8 +99,6 @@ if(!$comparacionValido){
 						$cantMuertes = array();
 
 						$labelsMuertes = array();
-
-						$colores = array();
 
 						while($resultadoTipo = mysqli_fetch_array($queryTipo)){
 
@@ -125,12 +123,17 @@ if(!$comparacionValido){
 
 						$colores = implode(',',$colores);
 
+					}else{
+
+						$colores = '';
+
 					}
+					
 					echo $cantMuertes;
 					?>
 					],
 					backgroundColor: [
-					<?php // echo $colores.",";?>
+					<?php echo $colores.",";?>
 					],
 					label: 'Tipo de Muerte'
 				}],
@@ -233,9 +236,12 @@ if(!$comparacionValido){
 	      }
 	    };
 
-	 if (comparacionValido) {
-	
-	// TIPO COMPARACION
+	comparacionValido = (comparacionValido == 1) ? true : false;
+
+	if(comparacionValido) {
+		console.log('holaa');
+	}
+		// TIPO COMPARACION
 
 		let configTipoComp = {
 			type: 'pie',
@@ -244,63 +250,63 @@ if(!$comparacionValido){
 					data: [
 					<?php
 
-					$cantMuertes = 0;
+						$cantMuertes = 0;
 
-					$labelsMuertes = "";
-					
-					$colores = "";
+						$labelsMuertes = "";
+						
+						$colores = "";
+						
+						$sqlTipoComp = "SELECT DISTINCT causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY causaMuerte ASC";
 
-					$coloresComp = '';
-					
-					$sqlTipoComp = "SELECT DISTINCT causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY causaMuerte ASC";
+						$queryTipoComp = mysqli_query($conexion,$sqlTipoComp);
 
-					$queryTipoComp = mysqli_query($conexion,$sqlTipoComp);
+						$cantMuertesComp = array();
 
-					$cantMuertesComp = array();
+						$coloresComp = array();
 
-					$coloresComp = array();
+						$labelsMuertesComp = array();
 
-					$labelsMuertesComp = array();
-
-					if (mysqli_num_rows($queryTipoComp)) {
+						if (mysqli_num_rows($queryTipoComp)) {
 
 
-						while($resultadoTipoComp = mysqli_fetch_array($queryTipoComp)){
+							while($resultadoTipoComp = mysqli_fetch_array($queryTipoComp)){
 
-							$causaComp = $resultadoTipoComp['causaMuerte'];
+								$causaComp = $resultadoTipoComp['causaMuerte'];
 
-							$sqlComp = "SELECT COUNT(tropa) as muertes FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causaComp' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
+								$sqlComp = "SELECT COUNT(tropa) as muertes FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causaComp' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
 
-							$queryComp = mysqli_query($conexion,$sqlComp);
+								$queryComp = mysqli_query($conexion,$sqlComp);
 
-							$cantidadComp = mysqli_fetch_array($queryComp);
+								$cantidadComp = mysqli_fetch_array($queryComp);
 
-							$coloresComp[] = "'".color_rand()."'";
+								$coloresComp[] = "'".color_rand()."'";
 
-							$labelsMuertesComp[] = "'".$causaComp."'";
+								$labelsMuertesComp[] = "'".$causaComp."'";
 
-							$cantMuertesComp[] = $cantidadComp['muertes'];
+								$cantMuertesComp[] = $cantidadComp['muertes'];
+
+							}
+
+							$labelsMuertesComp = implode(',',$labelsMuertesComp);
+							$cantMuertesComp = implode(',',$cantMuertesComp);
+							$coloresComp = implode(',',$coloresComp);
+							$coloresComp = $coloresComp.",";
+						
+						}else{
+
+							$labelsMuertesComp = '';
+							$cantMuertesComp = 0;
+							$coloresComp = '';
 
 						}
 
-						$labelsMuertesComp = implode(',',$labelsMuertesComp);
-						$cantMuertesComp = implode(',',$cantMuertesComp);
-						$coloresComp = implode(',',$coloresComp);
-					
-					}else{
-
-						$labelsMuertesComp = '';
-						$cantMuertesComp = 0;
-
-					}
-
-					echo $cantMuertesComp;
+						echo $cantMuertesComp;
 
 					?>
 					],
 					backgroundColor: [
 					<?php 
-						echo $coloresComp.",";
+						echo $coloresComp;
 					?>
 					],
 					label: 'Tipo de Muerte'
@@ -325,7 +331,8 @@ if(!$comparacionValido){
 				}
 
 			}
-		};		
+		};	
+		
   
 	// MUERTES COMPARACION 
 		let muertesComp = {
@@ -394,6 +401,7 @@ if(!$comparacionValido){
 	      }
 	    };
 
-	}
+	// }
 
 </script>
+
