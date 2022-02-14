@@ -337,10 +337,13 @@ require 'head.php';
             $('#difAnimMuertos').html(difAnimMuertos + ' Animales');
             }
 
-            let porcentajeIng = ( cantIng != 0) ? ((difAnimalesIng * 100) / cantIng).toFixed(2) : 0;
-            let porcentajeEgr = ( cantEgr != 0) ? ((difAnimalesEgr * 100) / cantEgr).toFixed(2) : 0;
-            let porcentajeMuertes = ( cantMuertes != 0) ? ((difAnimMuertos * 100) / cantMuertes).toFixed(2) : 0;
 
+            let porcentajeIng = (cantIng != 0 || cantIngComp != 0) ? ((difAnimalesIng * 100) / (cantIng + cantIngComp)).toFixed(2) : 0;
+            let porcentajeEgr = (cantEgr != 0 || cantEgrComp != 0) ? ((difAnimalesEgr * 100) / (cantEgr + cantEgrComp)).toFixed(2) : 0;
+            let porcentajeMuertes = (cantMuertes != 0 || cantMuertesComp != 0) ? ((difAnimMuertos * 100) / (cantMuertes + cantMuertesComp)).toFixed(2) : 0;
+
+            console.log(porcentajeMuertes);
+            
             let dataIng = porcentajeIng;
             let dataEgr = porcentajeEgr;          
             let dataMuertes = porcentajeMuertes;

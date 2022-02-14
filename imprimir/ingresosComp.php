@@ -62,15 +62,23 @@
 		<td><canvas id="canvasCantidadesComp"></canvas></td>
 	</tr>
 </table>
-<table cellpadding="0" cellspacing="0">
+
+<table class="table table-stripped" style="width: 900px" align="left">
+	<tr>
+		<td><canvas width="400px" id="canvasIngEgr"></canvas></td>
+		<td><canvas width="400px" id="canvasIngEgrComp"></canvas></td>
+	</tr>
+</table>
+
+<!-- <table cellpadding="0" cellspacing="0">
 	<tr>
 		<td>&nbsp</td>
 	</tr>
-</table>
+</table> -->
 <script type="text/javascript">
 
 	//SEXO
-		var config = {
+		let config = {
 				type: 'pie',
 				data: {
 					datasets: [{
@@ -107,12 +115,18 @@
 					title: {
 						display: true,
 						text: 'Cant. Segun Sexo'
+					},
+					plugins:{
+					labels:{
+						render:'percentage',
+						fontColor:'white'
 					}
+				}
 
 				}
 			};
 	// SEXO COMPARACION
-		var configComp = {
+		let configComp = {
 		type: 'pie',
 		data: {
 			datasets: [{
@@ -149,6 +163,12 @@
 				title: {
 					display: true,
 					text: 'Cant. Segun Sexo'
+				},
+				plugins:{
+					labels:{
+						render:'percentage',
+						fontColor:'white'
+					}
 				}
 
 			}
@@ -173,8 +193,8 @@
 		  $labelsRaza = substr($labelsRaza, 1);
 		  $cantXraza = substr($cantXraza, 1);
 		?>
-	  	var color = Chart.helpers.color;
-	  	var barChartDataRazaC = {
+	  	let color = Chart.helpers.color;
+	  	let barChartDataRazaC = {
 		    labels: [
 		    <?php
 		    echo $labelsRaza;
@@ -205,7 +225,7 @@
 	  	};
 
 // INGRESOS 
-	   	var ingresos = {
+	   	let ingresos = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -294,7 +314,7 @@
 	    };
 
 // INGRESOS COMPARACION 
-	   	var ingresosComp = {
+	   	let ingresosComp = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -374,4 +394,203 @@
 	        }
 	      }
 	    }; 
+// INGRESO/EGRESO
+
+	let lineChartDataIngEgr = {	
+		labels: [
+		<?php
+		if ($labelsIngEgrMeses) {
+			echo implode(",",$meses);
+		}else{
+				$fechasLabels = array();
+				for ($i=0; $i < sizeof($fechas) ; $i++) { 
+					$fechasLabels[$i] = formatearFecha($fechas[$i]);
+				}
+				echo "'".implode("','",$fechasLabels)."'";
+				}
+		?>
+		],
+		datasets: [{
+			label: 'Ingresos',
+			borderColor: window.chartColors.red,
+			backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+			fill: false,
+			data: [
+			<?php
+				if ($labelsIngEgrMeses) {
+				echo implode(",",$ingresosPorMes);
+				}else{
+				$cantIngresos = array();
+				for ($i=0; $i < sizeof($fechas) ; $i++) { 
+					$fechaDeArray = $fechas[$i];
+					$sql1 = "SELECT COUNT(fecha) as cantidad FROM ingresos WHERE fecha = '$fechaDeArray'";
+					$query1 = mysqli_query($conexion,$sql1);
+					$fila1 = mysqli_fetch_array($query1);
+					$cantIngresos[] = $fila1['cantidad'];
+				}
+				echo implode(",",$cantIngresos);
+				}
+			?>
+			],
+			yAxisID: 'y-axis-1',
+		}, {
+			label: 'Egresos',
+			backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+			borderColor: window.chartColors.blue,
+			fill: false,
+			data: [
+			<?php
+			if ($labelsIngEgrMeses) {
+				echo implode(",",$egresosPorMes);
+			}else{
+				$cantEgresos = array();
+				for ($i=0; $i < sizeof($fechas) ; $i++) { 
+					$fechaDeArray = $fechas[$i];
+					$sql = "SELECT COUNT(fecha) as cantidad FROM egresos WHERE fecha = '$fechaDeArray'";
+					$query = mysqli_query($conexion,$sql);
+					$fila = mysqli_fetch_array($query);
+					$cantEgresos[] = $fila['cantidad'];
+				}
+				echo implode(",",$cantEgresos);
+			}
+			?>
+			],
+			yAxisID: 'y-axis-2'
+		}]
+	};
+
+	let ctxIngEgr = document.getElementById('canvasIngEgr').getContext('2d');
+
+	let chartIngEgr = Chart.Line(ctxIngEgr, {
+		data: lineChartDataIngEgr,
+		options: {
+		responsive: true,
+		hoverMode: 'index',
+		stacked: false,
+		title: {
+			display: true,
+			text: 'Relación Ingresos/Egresos'
+		},
+		scales: {
+			yAxes: [{
+			type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+			display: true,
+			position: 'left',
+			id: 'y-axis-1',
+			}, {
+			type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+			display: true,
+			position: 'right',
+			id: 'y-axis-2',
+
+			// grid line settings
+			gridLines: {
+				drawOnChartArea: false, // only want the grid lines for one axis to show up
+			},
+			}],
+		}
+		}
+	});
+
+	// COMP
+	
+	let lineChartDataIngEgrComp = {
+		labels: [
+		<?php
+		if ($labelsIngEgrMesesComp) {
+			echo implode(",",$mesesComp);
+		}else{
+				$fechasLabels = array();
+				for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
+					$fechasLabels[$i] = formatearFecha($fechasComp[$i]);
+				}
+				echo "'".implode("','",$fechasLabels)."'";
+				}
+		?>
+		],
+		datasets: [{
+			label: 'Ingresos',
+			borderColor: window.chartColors.red,
+			backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+			fill: false,
+			data: [
+			<?php
+				if ($labelsIngEgrMesesComp) {
+				echo implode(",",$ingresosPorMesComp);
+				}else{
+				$cantIngresos = array();
+				for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
+					$fechaDeArray = $fechasComp[$i];
+					$sql1 = "SELECT COUNT(fecha) as cantidad FROM ingresos WHERE fecha = '$fechaDeArray'";
+					$query1 = mysqli_query($conexion,$sql1);
+					$fila1 = mysqli_fetch_array($query1);
+					$cantIngresos[] = $fila1['cantidad'];
+				}
+				echo implode(",",$cantIngresos);
+				}
+			?>
+			],
+			yAxisID: 'y-axis-1',
+		}, {
+			label: 'Egresos',
+			backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+			borderColor: window.chartColors.blue,
+			fill: false,
+			data: [
+			<?php
+			if ($labelsIngEgrMesesComp) {
+				echo implode(",",$egresosPorMesComp);
+			}else{
+				$cantEgresos = array();
+				for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
+					$fechaDeArray = $fechasComp[$i];
+					$sql = "SELECT COUNT(fecha) as cantidad FROM egresos WHERE fecha = '$fechaDeArray'";
+					$query = mysqli_query($conexion,$sql);
+					$fila = mysqli_fetch_array($query);
+					$cantEgresos[] = $fila['cantidad'];
+				}
+				echo implode(",",$cantEgresos);
+			}
+			?>
+			],
+			yAxisID: 'y-axis-2'
+		}]
+	};
+
+	let ctxIngEgrComp = document.getElementById('canvasIngEgrComp').getContext('2d');
+
+	let chartIngEgrComp = Chart.Line(ctxIngEgrComp, {
+		data: lineChartDataIngEgrComp,
+		options: {
+		responsive: true,
+		hoverMode: 'index',
+		stacked: false,
+		title: {
+			display: true,
+			text: 'Relación Ingresos/Egresos'
+		},
+		scales: {
+			yAxes: [{
+			type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+			display: true,
+			position: 'left',
+			id: 'y-axis-1',
+			}, {
+			type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+			display: true,
+			position: 'right',
+			id: 'y-axis-2',
+
+			// grid line settings
+			gridLines: {
+				drawOnChartArea: false, // only want the grid lines for one axis to show up
+			},
+			}],
+		}
+		}
+	});
+
+
+	
+
 </script>

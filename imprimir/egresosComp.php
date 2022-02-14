@@ -63,16 +63,7 @@
 	</tr>
 </table>
 <table>
-	<tr>
-		<td>&nbsp</td>
-	</tr>
-	<tr>
-		<td>&nbsp</td>
-	</tr>
-	<tr>
-		<td>&nbsp</td>
-	</tr>
-	<tr>
+	<tr rowspan="4">
 		<td>&nbsp</td>
 	</tr>
 </table>
