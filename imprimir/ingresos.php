@@ -34,86 +34,99 @@
 
 	// INGRESOS SEGUN SEXP Y PESO
 
-		var cantPesos = {
-		type: 'doughnut',
-		data: {
-		  datasets: [{
-		    data: [
-		    0,0
-		    ],
-		    backgroundColor: [
-		      '#FF6D88',
-		      '#F8A233',
-		    ],
-		    label: 'Dataset 1'
-		  }],
-		  labels: [
-		    'Macho',
-		    'Hembra'
-		  ]
-		},
-		options: {
-		  circumference: Math.PI,
-		  rotation: -Math.PI,
-		  responsive: true,
-		  legend: {
-		    position: 'top',
-		  },
-		  title: {
-		    display: true,
-		    text: 'Cantidad según Sexo, y Peso'
-		  },
-		  animation: {
-		    animateScale: true,
-		    animateRotate: true
-		  }
+		let cantPesos = {
+			type: 'doughnut',
+			data: {
+			datasets: [{
+				data: [
+				0,0
+				],
+				backgroundColor: [
+				'#FF6D88',
+				'#F8A233',
+				],
+				label: 'Dataset 1'
+			}],
+			labels: [
+				'Macho',
+				'Hembra'
+			]
+			},
+			options: {
+			circumference: Math.PI,
+			rotation: -Math.PI,
+			responsive: true,
+			legend: {
+				position: 'top',
+			},
+			title: {
+				display: true,
+				text: 'Cantidad según Sexo, y Peso'
+			},
+			animation: {
+				animateScale: true,
+				animateRotate: true
+			},
+			plugins:{
+				labels:{
+					render:'percentage',
+					fontColor:'white'
+				}
+			}
 
-		}
+			}
 		};
 
 
 	//SEXO
-		var config = {
-				type: 'pie',
-				data: {
-					datasets: [{
-						data: [
-						<?php
-						$sqlMachoIngreso = "SELECT COUNT(*) AS macho FROM ingresos WHERE sexo = 'Macho' AND feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta'";
-						$queryMachoIngreso = mysqli_query($conexion,$sqlMachoIngreso);
-						$resultadoIngreso = mysqli_fetch_array($queryMachoIngreso);
-						$machoIngreso = $resultadoIngreso['macho'];
+		let config = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [
+					<?php
+					$sqlMachoIngreso = "SELECT COUNT(*) AS macho FROM ingresos WHERE sexo = 'Macho' AND feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta'";
+					$queryMachoIngreso = mysqli_query($conexion,$sqlMachoIngreso);
+					$resultadoIngreso = mysqli_fetch_array($queryMachoIngreso);
+					$machoIngreso = $resultadoIngreso['macho'];
 
-						$sqHembIngreso = "SELECT COUNT(*) AS hembra FROM ingresos WHERE sexo = 'Hembra' AND feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta'";
-						$querHembIngreso = mysqli_query($conexion,$sqHembIngreso);
-						$resultadoIngreso = mysqli_fetch_array($querHembIngreso);
-						$hembraIngreso = $resultadoIngreso['hembra'];
+					$sqHembIngreso = "SELECT COUNT(*) AS hembra FROM ingresos WHERE sexo = 'Hembra' AND feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta'";
+					$querHembIngreso = mysqli_query($conexion,$sqHembIngreso);
+					$resultadoIngreso = mysqli_fetch_array($querHembIngreso);
+					$hembraIngreso = $resultadoIngreso['hembra'];
 
-						$resultado = $machoIngreso.",".$hembraIngreso.",";
-						echo $resultado;
+					$resultado = $machoIngreso.",".$hembraIngreso.",";
+					echo $resultado;
 
-						?>
-						],
-						backgroundColor: [
-						window.chartColors.red,
-						window.chartColors.orange,
-						],
-						label: 'Sexo'
-					}],
-					labels: [
-					'Macho',
-					'Hembra'
-					]
+					?>
+					],
+					backgroundColor: [
+					window.chartColors.red,
+					window.chartColors.orange,
+					],
+					label: 'Sexo'
+				}],
+				labels: [
+				'Macho',
+				'Hembra'
+				]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Cant. Segun Sexo'
 				},
-				options: {
-					responsive: true,
-					title: {
-						display: true,
-						text: 'Cant. Segun Sexo'
+				plugins:{
+					labels:{
+						render:'percentage',
+						fontColor:'white'
 					}
-
 				}
-			};
+
+			}
+		};
+
 	// RAZAS 	
 	  	<?php 
 	  	  $sqlRazas = "SELECT raza FROM razas ORDER BY raza ASC";
@@ -137,8 +150,10 @@
 	  <?php
 		echo $labelsRaza;
 	  ?>];
-	  var color = Chart.helpers.color;
-	  var barChartData = {
+
+	  let color = Chart.helpers.color;
+	  
+	  let barChartData = {
 	    labels: [
 	    <?php
 	    echo $labelsRaza;
@@ -159,7 +174,7 @@
 	  };
 
 	// CANT ING EGR
-		var lineChartDataIngEgr = {
+		let lineChartDataIngEgr = {
             labels: [
             <?php
             if ($labelsIngEgrMeses) {

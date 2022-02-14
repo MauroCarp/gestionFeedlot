@@ -68,114 +68,119 @@ include "muertes.php";
 
 <script type="text/javascript" async="async">
     $(document).ready(function() {
-      var sexo = document.getElementById('chart-area').getContext('2d');
+
+      let sexo = document.getElementById('chart-area').getContext('2d');
       window.myPie = new Chart(sexo, config);
 
-      var raza = document.getElementById('canvasRaza').getContext('2d');
-            window.myBar = new Chart(raza, {
-              type: 'bar',
-              data: barChartData,
-              options: {
-                responsive: true,
-                legend: {
-                  position: 'top',
-                },
-                title: {
-                  display: true,
-                  text: 'Cant. Segun Raza'
-                },
-                plugins: {
-                  labels: {
-                    render: 'value'
-                  }
-                }
-              }
-            });
+      let raza = document.getElementById('canvasRaza').getContext('2d');
 
-      var ctxIngEgr = document.getElementById('canvasIngEgr').getContext('2d');
-             window.myLine = Chart.Line(ctxIngEgr, {
-                data: lineChartDataIngEgr,
-                options: {
-                  responsive: true,
-                  hoverMode: 'index',
-                  stacked: false,
-                  title: {
-                    display: true,
-                    text: 'Relación Ingresos/Egresos'
-                  },
-                  scales: {
-                    yAxes: [{
-                      type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                      display: true,
-                      position: 'left',
-                      id: 'y-axis-1',
-                    }, {
-                      type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                      display: true,
-                      position: 'right',
-                      id: 'y-axis-2',
+      window.myBar = new Chart(raza, {
+        type: 'horizontalBar',
+        data: barChartData,
+        options: {
+          responsive: true,
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Cant. Segun Raza'
+          },
+          plugins: {
+            labels: {
+              render: 'value'
+            }
+          }
+        }
+      });
 
-                      // grid line settings
-                      gridLines: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
-                      },
-                    }],
-                  }
-                }
-              });
+      let ctxIngEgr = document.getElementById('canvasIngEgr').getContext('2d');
+      window.myLine = Chart.Line(ctxIngEgr, {
+        data: lineChartDataIngEgr,
+        options: {
+          responsive: true,
+          hoverMode: 'index',
+          stacked: false,
+          title: {
+            display: true,
+            text: 'Relación Ingresos/Egresos'
+          },
+          scales: {
+            yAxes: [{
+              type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+              display: true,
+              position: 'left',
+              id: 'y-axis-1',
+            }, {
+              type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+              display: true,
+              position: 'right',
+              id: 'y-axis-2',
 
-      var sexoEgr = document.getElementById('chart-areaEgr').getContext('2d');
-            window.myPie = new Chart(sexoEgr, configEgr);
+              // grid line settings
+              gridLines: {
+                drawOnChartArea: false, // only want the grid lines for one axis to show up
+              },
+            }],
+          }
+        }
+      });
 
-            var razaEgr = document.getElementById('canvasRazaEgr').getContext('2d');
-            window.myBar = new Chart(razaEgr, {
-              type: 'bar',
-              data: barChartDataEgr,
-              options: {
-                responsive: true,
-                legend: {
-                  position: 'top',
-                },
-                title: {
-                  display: true,
-                  text: 'Cant. Segun Raza'
-                }
-              }
-            });
+      let sexoEgr = document.getElementById('chart-areaEgr').getContext('2d');
+      window.myPie = new Chart(sexoEgr, configEgr);
+
+      let razaEgr = document.getElementById('canvasRazaEgr').getContext('2d');
+      window.myBar = new Chart(razaEgr, {
+        type: 'horizontalBar',
+        data: barChartDataEgr,
+        options: {
+          responsive: true,
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Cant. Segun Raza'
+          }
+        }
+      });
             
-      var tipoMuerte = document.getElementById('chart-areaTipo').getContext('2d');
+      let tipoMuerte = document.getElementById('chart-areaTipo').getContext('2d');
       window.myPie = new Chart(tipoMuerte, configTipo);
 
-      var cantidadMuertes = document.getElementById('canvasMuertes').getContext('2d');
+      let cantidadMuertes = document.getElementById('canvasMuertes').getContext('2d');
       window.myLine = new Chart(cantidadMuertes, muertes);
       
-      var cantidadPesos = document.getElementById('chart-areaPesos').getContext('2d');
+      let cantidadPesos = document.getElementById('chart-areaPesos').getContext('2d');
       window.myDoughnut = new Chart(cantidadPesos, cantPesos);
 
       calculaCPS();
+
     });
 
     function calculaCPS(){
-          var desde = <?php echo $_GET['v1'];?>;
-          var hasta = <?php echo $_GET['v2'];?>;
-          var fechaDesde = <?php echo "'".$desde."'";?>;
-          var fechaHasta = <?php echo "'".$hasta."'";?>;
-          var datos = 'desde=' + desde + '&hasta=' + hasta + '&fDesde=' + fechaDesde + '&fHasta=' + fechaHasta;
-          var url = '../cantidadSegunPesoInforme.php';
+
+      let desde = <?php echo $_GET['v1'];?>;
+      let hasta = <?php echo $_GET['v2'];?>;
+      let fechaDesde = <?php echo "'".$desde."'";?>;
+      let fechaHasta = <?php echo "'".$hasta."'";?>;
+      let datos = 'desde=' + desde + '&hasta=' + hasta + '&fDesde=' + fechaDesde + '&fHasta=' + fechaHasta;
+      let url = '../cantidadSegunPesoInforme.php';
 
 
-          $.ajax({
-            type:'POST',
-            url:url,
-            data:datos,
-            success: function(datos){
-              console.log(datos);
-              datos = datos.split(",");
-              myDoughnut.data.datasets[0].data[0] = datos[0];
-              myDoughnut.data.datasets[0].data[1] = datos[1];
-              myDoughnut.update();
-            }
-          });
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:datos,
+        success: function(datos){
+          console.log(datos);
+          datos = datos.split(",");
+          myDoughnut.data.datasets[0].data[0] = datos[0];
+          myDoughnut.data.datasets[0].data[1] = datos[1];
+          myDoughnut.update();
+        }
+      });
+
     } 
 
 

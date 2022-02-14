@@ -1,14 +1,10 @@
 <table class="table table-stripped" align="center">
 	<tr>
-		<td style="font-size: 1.2em;" colspan="2"><b>Muertes</b></td>
-	</tr>
-	<tr>
-		<td><b>- Total Muertes: </b><?php echo number_format($totalMuertes,0,",",".");?> Animales</td>
-	</tr>
-</table>
-<table class="table table-stripped" align="left" style="width: 650px;">
-	<tr>
-		<td align="center"><canvas id="chart-areaTipo"></canvas></td>
+		<td style="font-size: 1.2em;" colspan="2">
+			<b>Muertes</b><br>
+			<b>- Total Muertes: </b><?php echo number_format($totalMuertes,0,",",".");?> Animales
+		</td>
+		<td rowspan="2" align="center"><canvas id="chart-areaTipo"></canvas></td>
 	</tr>
 </table>
 <table class="table table-stripped" align="left">
@@ -16,37 +12,64 @@
 		<td><canvas id="canvasMuertes"></canvas></td>
 	</tr>
 </table>
+
 <script type="text/javascript">
+
+
 	// TIPO
-		var configTipo = {
+		let configTipo = {
 			type: 'pie',
 			data: {
 				datasets: [{
 					data: [
 					<?php
+
 					$cantMuertes = 0;
+
 					$labelsMuertes = "";
-					$colores = "";
+
+					$colores = array();
+
 					$sqlTipo = "SELECT DISTINCT causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY causaMuerte ASC";
+
 					$queryTipo = mysqli_query($conexion,$sqlTipo);
+
+
 					if (mysqli_num_rows($queryTipo)) {
+
 						$cantMuertes = array();
+
 						$labelsMuertes = array();
-						$colores = array();
+
 						while($resultadoTipo = mysqli_fetch_array($queryTipo)){
+
 							$causa = $resultadoTipo['causaMuerte'];
-							$sql = "SELECT SUM(muertes) as muertes FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causa' AND fecha BETWEEN '$desde' AND '$hasta'";
+
+							$sql = "SELECT COUNT(tropa) as muertes FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causa' AND fecha BETWEEN '$desde' AND '$hasta'";
+
 							$query = mysqli_query($conexion,$sql);
+
 							$cantidad = mysqli_fetch_array($query);
+
 							$colores[] = "'".color_rand()."'";
+
 							$labelsMuertes[] = "'".$causa."'";
+
 							$cantMuertes[] = $cantidad['muertes'];
 						}
 
 						$labelsMuertes = implode(',',$labelsMuertes);
+
 						$cantMuertes = implode(',',$cantMuertes);
+
 						$colores = implode(',',$colores);
+
+					}else{
+
+						$colores = '';
+
 					}
+					
 					echo $cantMuertes;
 					?>
 					],
@@ -72,13 +95,19 @@
 					labels:{
 						boxWidth: 5
 					}
+				},
+				plugins:{
+					labels:{
+						render:'percentage',
+						fontColor: 'white'
+					}
 				}
 
 			}
 		};
 
 	// MUERTES
-	   	var muertes = {
+	   	let muertes = {
 	      type: 'line',
 	      data: {
 	        labels: [
@@ -87,15 +116,20 @@
 	      	
 	        $labelsMuertes = "";
 			$cantidadMuertes = 0;
-			$sqlMuertes = "SELECT fecha,muertes,causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
+			$sqlMuertes = "SELECT fecha,causaMuerte,cantidad FROM registroMuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
+
 			$queryMuertes = mysqli_query($conexion,$sqlMuertes);
-			while ($filaMuertes = mysqli_fetch_array($queryMuertes)) {
-				$cantidadMuertes = $cantidadMuertes.",".$filaMuertes['muertes'];
-				$labelsMuertes = $labelsMuertes.",'".formatearFecha($filaMuertes['fecha'])."'";
+			if (!empty($queryMuertes)) {
+			
+				while ($filaMuertes = mysqli_fetch_array($queryMuertes)) {
+					$cantidadMuertes = $cantidadMuertes.",".$filaMuertes['cantidad'];
+					$labelsMuertes = $labelsMuertes.",'".formatearFecha($filaMuertes['fecha'])."'";
+				}
+				$labelsMuertes = substr($labelsMuertes,1);
+				$cantidadMuertes = substr($cantidadMuertes, 2);
+				echo $labelsMuertes;
 			}
-			$labelsMuertes = substr($labelsMuertes,1);
-			$cantidadMuertes = substr($cantidadMuertes, 2);
-			echo $labelsMuertes;
+
 	        ?>
 
 	        ],
@@ -138,9 +172,15 @@
 	            scaleLabel: {
 	              display: true,
 	              labelString: 'Cantidad'
-	            }
+	            },
+				ticks:{
+					suggestedMin:0
+				}
 	          }]
 	        }
 	      }
-	    };  
+	    };
+
+
+         
 </script>

@@ -20,9 +20,10 @@
 		<td colspan="2" style="width: 800px;"><canvas id="canvasIngEgr"></canvas></td>
 	</tr>
 </table>
+
 <script type="text/javascript">
 	// SEXO
-		var configEgr = {
+		let configEgr = {
 			type: 'pie',
 			data: {
 				datasets: [{
@@ -89,12 +90,12 @@
 		  $labelsRazaEgr = substr($labelsRazaEgr, 1);
 		  $cantXrazaEgr = substr($cantXrazaEgr, 1);
 		?>
-	  var RAZAS = [
+	  let RAZAS = [
 	  <?php
 		echo $labelsRazaEgr;
 	  ?>];
-	  var color = Chart.helpers.color;
-	  var barChartDataEgr = {
+
+	  let barChartDataEgr = {
 	    labels: [
 	    <?php
 	    echo $labelsRazaEgr;
