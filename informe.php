@@ -552,6 +552,12 @@ require 'head.php';
               }
             });
             
+        }
+
+        <?php
+        
+          if($comparacionValido){ ?>
+
             // COMPARACION
 
             let lineChartDataIngEgrComp = {
@@ -649,12 +655,17 @@ require 'head.php';
                 }
               }
             });
+          
+          <?php
+
+          }
+
+          ?>
 
 
 
 
 
-        }
                 
     }
 

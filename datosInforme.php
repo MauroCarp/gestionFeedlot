@@ -48,7 +48,6 @@ $hastaComp = (array_key_exists('hastaComp', $_POST)) ? $_POST['hastaComp'] : "";
 $comparacionValido = ($desdeComp != '' AND $desdeComp != '') ? TRUE : FALSE;
 
 // COMPARACION VALIDO
-
 if ($comparacionValido) {
   $fechaDesdeComp = new DateTime($desdeComp);
   $fechaHastaComp = new DateTime($hastaComp);
