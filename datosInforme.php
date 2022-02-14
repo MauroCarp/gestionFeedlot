@@ -70,13 +70,39 @@ if ($comparacionValido) {
   if ($labelsIngEgrMesesComp) {
     $mesesComp = labelsCantAnimales($desdeComp,$hastaComp);
   }else{
+
     $diasDiferenciaComp = $diferenciaComp->days;
     $cantSemanasComp = floor($diasDiferenciaComp/7); 
     $labelsSemanasComp = array();
+
     for ($i=1; $i <= $cantSemanasComp ; $i++) { 
       $labelsSemanasComp[] = "Semana ".$i;
     }
+
+
+    $sql = "SELECT DISTINCT(fecha) FROM registroingresos WHERE fecha BETWEEN '$desdeComp' AND '$hastaComp'";
+    $query = mysqli_query($conexion,$sql);
+    $fechasComp = array();
+    while ($fila = mysqli_fetch_array($query)) {
+      $fechasComp[] = $fila['fecha'];
+    }
+  
+    $sql = "SELECT DISTINCT(fecha) FROM registroegresos WHERE fecha BETWEEN '$desdeComp' AND '$hastaComp'";
+    $query = mysqli_query($conexion,$sql);
+    while ($fila = mysqli_fetch_array($query)) {
+      $fechasComp[] = $fila['fecha'];
+    }
+    asort($fechasComp);
+    $fechasComp = array_unique($fechasComp); 
+    $fechasComp = array_values($fechasComp);
+
+
   }
+
+
+
+
+
 }
 
 $cantIng = 0;
