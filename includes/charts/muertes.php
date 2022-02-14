@@ -175,12 +175,13 @@ if(!$comparacionValido){
 	      	
 	        $labelsMuertes = "";
 			$cantidadMuertes = 0;
-			$sqlMuertes = "SELECT fecha,muertes,causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
+			$sqlMuertes = "SELECT fecha,causaMuerte,cantidad FROM registroMuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
+
 			$queryMuertes = mysqli_query($conexion,$sqlMuertes);
 			if (!empty($queryMuertes)) {
 			
 				while ($filaMuertes = mysqli_fetch_array($queryMuertes)) {
-					$cantidadMuertes = $cantidadMuertes.",".$filaMuertes['muertes'];
+					$cantidadMuertes = $cantidadMuertes.",".$filaMuertes['cantidad'];
 					$labelsMuertes = $labelsMuertes.",'".formatearFecha($filaMuertes['fecha'])."'";
 				}
 				$labelsMuertes = substr($labelsMuertes,1);
@@ -230,7 +231,10 @@ if(!$comparacionValido){
 	            scaleLabel: {
 	              display: true,
 	              labelString: 'Cantidad'
-	            }
+	            },
+				ticks:{
+					suggestedMin:0
+				}
 	          }]
 	        }
 	      }
@@ -238,170 +242,202 @@ if(!$comparacionValido){
 
 	comparacionValido = (comparacionValido == 1) ? true : false;
 
-	if(comparacionValido) {
-		console.log('holaa');
-	}
-		// TIPO COMPARACION
+	// TIPO COMPARACION
 
-		let configTipoComp = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-					<?php
+	let configTipoComp = {
+		type: 'pie',
+		data: {
+			datasets: [{
+				data: [
+				<?php
 
-						$cantMuertes = 0;
+					$cantMuertes = 0;
 
-						$labelsMuertes = "";
-						
-						$colores = "";
-						
-						$sqlTipoComp = "SELECT DISTINCT causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY causaMuerte ASC";
+					$labelsMuertes = "";
+					
+					$colores = "";
+					
+					$sqlTipoComp = "SELECT DISTINCT causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY causaMuerte ASC";
 
-						$queryTipoComp = mysqli_query($conexion,$sqlTipoComp);
+					$queryTipoComp = mysqli_query($conexion,$sqlTipoComp);
 
-						$cantMuertesComp = array();
+					$cantMuertesComp = array();
 
-						$coloresComp = array();
+					$coloresComp = array();
 
-						$labelsMuertesComp = array();
+					$labelsMuertesComp = array();
 
-						if (mysqli_num_rows($queryTipoComp)) {
+					if (mysqli_num_rows($queryTipoComp)) {
 
 
-							while($resultadoTipoComp = mysqli_fetch_array($queryTipoComp)){
+						while($resultadoTipoComp = mysqli_fetch_array($queryTipoComp)){
 
-								$causaComp = $resultadoTipoComp['causaMuerte'];
+							$causaComp = $resultadoTipoComp['causaMuerte'];
 
-								$sqlComp = "SELECT COUNT(tropa) as muertes FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causaComp' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
+							$sqlComp = "SELECT COUNT(tropa) as muertes FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causaComp' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
 
-								$queryComp = mysqli_query($conexion,$sqlComp);
+							$queryComp = mysqli_query($conexion,$sqlComp);
 
-								$cantidadComp = mysqli_fetch_array($queryComp);
+							$cantidadComp = mysqli_fetch_array($queryComp);
 
-								$coloresComp[] = "'".color_rand()."'";
+							$coloresComp[] = "'".color_rand()."'";
 
-								$labelsMuertesComp[] = "'".$causaComp."'";
+							$labelsMuertesComp[] = "'".$causaComp."'";
 
-								$cantMuertesComp[] = $cantidadComp['muertes'];
-
-							}
-
-							$labelsMuertesComp = implode(',',$labelsMuertesComp);
-							$cantMuertesComp = implode(',',$cantMuertesComp);
-							$coloresComp = implode(',',$coloresComp);
-							$coloresComp = $coloresComp.",";
-						
-						}else{
-
-							$labelsMuertesComp = '';
-							$cantMuertesComp = 0;
-							$coloresComp = '';
+							$cantMuertesComp[] = $cantidadComp['muertes'];
 
 						}
 
-						echo $cantMuertesComp;
+						$labelsMuertesComp = implode(',',$labelsMuertesComp);
+						$cantMuertesComp = implode(',',$cantMuertesComp);
+						$coloresComp = implode(',',$coloresComp);
+						$coloresComp = $coloresComp.",";
+					
+					}else{
 
-					?>
-					],
-					backgroundColor: [
-					<?php 
-						echo $coloresComp;
-					?>
-					],
-					label: 'Tipo de Muerte'
-				}],
-				labels: [
-				<?php
-					echo $labelsMuertesComp;
-				?>
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: true,
-					text: 'Muertes Segun Causa'
-				},
-				legend:{
-					display: true,
-					labels:{
-						boxWidth: 5
+						$labelsMuertesComp = '';
+						$cantMuertesComp = 0;
+						$coloresComp = '';
+
 					}
+
+					echo $cantMuertesComp;
+
+				?>
+				],
+				backgroundColor: [
+				<?php 
+					echo $coloresComp;
+				?>
+				],
+				label: 'Tipo de Muerte'
+			}],
+			labels: [
+			<?php
+				echo $labelsMuertesComp;
+			?>
+			]
+		},
+		options: {
+			responsive: true,
+			plugins:{
+				labels:{
+					render:'percentage',
+					fontColor:'white'
+				},
+			},
+			title: {
+				display: true,
+				text: 'Muertes Segun Causa'
+			},
+			legend:{
+				display: true,
+				labels:{
+					boxWidth: 5
 				}
-
 			}
-		};	
-		
-  
+		}
+	};	
+
+
 	// MUERTES COMPARACION 
-		let muertesComp = {
-	      type: 'line',
-	      data: {
-	        labels: [
+	let muertesComp = {
+		type: 'line',
+		data: {
+		labels: [
 
-	        <?php
-	      	
-	        $labelsMuertesComp = "";
-			$cantidadMuertesComp = 0;
-			$sqlMuertesComp = "SELECT fecha,COUNT(tropa) as muertes,causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
-			$queryMuertesComp = mysqli_query($conexion,$sqlMuertesComp);
-			while ($filaMuertesComp = mysqli_fetch_array($queryMuertesComp)) {
-				$cantidadMuertesComp = $cantidadMuertesComp.",".$filaMuertesComp['muertes'];
-				$labelsMuertesComp = $labelsMuertesComp.",'".formatearFecha($filaMuertesComp['fecha'])."'";
+		<?php
+		
+	
+		$labelsMuertesComp = "";
+	
+		$cantidadMuertesComp = 0;
+	
+		$sqlMuertesComp = "SELECT fecha, causaMuerte, cantidad FROM registroMuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
+	
+		$queryMuertesComp = mysqli_query($conexion,$sqlMuertesComp);
+	
+		$totalMuertes = 0;
+
+		while ($filaMuertesComp = mysqli_fetch_array($queryMuertesComp)) {
+
+			$totalMuertes++;
+	
+			$cantidadMuertesComp = $cantidadMuertesComp.",".$filaMuertesComp['cantidad'];
+	
+			$labelsMuertesComp = $labelsMuertesComp.",'".formatearFecha($filaMuertesComp['fecha'])."'";
+	
+		}
+	
+		$labelsMuertesComp = substr($labelsMuertesComp,1);
+	
+		$cantidadMuertesComp = substr($cantidadMuertesComp, 2);
+	
+		echo $labelsMuertesComp;
+		?>
+
+		],
+		datasets: [{
+			label: 'Cantidad de Muertes por Fecha',
+			backgroundColor: window.chartColors.red,
+			borderColor: window.chartColors.red,
+			data: [
+			<?php
+			echo $cantidadMuertesComp;
+			?>
+			],
+			fill: false,
+		}]
+		},
+		options: {
+		responsive: true,
+		title: {
+			display: true,
+			text: 'Cantidad de Muertes'
+		},
+		tooltips: {
+			mode: 'index',
+			intersect: false,
+		},
+		hover: {
+			mode: 'nearest',
+			intersect: true
+		},
+		scales: {
+			xAxes: [{
+			display: true,
+			scaleLabel: {
+				display: true,
+				labelString: 'Fecha'
 			}
-			$labelsMuertesComp = substr($labelsMuertesComp,1);
-			$cantidadMuertesComp = substr($cantidadMuertesComp, 2);
-			echo $labelsMuertesComp;
-	        ?>
+			}],
+			yAxes: [{
+			display: true,
+			scaleLabel: {
+				display: true,
+				labelString: 'Cantidad'
+			},
+			ticks: {
+				suggestedMin: 0
+			}
+			}]
+		}
+		}
+	};
 
-	        ],
-	        datasets: [{
-	          label: 'Cantidad de Muertes por Fecha',
-	          backgroundColor: window.chartColors.red,
-	          borderColor: window.chartColors.red,
-	          data: [
-	            <?php
-				echo $cantidadMuertesComp;
-	            ?>
-	          ],
-	          fill: false,
-	        }]
-	      },
-	      options: {
-	        responsive: true,
-	        title: {
-	          display: true,
-	          text: 'Cantidad de Muertes'
-	        },
-	        tooltips: {
-	          mode: 'index',
-	          intersect: false,
-	        },
-	        hover: {
-	          mode: 'nearest',
-	          intersect: true
-	        },
-	        scales: {
-	          xAxes: [{
-	            display: true,
-	            scaleLabel: {
-	              display: true,
-	              labelString: 'Fecha'
-	            }
-	          }],
-	          yAxes: [{
-	            display: true,
-	            scaleLabel: {
-	              display: true,
-	              labelString: 'Cantidad'
-	            }
-	          }]
-	        }
-	      }
-	    };
+	options: {
+				scales: {
+					yAxes: [{
+						id: 'yScale0',
+						type: 'linear',
+						ticks: {
+							suggestedMax: 10,
+							suggestedMin: -10
+						}
+					}]
+				}
+			}
 
-	// }
 
 </script>
 

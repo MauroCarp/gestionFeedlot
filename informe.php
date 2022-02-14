@@ -446,6 +446,7 @@ require 'head.php';
 
             let cantidadMuertes = document.getElementById('canvasMuertes').getContext('2d');
             window.myLine = new Chart(cantidadMuertes, muertes);
+            
             let tipoMuerteComp = document.getElementById('chart-areaCompTipo').getContext('2d');
             window.myPie = new Chart(tipoMuerteComp, configTipoComp);
             
