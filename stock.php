@@ -44,7 +44,6 @@ require 'head.php';
                   
                       <?php 
                     
-                      //include("ingresoManual.php");
                       include("ingresoBalanza.php");
                                           
                       ?>
@@ -197,7 +196,7 @@ require 'head.php';
 
     <script type="text/javascript">
 
-            $(document).ready(function(){
+        $(document).ready(function(){
 
               // OTRA CAUSA MUERTE
         
@@ -223,8 +222,6 @@ require 'head.php';
         
                 $("#contFiltrosIng").hide();
 
-
-        
                 $("#filtrosIng").on('click',function(){
         
                   $("#contFiltrosIng").toggle(500);
@@ -256,44 +253,39 @@ require 'head.php';
                 })
         
               <?php
-        
-          if (empty($_GET) OR $_GET['seccion'] == "ingreso") { ?>
-          
-                // CARGA REGISTROS INGRESOS
-          
-                  cargaIngresos();
-          
-                <?php
-          
-        }else{ 
-          
-          if ($_GET['seccion'] == "egreso") { ?>
-          
-                // CARGA REGISTROS EGRESOS
-          
-                  cargaEgresos();      
-          
-                  <?php
-          
-        }
-          
-                  
-      
-        if ($_GET['seccion'] == "muerte") { ?>
-        
-              // CARGA REGISTROS MUERTES
-        
-                cargaMuertes();
+              
+              if (empty($_GET) OR $_GET['seccion'] == "ingreso") { ?>
+              
+                    // CARGA REGISTROS INGRESOS
+              
+                      cargaIngresos();
+              
+                    <?php
+              
+              }else{ 
+                
+                if ($_GET['seccion'] == "egreso") { ?>
+                
+                      // CARGA REGISTROS EGRESOS
+                
+                        cargaEgresos();      
+                
+                        <?php
+                
+                }
 
-
+                if ($_GET['seccion'] == "muerte") { ?>
+                
+                      // CARGA REGISTROS MUERTES
+                        cargaMuertes();
+                <?php 
+                }  
         
-              <?php }  
+              }
         
-      }
+              ?>
         
-        ?>
-        
-            });
+        });
 
     
         function filtrarIng(){
@@ -558,17 +550,17 @@ require 'head.php';
 
         function paginar(pagina,seccion){
     
-          var datosPag;
+          let datosPag;
     
-          var desde;
+          let desde;
     
-          var urlPaginador = 'paginador.php';
+          let urlPaginador = 'paginador.php';
     
-          desde = (pagina * 12) + 1;
+          desde = (pagina * 8) + 1;
     
           if (pagina == 0) {
     
-            desde = (pagina * 12);
+            desde = (pagina * 8);
     
           }
 
@@ -583,8 +575,9 @@ require 'head.php';
             urlPaginador = 'paginadorMuertes.php';
     
           }
-    
-          if (seccion == 'egresos') {
+          
+          
+          if (seccion == 'registroegresos') {
     
             contenedor = '#paginadoEgr';
     
@@ -683,11 +676,9 @@ require 'head.php';
         cargarIng.addEventListener('click',cargaIngresos());
 
 
-    
         let cargarEgr = document.getElementById('btnEgresos');
     
         cargarEgr.addEventListener('click',cargaEgresos());
-
 
     
         let cargarMuertes = document.getElementById('btnMuertes');

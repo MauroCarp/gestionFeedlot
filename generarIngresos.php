@@ -101,16 +101,10 @@ if(mysqli_num_rows($query)>0){
 				</tr>';
 				
 				$totalCantidad += $registro2['cantidad'];
-				
-				if ($feedlot == 'Acopiadora Pampeana') {
-					
-					$totalPNeto += ($registro2['pesoPromedio'] * $registro2['cantidad']);
+									
+				$totalPNeto += ($registro2['pesoPromedio'] * $registro2['cantidad']);
 
-				}else{
-					
-					$totalPNeto += $resultadosIng['pesoTotal'];
-					
-				}
+
 				
 		}
 	

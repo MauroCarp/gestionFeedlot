@@ -91,28 +91,6 @@ require 'head.php';
           
         });
 
-        function calculaCPS(){
-
-          let desde = $('#pesoDesde').val();
-          let hasta = $('#pesoHasta').val();
-          let fechaDesde = <?php echo "'".$desde."'";?>;
-          let fechaHasta = <?php echo "'".$hasta."'";?>;
-          let datos = 'desde=' + desde + '&hasta=' + hasta + '&fDesde=' + fechaDesde + '&fHasta=' + fechaHasta;
-          let url = 'cantidadSegunPesoInforme.php';
-
-          $.ajax({
-            type:'POST',
-            url:url,
-            data:datos,
-            success: function(datos){
-              console.log(datos);
-              datos = datos.split(",");
-              myDoughnut.data.datasets[0].data[0] = datos[0];
-              myDoughnut.data.datasets[0].data[1] = datos[1];
-              myDoughnut.update();
-            }
-          });
-        } 
 
     const color = Chart.helpers.color
 
@@ -221,8 +199,7 @@ require 'head.php';
           //INGRESOS
 
           let cantidadPesos = document.getElementById('chart-areaPesos').getContext('2d');
-          let chartCantPeso = new Chart(cantidadPesos, cantPesos);
-
+          window.chartCantPeso = new Chart(cantidadPesos, cantPesos);
 
           let sexo = document.getElementById('chart-area').getContext('2d');
           window.myPie = new Chart(sexo, config);
@@ -558,112 +535,109 @@ require 'head.php';
         }
 
         <?php
-        
-          if($comparacionValido){ ?>
+        if($comparacionValido){ ?>
 
-            // COMPARACION
+          // COMPARACION
 
-            let lineChartDataIngEgrComp = {
-                labels: [
-                <?php
-                if ($labelsIngEgrMesesComp) {
-                  echo implode(",",$mesesComp);
-                }else{
-                        $fechasLabels = array();
-                        for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
-                          $fechasLabels[$i] = formatearFecha($fechasComp[$i]);
-                        }
-                        echo "'".implode("','",$fechasLabels)."'";
+          let lineChartDataIngEgrComp = {
+              labels: [
+              <?php
+              if ($labelsIngEgrMesesComp) {
+                echo implode(",",$mesesComp);
+              }else{
+                      $fechasLabels = array();
+                      for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
+                        $fechasLabels[$i] = formatearFecha($fechasComp[$i]);
                       }
-                ?>
-                ],
-                datasets: [{
-                  label: 'Ingresos',
-                  borderColor: window.chartColors.red,
-                  backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-                  fill: false,
-                  data: [
-                    <?php
-                      if ($labelsIngEgrMesesComp) {
-                        echo implode(",",$ingresosPorMesComp);
-                      }else{
-                        $cantIngresos = array();
-                        for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
-                          $fechaDeArray = $fechasComp[$i];
-                          $sql1 = "SELECT COUNT(fecha) as cantidad FROM ingresos WHERE fecha = '$fechaDeArray'";
-                          $query1 = mysqli_query($conexion,$sql1);
-                          $fila1 = mysqli_fetch_array($query1);
-                          $cantIngresos[] = $fila1['cantidad'];
-                        }
-                        echo implode(",",$cantIngresos);
-                      }
-                    ?>
-                  ],
-                  yAxisID: 'y-axis-1',
-                }, {
-                  label: 'Egresos',
-                  backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-                  borderColor: window.chartColors.blue,
-                  fill: false,
-                  data: [
-                    <?php
-                    if ($labelsIngEgrMesesComp) {
-                      echo implode(",",$egresosPorMesComp);
-                    }else{
-                      $cantEgresos = array();
-                        for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
-                          $fechaDeArray = $fechasComp[$i];
-                          $sql = "SELECT COUNT(fecha) as cantidad FROM egresos WHERE fecha = '$fechaDeArray'";
-                          $query = mysqli_query($conexion,$sql);
-                          $fila = mysqli_fetch_array($query);
-                          $cantEgresos[] = $fila['cantidad'];
-                        }
-                        echo implode(",",$cantEgresos);
+                      echo "'".implode("','",$fechasLabels)."'";
                     }
-                    ?>
-                  ],
-                  yAxisID: 'y-axis-2'
-                }]
-            };
+              ?>
+              ],
+              datasets: [{
+                label: 'Ingresos',
+                borderColor: window.chartColors.red,
+                backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                fill: false,
+                data: [
+                  <?php
+                    if ($labelsIngEgrMesesComp) {
+                      echo implode(",",$ingresosPorMesComp);
+                    }else{
+                      $cantIngresos = array();
+                      for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
+                        $fechaDeArray = $fechasComp[$i];
+                        $sql1 = "SELECT COUNT(fecha) as cantidad FROM ingresos WHERE fecha = '$fechaDeArray'";
+                        $query1 = mysqli_query($conexion,$sql1);
+                        $fila1 = mysqli_fetch_array($query1);
+                        $cantIngresos[] = $fila1['cantidad'];
+                      }
+                      echo implode(",",$cantIngresos);
+                    }
+                  ?>
+                ],
+                yAxisID: 'y-axis-1',
+              }, {
+                label: 'Egresos',
+                backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                borderColor: window.chartColors.blue,
+                fill: false,
+                data: [
+                  <?php
+                  if ($labelsIngEgrMesesComp) {
+                    echo implode(",",$egresosPorMesComp);
+                  }else{
+                    $cantEgresos = array();
+                      for ($i=0; $i < sizeof($fechasComp) ; $i++) { 
+                        $fechaDeArray = $fechasComp[$i];
+                        $sql = "SELECT COUNT(fecha) as cantidad FROM egresos WHERE fecha = '$fechaDeArray'";
+                        $query = mysqli_query($conexion,$sql);
+                        $fila = mysqli_fetch_array($query);
+                        $cantEgresos[] = $fila['cantidad'];
+                      }
+                      echo implode(",",$cantEgresos);
+                  }
+                  ?>
+                ],
+                yAxisID: 'y-axis-2'
+              }]
+          };
 
-            let ctxIngEgrComp = document.getElementById('canvasIngEgrComp').getContext('2d');
+          let ctxIngEgrComp = document.getElementById('canvasIngEgrComp').getContext('2d');
 
-            let chartIngEgrComp = Chart.Line(ctxIngEgrComp, {
-              data: lineChartDataIngEgrComp,
-              options: {
-                responsive: true,
-                hoverMode: 'index',
-                stacked: false,
-                title: {
+          let chartIngEgrComp = Chart.Line(ctxIngEgrComp, {
+            data: lineChartDataIngEgrComp,
+            options: {
+              responsive: true,
+              hoverMode: 'index',
+              stacked: false,
+              title: {
+                display: true,
+                text: 'Relación Ingresos/Egresos'
+              },
+              scales: {
+                yAxes: [{
+                  type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                   display: true,
-                  text: 'Relación Ingresos/Egresos'
-                },
-                scales: {
-                  yAxes: [{
-                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                    display: true,
-                    position: 'left',
-                    id: 'y-axis-1',
-                  }, {
-                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                    display: true,
-                    position: 'right',
-                    id: 'y-axis-2',
+                  position: 'left',
+                  id: 'y-axis-1',
+                }, {
+                  type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                  display: true,
+                  position: 'right',
+                  id: 'y-axis-2',
 
-                    // grid line settings
-                    gridLines: {
-                      drawOnChartArea: false, // only want the grid lines for one axis to show up
-                    },
-                  }],
-                }
+                  // grid line settings
+                  gridLines: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                  },
+                }],
               }
-            });
-          
-          <?php
-
-          }
-
-          ?>
+            }
+          });
+        
+        <?php
+        }
+        ?>
 
 
 
@@ -684,6 +658,32 @@ require 'head.php';
         }
 
     }
+
+    const calculaCPS = ()=>{
+
+      let desde = $('#pesoDesde').val();
+      let hasta = $('#pesoHasta').val();
+      let fechaDesde = <?php echo "'".$desde."'";?>;
+      let fechaHasta = <?php echo "'".$hasta."'";?>;
+      let datos = 'desde=' + desde + '&hasta=' + hasta + '&fDesde=' + fechaDesde + '&fHasta=' + fechaHasta;
+      let url = 'cantidadSegunPesoInforme.php';
+
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:datos,
+        success: function(datos){
+
+          datos = datos.split(",");
+          chartCantPeso.data.datasets[0].data[0] = datos[0];
+          chartCantPeso.data.datasets[0].data[1] = datos[1];
+          chartCantPeso.update();
+
+        }
+      });
+      
+    } 
+
 
     
     </script>

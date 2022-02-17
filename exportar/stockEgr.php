@@ -107,15 +107,10 @@ $hoja = $documento->getActiveSheet();
 $hoja->setTitle("Egresos");
 // Generate an image
 // Generate an image
-if($_SESSION['feedlot'] == 'Acopiadora Pampeana' OR $_SESSION['feedlot'] == 'Acopiadora Hoteleria'){
 
-    $gdImage = imagecreatefromjpeg('../img/logo1.png');
+$gdImage = imagecreatefromjpeg('../img/logo1.jpg');
 
-}else{
 
-    $gdImage = imagecreatefromjpeg('../img/logo.jpg');
-
-}
 // Add a drawing to the worksheet
 $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
 $drawing->setName('Sample image');
@@ -136,15 +131,11 @@ $hoja->setCellValue('D2', 'Destino');
 
 $hoja->getStyle('A2:D2')->applyFromArray($styleHeader);
 $hoja->mergeCells('B1:D1');
-if($_SESSION['feedlot'] == 'Acopiadora Pampeana' OR $_SESSION['feedlot'] == 'Acopiadora Hoteleria'){
 
-    $hoja->setCellValue('B1', $feedlot.' - Doña Juana - Listado de Ingresos - '.$filtros);
 
-}else{
+$hoja->setCellValue('B1', $feedlot.'- Listado de Egresos - '.$filtros);
 
-    $hoja->setCellValue('B1', $feedlot.'- Listado de Ingresos - '.$filtros);
 
-}
 
 $hoja->getRowDimension('1')->setRowHeight(75);
 $hoja->getColumnDimension('A')->setWidth(30);
