@@ -38,12 +38,7 @@ $filtros = $_GET['filtros'];
     $pdf->Cell(60,7,utf8_decode('Jorge Cornale'),0,1,'R',0);
     $pdf->Ln(6);
     $pdf->SetFont('Times','B',18);
-    if ($feedlot == 'Acopiadora Pampeana' OR $feedlot == 'Acopiadora Pampeana Hoteleria') {
-        # code...
-        $pdf->Cell(190,10,utf8_decode('Feedlot: '.$feedlot.' - Doña Juana'),0,1,'L',0);
-    }else{
-        $pdf->Cell(190,10,'Feedlot: '.$feedlot,0,1,'L',0);
-    }
+    $pdf->Cell(190,10,'Feedlot: '.$feedlot,0,1,'L',0);
     $pdf->Cell(190,10,utf8_decode('Listado de Egresos - '.$filtros),0,1,'L',0);
     $pdf->SetFont('helvetica','B',12);
     $pdf->SetX(10);
@@ -67,39 +62,23 @@ $filtros = $_GET['filtros'];
         
         while($fila = mysqli_fetch_array($query)){
 		
-            $tropa = $fila['tropa'];
-		
-            $sql2 = "SELECT SUM(peso) AS pesoTotal FROM egresos WHERE tropa = '$tropa'";
-    
-            $query2 = mysqli_query($conexion,$sql2);
-    
-            $resultadosEgr = mysqli_fetch_array($query2);
+            $pdf->Cell(35,8,formatearFecha($fila['fecha']),0,0,'L',$color);
+            $pdf->Cell(25,8,$fila['cantidad'],0,0,'C',$color);
+            $pdf->Cell(35,8,$fila['pesoPromedio']." Kg",0,0,'C',$color);
+            $pdf->Cell(100,8,$fila['destino'],0,1,'L',$color);
 
-                $pdf->Cell(35,8,formatearFecha($fila['fecha']),0,0,'L',$color);
-                $pdf->Cell(25,8,$fila['cantidad'],0,0,'C',$color);
-                $pdf->Cell(35,8,$fila['pesoPromedio']." Kg",0,0,'C',$color);
-                $pdf->Cell(100,8,$fila['destino'],0,1,'L',$color);
+            if ($color == 1) {
+                $color = 0;
+            }else{
+                $color = 1;
+            }
 
-
-                if ($color == 1) {
-                    $color = 0;
-                }else{
-                    $color = 1;
-                }
-
+            $totalCantidad += $fila['cantidad'];
             
-                $totalCantidad += $fila['cantidad'];
-				
-				if ($feedlot == 'Acopiadora Pampeana') {
-					
-					$totalPNeto += ($fila['pesoPromedio'] * $fila['cantidad']);
+            $totalPNeto += ($fila['pesoPromedio'] * $fila['cantidad']);
 
-				}else{
-					
-					$totalPNeto += $resultadosEgr['pesoTotal'];
-					
-				}
         }
+        
         $pdf->Cell(195,.01,'',1,1,'L',0);
         $pdf->SetFont('Helvetica','B',10);
         $pdf->Cell(35,8,'Subtotales:',0,0,'R',0);

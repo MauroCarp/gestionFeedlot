@@ -1,4 +1,4 @@
-  var configEgr = {
+  let configEgr = {
     type: 'pie',
     data: {
       datasets: [{
@@ -40,7 +40,8 @@
       },
       plugins: {
         labels: {
-          render: 'percentage'
+          render: 'percentage',
+          fontColor:'white'
         }
       }
 

@@ -94,10 +94,21 @@ if(strtolower(end($chk_ext)) == "csv"){
 			$numeroDTE = registroVacioNumero($data[6]);
 			$origen = registroVacioString($data[7]);
 			$destino = registroVacioString($data[8]);
+
 			$gdmTotal = registroVacioNumero($data[9]);
-			$totalGdm += $gdmTotal;	
+			
+			
 			$gpvTotal = registroVacioNumero($data[10]);
-			$totalGpv += $gpvTotal;
+			
+			
+			if($totalGdm != 0){
+				
+				$totalGdm += $gdmTotal;	
+				$totalGpv +=  $gpvTotal;
+				$animalesPromediar++;
+
+			}
+			
 			$diasTotal = registroVacioNumero($data[11]);
 			$fecha = $data[12];
 			$fecha = explode('/',$fecha);
@@ -127,14 +138,14 @@ if(strtolower(end($chk_ext)) == "csv"){
 	
 	$pesoProm =  number_format($pesoProm,2);
 
-	$gdmProm = $totalGdm / $totalAnimales;	
+	$gdmProm = $totalGdm / $animalesPromediar;	
 
 	$gdmProm = (float)$gdmProm;
 ;
 	$gdmProm =  number_format($gdmProm,2);
 
 
-	$gpvProm = $totalGpv / $totalAnimales;	
+	$gpvProm = $totalGpv / $animalesPromediar;	
 	
 	$gpvProm = (float)$gpvProm;
 	

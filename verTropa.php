@@ -590,8 +590,13 @@ require 'head.php';
               title: {
                 display: true,
                 text: 'Cant. Segun Sexo'
+              },
+              plugins:{
+                labels:{
+                  render:'percentage',
+                  fontColor:'white'
+                }
               }
-
             }
           };
 
@@ -628,6 +633,12 @@ require 'head.php';
             animation: {
               animateScale: true,
               animateRotate: true
+            },
+            plugins:{
+                labels:{
+                  render:'percentage',
+                  fontColor:'white'
+                }
             }
 
           }

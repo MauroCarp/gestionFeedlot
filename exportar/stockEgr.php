@@ -151,36 +151,20 @@ if(mysqli_num_rows($query)>0){
     $totalPNeto = 0;
     while($fila = mysqli_fetch_array($query)){
        
-        $tropa = $fila['tropa'];
-		
-        $sql2 = "SELECT SUM(peso) AS pesoTotal FROM egresos WHERE tropa = '$tropa'";
-
-        $query2 = mysqli_query($conexion,$sql2);
-
-        $resultadosEgr = mysqli_fetch_array($query2);
-
-            $hoja->setCellValue('A'.$i, formatearFecha($fila['fecha']));
-            $hoja->setCellValue('B'.$i, $fila['cantidad']);
-            $hoja->setCellValue('C'.$i, $fila['pesoPromedio']);
-            $hoja->setCellValue('D'.$i, $fila['destino']);
+        $hoja->setCellValue('A'.$i, formatearFecha($fila['fecha']));
+        $hoja->setCellValue('B'.$i, $fila['cantidad']);
+        $hoja->setCellValue('C'.$i, $fila['pesoPromedio']);
+        $hoja->setCellValue('D'.$i, $fila['destino']);
 
 
-            $hoja->getStyle('A'.$i.':D'.$i)->applyFromArray($styleBody);
+        $hoja->getStyle('A'.$i.':D'.$i)->applyFromArray($styleBody);
 
+        $totalCantidad += $fila['cantidad'];
+            
+        $totalPNeto += ($fila['pesoPromedio'] * $fila['cantidad']);
 
-            $totalCantidad += $fila['cantidad'];
-				
-            if ($feedlot == 'Acopiadora Pampeana') {
-                
-                $totalPNeto += ($fila['pesoPromedio'] * $fila['cantidad']);
-
-            }else{
-                
-                $totalPNeto += $resultadosEgr['pesoTotal'];
-                
-            }
-            $i++;
-        }
+        $i++;
+    }
 
 
 }
