@@ -30,10 +30,20 @@
           <div class="span6"><?php echo formatearNum($kgIngProm)." Kg";?></div>
       </div>
 
-      <div class="row-fluid" style="background-color:#eeeeee">
-          <div class="span6"><b>- Dif. Kg Ing/Egr:</b></div>
-          <div class="span6"><?php echo formatearNum($diferenciaIngEgr)." Kg";?></div>
+      <div class="row-fluid"  style="background-color:#eeeeee">
+          <div class="span6"><b>- Kg Min. Prom:</b></div>
+          <div class="span6"><?php echo formatearNum($kgMinIng)." Kg";?></div>
       </div>
+
+      <div class="row-fluid">
+          <div class="span6"><b>- Kg Max. Prom:</b></div>
+          <div class="span6"><?php echo formatearNum($kgMaxIng)." Kg";?></div>
+      </div>
+
+      <!-- <div class="row-fluid" style="background-color:#eeeeee">
+          <div class="span6"><b>- Dif. Kg Ing/Egr:</b></div>
+          <div class="span6"><?php //echo formatearNum($diferenciaIngEgr)." Kg";?></div>
+      </div> -->
 
     </div>
 
@@ -57,11 +67,11 @@
       <div class="span4"></div>
       
       <div class="span2">
-        <input type="number" class="input-mini" id="pesoDesde" value="0" onblur="calculaCPS()">
+        <input type="number" class="input-mini" id="pesoDesde" value="0" onblur="calculaCPS('')">
       </div>
 
       <div class="span2">
-        <input type="number" class="input-mini" id="pesoHasta" value="0" onblur="calculaCPS()">
+        <input type="number" class="input-mini" id="pesoHasta" value="0" onblur="calculaCPS('')">
       </div>
 
       <div class="span4"></div>

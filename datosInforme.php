@@ -114,6 +114,10 @@ $kgEgrProm = 0;
 $diferenciaIngEgr = 0;
 $cantidadIngresos = 0;
 $cantidadEgresos = 0;
+$kgMinIng = 1000000;
+$kgMinEgr = 1000000;
+$kgMaxIng = 0;
+$kgMaxEgr = 0;
 
 
   /// INGRESOS 
@@ -138,6 +142,10 @@ $cantidadEgresos = 0;
       $cantidadIngresos += $resultados['cantidad'];
 
       $totalPesoIng += ($resultados['cantidad'] * $resultados['pesoPromedio']);
+
+      $kgMinIng = ($kgMinIng > $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMinIng;
+      $kgMaxIng = ($kgMaxIng < $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMaxIng;
+  
 
       $fecha = $resultados['fecha'];
 
@@ -202,6 +210,9 @@ $cantidadEgresos = 0;
         $cantidadEgresos += $resultados['cantidad'];
 
         $totalPesoEgr += ($resultados['cantidad'] * $resultados['pesoPromedio']);
+
+        $kgMinEgr = ($kgMinEgr > $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMinEgr;
+        $kgMaxEgr = ($kgMaxEgr < $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMaxEgr;
         
         $fecha = $resultados['fecha'];
 

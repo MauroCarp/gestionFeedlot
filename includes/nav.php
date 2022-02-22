@@ -13,7 +13,7 @@ $menu['Salir'] = 'logout.php';
 
  ?>
 
- <a class="brand" href="index.php" style="font-size:25px;"><b>GESTION DE FEEDLOTS - JORGE CORNALE</b></a>
+ <a class="brand" href="index.php" style="font-size:25px;"><b>GESTION DE FEEDLOT - JORGE CORNALE</b></a>
 
  <div class="nav-collapse collapse">
   

@@ -59,6 +59,7 @@ if(!$comparacionValido){
 ?>
 
 <script type="text/javascript">
+
 	
 	// SEXO
 		let configEgr = {
@@ -109,6 +110,52 @@ if(!$comparacionValido){
 
 			}
 		};
+
+	// INGRESOS SEGUN SEXP Y PESO
+
+		let cantPesosEgr = {
+			type: 'doughnut',
+			data: {
+			datasets: [{
+				data: [
+				<?php echo $resultadoEgr;?>
+				],
+				backgroundColor: [
+				'#FF6D88',
+				'#F8A233',
+				],
+				label: 'Dataset 1'
+			}],
+			labels: [
+				'Macho',
+				'Hembra'
+			]
+			},
+			options: {
+			circumference: Math.PI,
+			rotation: -Math.PI,
+			responsive: true,
+			legend: {
+				position: 'top',
+			},
+			title: {
+				display: true,
+				text: 'Cantidad según Sexo, y Peso'
+			},
+			animation: {
+				animateScale: true,
+				animateRotate: true
+			},
+			plugins:{
+				labels: {
+					render: 'percentage',
+					fontColor:'white'
+				}
+			}
+
+			}
+		};
+
 	// RAZAS 	
 	  	<?php 
 	  	  $sqlRazasEgr = "SELECT raza FROM razas ORDER BY raza ASC";
