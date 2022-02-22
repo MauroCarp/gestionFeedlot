@@ -310,6 +310,7 @@ require 'head.php';
                       <th>Sexo</th>
                       <th>Estado</th>
                       <th>Hora</th>
+                      <th></th>
                     </thead>
                     <tbody>
                       <?php
@@ -324,6 +325,7 @@ require 'head.php';
                         <td><?php echo $filaDetalle['sexo'];?></td>
                         <td><?php echo $filaDetalle['estadoAnimal'];?></td>
                         <td><?php echo $filaDetalle['hora'];?></td>
+                        <td><a style="cursor:pointer;font-size:18px;" class="btnEditarAnimal" data-toggle="modal" data-target="#modalEditarAnimal" idAnimal="<?php echo $filaDetalle['id'];?>" seccion="egresos"><span class="icon-pencil iconos"></span></a></td>
                       </tr>  
                       <?php
                       }
@@ -378,6 +380,7 @@ require 'head.php';
                     <th>GPV Total</th>
                     <th>Destino</th>
                     <th>Hora</th>
+                    <th></th>
                   </thead>
                   <tbody>
                     <?php
@@ -393,6 +396,8 @@ require 'head.php';
                       <td><?php echo $filaDetalle['gpvTotal'];?></td>
                       <td><?php echo $filaDetalle['destino'];?></td>
                       <td><?php echo $filaDetalle['hora'];?></td>
+                      <td><a style="cursor:pointer;font-size:18px;"  class="btnEditarAnimal" data-toggle="modal" data-target="#modalEditarAnimal" idAnimal="<?php echo $filaDetalle['id'];?>" seccion="egresos"><span class="icon-pencil iconos"></span></a></td>
+
                     </tr>  
                     <?php
                     }
@@ -505,7 +510,263 @@ require 'head.php';
 
     </div>
 
-    <script type="text/javascript">
+    
+    
+    
+  </body>
+  
+  <!-- MODAL -->
+
+  <div class="modal fade" id="modalEditarAnimal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="width:600px;margin-top:50px;">
+              
+    <div class="modal-dialog" role="document">
+    
+      <div class="modal-content">
+    
+        <div class="modal-header">
+    
+          <h2 class="modal-title" id="exampleModalLabel">Editar Animal</h2>
+    
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+    
+        </div>
+        
+        <div class="modal-body">    
+        
+          <div id="animalesEgresos" style="display:none;">
+
+            <div class="row-fluid">
+    
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputPeso">Peso:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputPeso" name="peso"  value="" required autofocus>
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputGdmTotal">Gdm Total:</label>
+    
+                    <div class="controls">
+    
+                      <input type="number" step="0.1" id="inputGdmTotal" name="gmdTotal"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputGpvTotal">Gpv Total:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputGpvTotal" name="gpvTotal"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div> 
+    
+            </div>
+
+            <div class="row-fluid">
+    
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputOrigen">Origen:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputOrigen" name="origen"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputProveedor">Proveedor:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputProveedor" name="proveedor"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputDestino">Destino:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputDestino" name="destino"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div> 
+    
+            </div>
+          
+          </div>
+
+          <div id="animalesIngresos" style="display:none;">
+
+            <div class="row-fluid">
+    
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputPeso">Peso:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputPeso" name="peso"  value="" required autofocus>
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputRaza">Raza:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputRaza" name="raza"  value="" required>
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputSexo">Sexo:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputSexo" name="sexo"  value="" required>
+    
+                    </div>
+    
+                </div>
+    
+              </div> 
+    
+            </div>
+
+            <div class="row-fluid">
+    
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputOrigen">Origen:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputOrigen" name="origen"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputProveedor">Proveedor:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputProveedor" name="proveedor"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputEstado">Estado:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" id="inputEstado" name="estado"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div> 
+    
+            </div>
+          
+          </div>
+
+        </div>
+  
+        <div class="modal-footer" style="padding: 10px 15px 10px 0;">
+
+          <button type="submit" class="btn btn-default" id="btnEditarAnimal"><b>Modificar</b></button>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div>
+          
+      </div>
+    
+    </div>
+    
+  </div>
+
+
+  <script type="text/javascript">
       
       let  btnDetalles = document.getElementById('verDetalles');
       
@@ -929,9 +1190,6 @@ require 'head.php';
         };
 
    </script>
-
-  </body>
-
   <script src="js/verStock.js"></script>
 
 </html>
