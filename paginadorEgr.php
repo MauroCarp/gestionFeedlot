@@ -15,7 +15,7 @@ while($resultadosEgr = mysqli_fetch_array($query)){
 ?>
 <tr>
   <td><?php echo formatearFecha($resultadosEgr['fecha']);?></td>
-  <td><?php echo $resultadosEgr['cantidad'];?></td>
+  <td style="text-align:center;"><?php echo $resultadosEgr['cantidad'];?></td>
   <td><?php echo number_format($resultadosEgr['pesoPromedio'],2,",",".")." Kg";?></td>
   <td><?php echo number_format($resultadosEgr['gmdPromedio'],2,",",".")." Kg";?></td>
   <td><?php echo number_format($resultadosEgr['gpvPromedio'],2,",",".")." Kg";?></td>  

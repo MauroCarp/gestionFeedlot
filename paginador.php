@@ -16,7 +16,7 @@ while($resultadosIng = mysqli_fetch_array($query)){
 <tr>
   <td style="text-align: center;"><?php echo $tropa;?></td>
   <td><?php echo formatearFecha($resultadosIng['fecha']);?></td>
-  <td><?php echo $resultadosIng['cantidad'];?></td>
+  <td style="text-align:center;"><?php echo $resultadosIng['cantidad'];?></td>
   <td><?php echo number_format($resultadosIng['pesoPromedio'],2,",",".")." Kg";?></td>
   <td><?php echo $resultadosIng['renspa'];?></td>
   <td><?php echo $resultadosIng['adpv']." Kg";?></td>
