@@ -63,13 +63,13 @@ require 'head.php';
               
                   <div class="span6"><b>- Kg Neto Ingreso: </b><?php echo number_format($totalPesoIng,0,",",".")." Kg";?></div>
               
-                  <div class="span6"><b>- Kg Ingreso Promedio: </b><?php echo number_format($kgIngProm,2,",",".")." Kg";?></div>
-              
-                </div>
-              
-                <div class="row-fluid">
-              
                   <div class="span6"><b>- Peso Min: </b><?php echo $pesoMin." Kg";?></div>
+                  
+                </div>
+                
+                <div class="row-fluid">
+                  
+                  <div class="span6"><b>- Kg Ingreso Promedio: </b><?php echo number_format($kgIngProm,2,",",".")." Kg";?></div>
               
                   <div class="span6"><b>- Peso Max.: </b><?php echo $pesoMax." Kg";?></div>
               
@@ -349,11 +349,11 @@ require 'head.php';
               
               <div class="row-fluid" style="background-color:#eeeeee">
                 <div class="span6"><b>- Kg Neto Egreso: </b><?php echo number_format($totalPesoEgr,0,'','.')." Kg";?></div>
-                <div class="span6"><b>- Kg Egreso Promedio: </b><?php echo formatearNum($kgEgrProm)." Kg";?></div>
+                <div class="span6"><b>- Peso Min.: </b><?php echo $pesoMinEgr." Kg";?></div> 
               </div>
               
               <div class="row-fluid">
-                <div class="span6"><b>- Peso Min.: </b><?php echo $pesoMinEgr." Kg";?></div> 
+                <div class="span6"><b>- Kg Egreso Promedio: </b><?php echo formatearNum($kgEgrProm)." Kg";?></div>
                 <div class="span6"><b>- Peso Max.: </b><?php echo $pesoMaxEgr." Kg";?></div>
               </div>
 

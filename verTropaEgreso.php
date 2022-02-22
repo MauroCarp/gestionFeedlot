@@ -62,7 +62,7 @@ if ($seccion == 'egresos') {
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS</title>
+    <title>JORGE CORNALE - GESTION DE FEEDLOT</title>
     <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -174,10 +174,6 @@ if ($seccion == 'egresos') {
           <a href="stock.php?seccion=egreso" class="btn btn-primary btn-large">Volver</a>
         <?php }
         ?>
-        <hr>
-      <footer>
-        <p>Gesti&oacute;n de FeedLots - Jorge Cornale - 2018</p>
-      </footer>
     </div>
 
     <script type="text/javascript">

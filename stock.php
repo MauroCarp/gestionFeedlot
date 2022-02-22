@@ -688,6 +688,42 @@ require 'head.php';
         
     </script>
 
+    <!-- MODAL CARGA MANUAL -->
+        
+    <div class="modal fade" id="modalCargaManual" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999">
+
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+
+            <h4 class="modal-title" id="exampleModalLabel">Aviso</h4>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+            </button>
+
+          </div>
+
+          <div class="modal-body">
+            <p style="font-weight:bold"> 
+              Recorda renombrar el archivo, con el nombre de la tropa.
+            </p>
+          </div>
+
+          <div class="modal-footer" style="padding: 0; padding-right: 15px;">
+
+            <a href="#" id="descargarPlanillaManual"  download="" class="btn btn-secondary"><h5>Descargar Planilla</h5></a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </body>
 
   <script src="js/muertes.js"></script>

@@ -209,7 +209,11 @@ $cantMuertes = 0;
 $totalPesoIng = 0;
 $totalPesoEgr = 0;
 $kgIngProm = 0;
+$kgMinIng = 1000000;
+$kgMaxIng = 0;
 $kgEgrProm = 0;
+$kgMinEgr = 1000000;
+$kgMaxEgr = 0;
 $diferenciaIngEgr = 0;
 $pesoTotalIng = 0;
 $pesoTotalEgr = 0;
@@ -221,60 +225,46 @@ $pesoTotalEgr = 0;
   $cantIngConStockInicial = $resultados['cantidadConStockInicial'];
   
 
-  if ($feedlot == "Acopiadora Pampeana") {
+  // INGRESOS
+
+  $sqlIng = "SELECT cantidad, pesoPromedio FROM registroingresos WHERE feedlot = '$feedlot' AND tropa != 'Stock Inicial' ORDER BY fecha ASC";
+
+  $queryIng = mysqli_query($conexion,$sqlIng);
   
-    $sqlIng = "SELECT cantidad, pesoPromedio FROM registroingresos WHERE feedlot = '$feedlot' AND tropa != 'Stock Inicial' ORDER BY fecha ASC";
+  while($resultados = mysqli_fetch_array($queryIng)){
 
-    $queryIng = mysqli_query($conexion,$sqlIng);
+    $cantidad = $resultados['cantidad'];
+    $pesoPromedio = $resultados['pesoPromedio'];
+
+    $cantIng += $cantidad;
+    $pesoTotalIng += ($cantidad * $pesoPromedio);
     
-    while($resultados = mysqli_fetch_array($queryIng)){
+    $kgMinIng = ($kgMinIng > $pesoPromedio) ? $pesoPromedio : $kgMinIng;
+    $kgMaxIng = ($kgMaxIng < $pesoPromedio) ? $pesoPromedio : $kgMaxIng;
 
-      $cantidad = $resultados['cantidad'];
-      $pesoPromedio = $resultados['pesoPromedio'];
-
-      $cantIng += $cantidad;
-      $pesoTotalIng += ($cantidad * $pesoPromedio);
-
-    };
-
-
-
-    $sqlEgr = "SELECT cantidad, pesoPromedio FROM registroegresos WHERE feedlot = '$feedlot' ORDER BY fecha ASC";
-
-    $queryEgr = mysqli_query($conexion,$sqlEgr);
-
-    
-    while($resultados = mysqli_fetch_array($queryEgr)){
-      
-      $cantidadEgr = $resultados['cantidad'];
-      $pesoPromedioEgr = $resultados['pesoPromedio'];
-      
-
-      $cantEgr += $cantidadEgr;
-      $pesoTotalEgr += ($cantidadEgr * $pesoPromedioEgr);
-
-    };
-
-
-  }else{
-
-    $sqlIng = "SELECT COUNT(feedlot) AS cantidad, SUM(peso) AS pesoTotal FROM ingresos WHERE feedlot = '$feedlot' AND tropa != 'Stock Inicial' ORDER BY fecha ASC";
-
-    $queryIng = mysqli_query($conexion,$sqlIng);
-    $resultados = mysqli_fetch_array($queryIng);
-    $pesoTotalIng = $resultados['pesoTotal'];
-    $cantIng = $resultados['cantidad'];
-
-    $sqlEgr = "SELECT COUNT(feedlot) AS cantidad, SUM(peso) AS pesoTotal FROM egresos WHERE feedlot = '$feedlot' ORDER BY fecha ASC";
-    $queryEgr = mysqli_query($conexion,$sqlEgr);
-    $resultados = mysqli_fetch_array($queryEgr);
-    $cantEgr = $resultados['cantidad'];
-    $pesoTotalEgr = $resultados['pesoTotal'];
-
-
-  }
-
+  };
   
+  
+  // EGRESOS
+  $sqlEgr = "SELECT cantidad, pesoPromedio FROM registroegresos WHERE feedlot = '$feedlot' ORDER BY fecha ASC";
+  
+  $queryEgr = mysqli_query($conexion,$sqlEgr);
+  
+  
+  while($resultados = mysqli_fetch_array($queryEgr)){
+    
+    $cantidadEgr = $resultados['cantidad'];
+    $pesoPromedioEgr = $resultados['pesoPromedio'];
+    
+    $cantEgr += $cantidadEgr;
+    $pesoTotalEgr += ($cantidadEgr * $pesoPromedioEgr);
+    
+    
+    $kgMinEgr = ($kgMinEgr > $pesoPromedioEgr) ? $pesoPromedioEgr : $kgMinEgr;
+    $kgMaxEgr = ($kgMaxEgr < $pesoPromedioEgr) ? $pesoPromedioEgr : $kgMaxEgr;
+
+  };
+
 
 
   $sqlMuertes = "SELECT SUM(cantidad) as cantidad FROM registromuertes WHERE feedlot = '$feedlot' ORDER BY fecha ASC";
@@ -310,7 +300,6 @@ $pesoTotalEgr = 0;
   if ($cantMuertes != 0 AND $stock != 0) {
     $stock = ($stock - $cantMuertes); 
   }
-
 
 $seccionValido = array_key_exists('seccion',$_REQUEST);
 if ($seccionValido) {
