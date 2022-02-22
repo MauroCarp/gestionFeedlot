@@ -23,7 +23,7 @@ $hasta = $_POST['hasta'];
 	$pdf->SetAutoPageBreak(1,1);
 	$pdf->SetFont('Times','B',11);
 	$pdf->SetX(10);
-	$pdf->Cell(130,7,utf8_decode('Gestión de Feedlots'),0,0,'L',0);
+	$pdf->Cell(130,7,utf8_decode('Gestión de Feedlot'),0,0,'L',0);
 	$pdf->Cell(60,7,utf8_decode('Jorge Cornale'),0,1,'R',0);
 	$pdf->Ln(1);
 	$pdf->SetFont('Times','B',18);
