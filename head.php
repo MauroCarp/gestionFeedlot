@@ -7,7 +7,7 @@
 
     <meta charset="utf-8">
 
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS</title>
+    <title>JORGE CORNALE - GESTION DE FEEDLOT</title>
 
     <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
 

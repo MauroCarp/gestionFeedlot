@@ -73,4 +73,9 @@
   </div>
 
 </form>
-  
+
+<hr>
+
+<a href="#" data-toggle="modal" data-target="#modalCargaManual" class="descargarPlanillas"  seccion="muertes"><h5>Descargar Planilla Muertes Manual</h5></a>
+
+<!-- <a href="planillas/muertes.cvs" donwload="Planilla Muertes.csv"><h5>Descargar Planilla Muertes Manual</h5></a> -->

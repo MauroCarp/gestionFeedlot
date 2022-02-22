@@ -71,7 +71,7 @@ if(isset($_POST["btnIngresar"])){
     <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS -</title>
+    <title>JORGE CORNALE - GESTION DE FEEDLOT -</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -123,7 +123,7 @@ if(isset($_POST["btnIngresar"])){
       <img class="mb-4" src="img/logo1.png" alt="" width="300" height="">
 
       <h4 class="h3 mb-3 font-weight-ligth">Usuario</h4>
-      <input type="text" name="ingUsuario" id="ingUsuario" value="Jcornale" readOnly>
+      <input type="text" name="ingUsuario" id="ingUsuario" value="Jcornale">
 
       <h4 class="h3 mb-3 font-weight-ligth">Contrase&ntilde;a</h4>
       <input type="password" name="ingPassword" id="ingPassword" required autofocus>

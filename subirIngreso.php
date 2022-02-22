@@ -51,7 +51,7 @@ if(strtolower(end($chk_ext)) == "csv"){
 	
 			while (($data = fgetcsv($handle, 1000, ";")) !== FALSE){	
 				
-				if ($contador > 4) {
+				if ($contador > 1) {
 					
 					// GENERO ARRAY CON LAS RAZAS DE LA BASE DE DATOS
 					$arrayRazas = array();

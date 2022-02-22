@@ -66,7 +66,7 @@ if(strtolower(end($chk_ext)) == "csv"){
 
 	while (($data = fgetcsv($handle, 1000, ";")) !== FALSE){	
 
-		if ($contador > 4) {
+		if ($contador >= 1) {
 			$IDE = registroVacioString($data[0]);
 			$peso = registroVacioNumero($data[1]);
 			$pesoTotal += $peso;
@@ -100,8 +100,7 @@ if(strtolower(end($chk_ext)) == "csv"){
 			
 			$gpvTotal = registroVacioNumero($data[10]);
 			
-			
-			if($totalGdm != 0){
+			if($gdmTotal != 0){
 				
 				$totalGdm += $gdmTotal;	
 				$totalGpv +=  $gpvTotal;
@@ -139,11 +138,10 @@ if(strtolower(end($chk_ext)) == "csv"){
 	$pesoProm =  number_format($pesoProm,2);
 
 	$gdmProm = $totalGdm / $animalesPromediar;	
-
+	
 	$gdmProm = (float)$gdmProm;
-;
+	
 	$gdmProm =  number_format($gdmProm,2);
-
 
 	$gpvProm = $totalGpv / $animalesPromediar;	
 	

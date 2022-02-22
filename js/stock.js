@@ -46,3 +46,26 @@
     });
   }   
     
+setTimeout(() => {
+  
+  let btnsDescargaPlanilla = document.getElementsByClassName('descargarPlanillas')
+
+  for (const btn of btnsDescargaPlanilla) {
+      
+    btn.addEventListener('click',()=>{
+
+      let seccion = btn.attributes.seccion.value  
+      
+      let btnDescargar = document.getElementById('descargarPlanillaManual')
+      
+      btnDescargar.href = `planillas/${seccion}.csv`
+  
+      btnDescargar.download = `Planilla ${seccion}.csv`
+    
+    })
+
+  }
+
+}, 500);
+  
+  

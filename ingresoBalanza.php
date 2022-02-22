@@ -54,3 +54,9 @@
   </form>
 
 </div>
+<hr>
+<div id="cargaManual">
+
+  <a href="#" data-toggle="modal" data-target="#modalCargaManual" class="descargarPlanillas" seccion="ingresos"><h5>Descargar Planilla Ingresos Manual</h5></a>
+
+</div>
