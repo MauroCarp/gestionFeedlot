@@ -9,7 +9,7 @@ require("includes/arrays.php");
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS</title>
+    <title>JORGE CORNALE - GESTION DE FEEDLOT</title>
     <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,9 +65,7 @@ require("includes/arrays.php");
         <a href="muertes5.php">Grafico de Dona</a><br>
         <a href="muertes6.php">Grafico de Combinacion Linea y Barra</a><br>
       </div>
-      <footer>
-        <p>Gesti&oacute;n de FeedLots - Jorge Cornale - 2018</p>
-      </footer>
+
     </div>
 
     <script type="text/javascript">

@@ -25,7 +25,7 @@ function mostrarReceta($id_receta,$archivo,$conexion){
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS</title>
+    <title>JORGE CORNALE - GESTION DE FEEDLOT</title>
     <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -435,12 +435,6 @@ function mostrarReceta($id_receta,$archivo,$conexion){
           <hr>
         
         <a href="raciones.php" class="btn btn-primary">Volver</a>
-
-        <br>
-        <hr>
-      <footer>
-        <p>Gesti&oacute;n de FeedLots - Jorge Cornale - 2018</p>
-      </footer>
     </div>
     
 

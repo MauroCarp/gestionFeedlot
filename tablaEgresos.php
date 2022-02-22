@@ -88,7 +88,7 @@
                 <thead style="border-top:3px solid #fde327;border-bottom:3px solid #fde327";>
                     <tr>
                     <th>Fecha Egreso</th>
-                    <th>Cantidad</th>
+                    <th style="text-align:center;">Cantidad</th>
                     <th>Peso Prom.</th>
                     <th>GMD Prom</th>
                     <th>GPV Prom</th>
