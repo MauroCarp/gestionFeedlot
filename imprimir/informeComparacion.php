@@ -10,7 +10,7 @@ require("datosInforme.php");
 <html>
 <head>
 	<meta charset="utf-8">
-    <title>JORGE CORNALE - GESTION DE FEEDLOTS</title>
+    <title>JORGE CORNALE - GESTION DE FEEDLOT</title>
     <link rel="icon" href="../img/ico.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../img/ico.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

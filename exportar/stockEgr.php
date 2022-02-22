@@ -93,7 +93,7 @@ $cabezera = [
 $documento = new Spreadsheet();
 $documento
     ->getProperties()
-    ->setCreator("Gestion de Feedlots")
+    ->setCreator("Gestion de Feedlot")
     ->setLastModifiedBy('Mauro Gonzalez') // última vez modificado por
     ->setTitle('Lista Stock de Egresos')
     ->setSubject('Egresos')
