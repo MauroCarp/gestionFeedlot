@@ -101,8 +101,15 @@ document.getElementById('btnEditarAnimal').addEventListener('click',()=>{
 
     for (const input of inputsEditar) {
         
-        dataEditar[input.name] = input.value
-        
+        if(input.name != 'sexo'){
+            dataEditar[input.name] = input.value
+        }else{    
+
+            if(input.checked)
+                dataEditar[input.name] = input.value
+
+        }
+
     }
     
     let tabla = (Object.keys(dataEditar).length > 4) ? 'egresos' : 'ingresos';
@@ -110,7 +117,7 @@ document.getElementById('btnEditarAnimal').addEventListener('click',()=>{
     let url = 'ajax/animales.ajax.php'
 
     let data = `accion=modificarData&data=${JSON.stringify(dataEditar)}&tabla=${tabla}`
-
+ 
     $.ajax({
         method:'post',
         url,

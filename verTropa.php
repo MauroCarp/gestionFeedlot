@@ -600,7 +600,7 @@ require 'head.php';
     
                     <div class="controls">
     
-                      <select name="raza" id="inputRazaEditar" style="width:100%"></select>
+                      <select name="raza" class="dataEditar" id="inputRazaEditar" style="width:100%"></select>
     
                     </div>
     
@@ -720,7 +720,7 @@ require 'head.php';
     
                     <div class="controls">
           
-                      <select name="raza" id="inputRazaEditar" style="width:100%"></select>
+                      <select name="raza" class="dataEditar" id="inputRazaEditar" style="width:100%"></select>
     
                     </div>
     
