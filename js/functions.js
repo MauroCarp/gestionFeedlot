@@ -16,3 +16,10 @@ function cambiar(id,info){
 function mostrar(id) {
     $("#" + id).show(200);
   }
+
+
+const capitalizarPrimeraLetra = (str)=>{
+
+  return str.charAt(0).toUpperCase() + str.slice(1);
+
+}

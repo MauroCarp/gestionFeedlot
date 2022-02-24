@@ -314,7 +314,7 @@ require 'head.php';
                     </thead>
                     <tbody>
                       <?php
-                      $detalleIng = "SELECT IDE,numDTE,peso,raza,sexo,estadoAnimal,hora FROM ingresos WHERE tropa = '$tropa' ORDER BY hora ASC,peso ASC";
+                      $detalleIng = "SELECT id,id,IDE,numDTE,peso,raza,sexo,estadoAnimal,hora FROM ingresos WHERE tropa = '$tropa' ORDER BY hora ASC,peso ASC";
                       $queryDetalleIng = mysqli_query($conexion,$detalleIng);
                       while ($filaDetalle = mysqli_fetch_array($queryDetalleIng)) { ?>
                       <tr>
@@ -325,7 +325,7 @@ require 'head.php';
                         <td><?php echo $filaDetalle['sexo'];?></td>
                         <td><?php echo $filaDetalle['estadoAnimal'];?></td>
                         <td><?php echo $filaDetalle['hora'];?></td>
-                        <td><a style="cursor:pointer;font-size:18px;" class="btnEditarAnimal" data-toggle="modal" data-target="#modalEditarAnimal" idAnimal="<?php echo $filaDetalle['id'];?>" seccion="egresos"><span class="icon-pencil iconos"></span></a></td>
+                        <td><a style="cursor:pointer;font-size:18px;" class="btnEditarAnimal" data-toggle="modal" data-target="#modalEditarAnimal" idAnimal="<?php echo $filaDetalle['id'];?>" seccion="ingresos"><span class="icon-pencil iconos"></span></a></td>
                       </tr>  
                       <?php
                       }
@@ -378,13 +378,14 @@ require 'head.php';
                     <th>Sexo</th>
                     <th>GMD Total</th>
                     <th>GPV Total</th>
+                    <th>Origen</th>
                     <th>Destino</th>
                     <th>Hora</th>
                     <th></th>
                   </thead>
                   <tbody>
                     <?php
-                    $detalleIng = "SELECT IDE,peso,raza,sexo,hora,gdmTotal,gpvTotal,destino FROM egresos WHERE tropa = '$tropa' ORDER BY hora ASC,peso ASC";
+                    $detalleIng = "SELECT id,IDE,peso,raza,sexo,hora,gdmTotal,gpvTotal,origen,destino FROM egresos WHERE tropa = '$tropa' ORDER BY hora ASC,peso ASC";
                     $queryDetalleIng = mysqli_query($conexion,$detalleIng);
                     while ($filaDetalle = mysqli_fetch_array($queryDetalleIng)) { ?>
                     <tr>
@@ -394,6 +395,7 @@ require 'head.php';
                       <td><?php echo $filaDetalle['sexo'];?></td>
                       <td><?php echo $filaDetalle['gdmTotal'];?></td>
                       <td><?php echo $filaDetalle['gpvTotal'];?></td>
+                      <td><?php echo $filaDetalle['origen'];?></td>
                       <td><?php echo $filaDetalle['destino'];?></td>
                       <td><?php echo $filaDetalle['hora'];?></td>
                       <td><a style="cursor:pointer;font-size:18px;"  class="btnEditarAnimal" data-toggle="modal" data-target="#modalEditarAnimal" idAnimal="<?php echo $filaDetalle['id'];?>" seccion="egresos"><span class="icon-pencil iconos"></span></a></td>
@@ -531,7 +533,7 @@ require 'head.php';
     
         </div>
         
-        <div class="modal-body">    
+        <div class="modal-body" id="bodyModal">    
         
           <div id="animalesEgresos" style="display:none;">
 
@@ -541,11 +543,28 @@ require 'head.php';
     
                 <div class="control-group">
     
-                  <label class="control-label formulario" for="inputPeso">Peso:</label>
+                  <label class="control-label formulario" for="inputPesoEditar">Peso:</label>
     
                     <div class="controls">
     
-                      <input type="text" id="inputPeso" name="peso"  value="" required autofocus>
+                      <input type="text" class="dataEditar" id="inputPesoEditar" name="peso"  value="" required autofocus>
+                      <input type="hidden" class="dataEditar" id="idAnimalEditar" name="idAnimal">
+
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputGdmTotalEditar">Gdm Total:</label>
+    
+                    <div class="controls">
+    
+                      <input type="number" class="dataEditar"  step="0.01" id="inputGdmTotalEditar" name="gmdTotal"  value="">
     
                     </div>
     
@@ -557,27 +576,11 @@ require 'head.php';
     
                 <div class="control-group">
     
-                  <label class="control-label formulario" for="inputGdmTotal">Gdm Total:</label>
+                  <label class="control-label formulario" for="inputGpvTotalEditar">Gpv Total:</label>
     
                     <div class="controls">
     
-                      <input type="number" step="0.1" id="inputGdmTotal" name="gmdTotal"  value="">
-    
-                    </div>
-    
-                </div>
-    
-              </div>
-
-              <div class="span4">
-    
-                <div class="control-group">
-    
-                  <label class="control-label formulario" for="inputGpvTotal">Gpv Total:</label>
-    
-                    <div class="controls">
-    
-                      <input type="text" id="inputGpvTotal" name="gpvTotal"  value="">
+                      <input type="number" class="dataEditar" step="0.01" id="inputGpvTotalEditar" name="gpvTotal"  value="">
     
                     </div>
     
@@ -593,11 +596,11 @@ require 'head.php';
     
                 <div class="control-group">
     
-                  <label class="control-label formulario" for="inputOrigen">Origen:</label>
+                  <label class="control-label formulario" for="inputRazaEditar">Raza:</label>
     
                     <div class="controls">
     
-                      <input type="text" id="inputOrigen" name="origen"  value="">
+                      <input type="text" class="dataEditar" id="inputRazaEditar" name="raza"  value="" required>
     
                     </div>
     
@@ -609,11 +612,11 @@ require 'head.php';
     
                 <div class="control-group">
     
-                  <label class="control-label formulario" for="inputProveedor">Proveedor:</label>
+                  <label class="control-label formulario" for="inputSexoEditar">Sexo:</label>
     
                     <div class="controls">
     
-                      <input type="text" id="inputProveedor" name="proveedor"  value="">
+                      <input type="text" class="dataEditar"  step="0.01" id="inputSexoEditar" name="sexo"  value="">
     
                     </div>
     
@@ -625,11 +628,47 @@ require 'head.php';
     
                 <div class="control-group">
     
-                  <label class="control-label formulario" for="inputDestino">Destino:</label>
+                  <label class="control-label formulario" for="inputOrigenEditar">Origen:</label>
     
                     <div class="controls">
     
-                      <input type="text" id="inputDestino" name="destino"  value="">
+                      <input type="text" class="dataEditar" id="inputOrigenEditar" name="origen"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+    
+            </div>
+
+            <div class="row-fluid">
+    
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputProveedorEditar">Proveedor:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" class="dataEditar" id="inputProveedorEditar" name="proveedor"  value="">
+    
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputDestinoEditar">Destino:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" class="dataEditar" id="inputDestinoEditar" name="destino"  value="">
     
                     </div>
     
@@ -649,11 +688,28 @@ require 'head.php';
     
                 <div class="control-group">
     
-                  <label class="control-label formulario" for="inputPeso">Peso:</label>
+                  <label class="control-label formulario" for="inputPesoEditar">Peso:</label>
     
                     <div class="controls">
     
-                      <input type="text" id="inputPeso" name="peso"  value="" required autofocus>
+                      <input type="text" class="dataEditar" id="inputPesoEditar" name="peso"  value="" required autofocus>
+                      <input type="hidden" class="dataEditar" id="idAnimalEditar" name="idAnimal">
+
+                    </div>
+    
+                </div>
+    
+              </div>
+
+              <div class="span4">
+    
+                <div class="control-group">
+    
+                  <label class="control-label formulario" for="inputRazaEditar">Raza:</label>
+    
+                    <div class="controls">
+    
+                      <input type="text" class="dataEditar" id="inputRazaEditar" name="raza"  value="" required>
     
                     </div>
     
@@ -665,27 +721,11 @@ require 'head.php';
     
                 <div class="control-group">
     
-                  <label class="control-label formulario" for="inputRaza">Raza:</label>
+                  <label class="control-label formulario" for="inputSexoEditar">Sexo:</label>
     
                     <div class="controls">
     
-                      <input type="text" id="inputRaza" name="raza"  value="" required>
-    
-                    </div>
-    
-                </div>
-    
-              </div>
-
-              <div class="span4">
-    
-                <div class="control-group">
-    
-                  <label class="control-label formulario" for="inputSexo">Sexo:</label>
-    
-                    <div class="controls">
-    
-                      <input type="text" id="inputSexo" name="sexo"  value="" required>
+                      <input type="text" class="dataEditar" id="inputSexoEditar" name="sexo"  value="" required>
     
                     </div>
     
@@ -695,58 +735,6 @@ require 'head.php';
     
             </div>
 
-            <div class="row-fluid">
-    
-              <div class="span4">
-    
-                <div class="control-group">
-    
-                  <label class="control-label formulario" for="inputOrigen">Origen:</label>
-    
-                    <div class="controls">
-    
-                      <input type="text" id="inputOrigen" name="origen"  value="">
-    
-                    </div>
-    
-                </div>
-    
-              </div>
-
-              <div class="span4">
-    
-                <div class="control-group">
-    
-                  <label class="control-label formulario" for="inputProveedor">Proveedor:</label>
-    
-                    <div class="controls">
-    
-                      <input type="text" id="inputProveedor" name="proveedor"  value="">
-    
-                    </div>
-    
-                </div>
-    
-              </div>
-
-              <div class="span4">
-    
-                <div class="control-group">
-    
-                  <label class="control-label formulario" for="inputEstado">Estado:</label>
-    
-                    <div class="controls">
-    
-                      <input type="text" id="inputEstado" name="estado"  value="">
-    
-                    </div>
-    
-                </div>
-    
-              </div> 
-    
-            </div>
-          
           </div>
 
         </div>

@@ -72,15 +72,25 @@ if ($seccion == 'ingresos') {
 }
 
 if ($seccion == 'egresos') {
-  $sqlEgr = "SELECT peso,fecha,destino, MAX(peso) as maximo, MIN(peso) as minimo, COUNT(id) as total, SUM(peso) as pesoTotal FROM egresos WHERE tropa = '$tropa' AND feedlot = '$feedlot'";
+
+  
+  $sqlEgr = "SELECT peso,fecha,destino, origen,proveedor, MAX(peso) as maximo, MIN(peso) as minimo, COUNT(id) as total, SUM(peso) as pesoTotal FROM egresos WHERE tropa = '$tropa' AND feedlot = '$feedlot'";
+  
   $queryEgr = mysqli_query($conexion,$sqlEgr);
+  
   $resultados = mysqli_fetch_array($queryEgr);
-    $cantEgr = $resultados['total'];
-    $totalPesoEgr = $resultados['pesoTotal'];
-    $fechaEgreso = $resultados['fecha'];
-    $destino = $resultados['destino'];
-    $pesoMaxEgr = $resultados['maximo'];
-    $pesoMinEgr = $resultados['minimo'];
+  
+  $cantEgr = $resultados['total'];
+  
+  $totalPesoEgr = $resultados['pesoTotal'];
+  
+  $fechaEgreso = $resultados['fecha'];
+
+  $destino = $resultados['destino'];
+  
+  $pesoMaxEgr = $resultados['maximo'];
+
+  $pesoMinEgr = $resultados['minimo'];
 
 
   if ($cantEgr > 0) {
