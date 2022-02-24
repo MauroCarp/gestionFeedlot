@@ -26,6 +26,8 @@
     <link href="css/miselect.css" rel="stylesheet">
 
     <script src="js/functions.js"></script>
+    
+    <script src="js/formulas.js"></script>
 
     <script src="js/bootstrap.min.js"></script>
 

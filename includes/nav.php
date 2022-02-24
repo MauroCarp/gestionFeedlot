@@ -94,13 +94,13 @@ $menu['Salir'] = 'logout.php';
           <span style="font-size: 18px;"><b>&nbsp Hasta &nbsp</b></span>
           <input type="date" name="hasta" required/>
           <hr style="margin:0;">
-          <h4 style="cursor: pointer;" onclick="comparacion('Stock')">Comparar</h4>
-          <div id="compararStock" style="display:none;">  
+          <!-- <h4 style="cursor: pointer;" onclick="comparacion('Stock')">Comparar</h4> -->
+          <!-- <div id="compararStock" style="display:none;">  
             <span style="display: block;line-height: 10px;"><b>Periodo 2</b></span>
             <input type="date" name="desdeComp"/>
             <span style="font-size: 18px;"><b>&nbsp Hasta &nbsp</b></span>
             <input type="date" name="hastaComp"/>
-          </div>
+          </div> -->
         </div>
 
         <div class="modal-footer" style="padding: 0; padding-right: 15px;">
