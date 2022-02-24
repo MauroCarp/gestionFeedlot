@@ -600,7 +600,7 @@ require 'head.php';
     
                     <div class="controls">
     
-                      <input type="text" class="dataEditar" id="inputRazaEditar" name="raza"  value="" required>
+                      <select name="raza" id="inputRazaEditar" style="width:100%"></select>
     
                     </div>
     
@@ -614,12 +614,23 @@ require 'head.php';
     
                   <label class="control-label formulario" for="inputSexoEditar">Sexo:</label>
     
-                    <div class="controls">
-    
-                      <input type="text" class="dataEditar"  step="0.01" id="inputSexoEditar" name="sexo"  value="">
-    
+                  <div class="controls" style="font-size:1.2em">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" class="dataEditar" name="sexo"  value="Hembra">
+                        Hembra
+                      </label>
                     </div>
-    
+                    <div class="radio">
+                      <label>
+                        <input type="radio" class="dataEditar" name="sexo"  value="Macho">
+                        Macho
+                      </label>
+                    </div>
+
+                  </div>
+
                 </div>
     
               </div>
@@ -708,8 +719,8 @@ require 'head.php';
                   <label class="control-label formulario" for="inputRazaEditar">Raza:</label>
     
                     <div class="controls">
-    
-                      <input type="text" class="dataEditar" id="inputRazaEditar" name="raza"  value="" required>
+          
+                      <select name="raza" id="inputRazaEditar" style="width:100%"></select>
     
                     </div>
     
@@ -723,10 +734,21 @@ require 'head.php';
     
                   <label class="control-label formulario" for="inputSexoEditar">Sexo:</label>
     
-                    <div class="controls">
-    
-                      <input type="text" class="dataEditar" id="inputSexoEditar" name="sexo"  value="" required>
-    
+                    <div class="controls" style="font-size:1.2em">
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" class="dataEditar" name="sexo"  value="Hembra">
+                          Hembra
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" class="dataEditar" name="sexo"  value="Macho">
+                          Macho
+                        </label>
+                      </div>
+
                     </div>
     
                 </div>

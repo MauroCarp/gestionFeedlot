@@ -2,8 +2,7 @@
 define('MYSQL_SERVIDOR','localhost');
 define('MYSQL_USUARIO','root');
 define('MYSQL_CONTRASENA','');
-define('MYSQL_BD','feedlot');
-define('MYSQL_BD2','feedlot2');
+define('MYSQL_BD','gestionfeedlot');
 
 $conexion = mysqli_connect(MYSQL_SERVIDOR, MYSQL_USUARIO, MYSQL_CONTRASENA, MYSQL_BD);
 

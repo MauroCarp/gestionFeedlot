@@ -32,6 +32,8 @@ for (const btn of btnsEditarAnimal) {
 
         }
 
+        cargarSelect('inputRazaEditar','razas','raza')
+
         let url = 'ajax/animales.ajax.php'
 
         let data = `accion=cargarData&idAnimal=${idAnimal}&tabla=${e.path[1].attributes.seccion.value}`
@@ -50,7 +52,16 @@ for (const btn of btnsEditarAnimal) {
                 
                 document.getElementById('inputRazaEditar').value = data.raza 
                 
-                document.getElementById('inputSexoEditar').value = data.sexo 
+                let radios = document.getElementsByName('sexo')
+
+                for (const radio of radios) {
+                    
+                    if(radio.value == data.sexo)
+                        radio.checked = true
+
+                }
+
+                // document.getElementById('inputSexoEditar').value[] = data.sexo 
                 
                 if(seccion == 'Egresos'){
                     
@@ -119,3 +130,24 @@ document.getElementById('btnEditarAnimal').addEventListener('click',()=>{
     
     
 });
+
+// CARGAR SELECTS
+
+const cargarSelect = (idSelect,tabla,campo)=>{
+
+    let url = 'ajax/cargarSelect.ajax.php'
+
+    let data = `select=${tabla}&campo=${campo}`
+
+    $.ajax({
+        method:'post',
+        url,
+        data,
+        success:(res)=>{
+            
+            document.getElementById(idSelect).innerHTML = res
+            
+        }
+    })
+
+}
