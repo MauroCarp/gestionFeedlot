@@ -91,11 +91,15 @@ $kgEgrProm = 0;
 $diferenciaIngEgr = 0;
 $cantidadIngresos = 0;
 $cantidadEgresos = 0;
+$kgMinIng = 1000000;
+$kgMinEgr = 1000000;
+$kgMaxIng = 0;
+$kgMaxEgr = 0;
 
 
   /// INGRESOS 
 
-    $sqlIng = "SELECT * FROM ingresos WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha";
+    $sqlIng = "SELECT * FROM registroingresos WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha";
     $queryIng = mysqli_query($conexion,$sqlIng);
     $mesFecha = "";
     $mesFechaTemp = "";
@@ -103,10 +107,19 @@ $cantidadEgresos = 0;
 
     $fechaTemp = "";
     while($resultados = mysqli_fetch_array($queryIng)){
-      $cantIng++;
-      $cantidadIngresos++;
-      $totalPesoIng += $resultados['peso'];
+      
+      $cantIng += $resultados['cantidad'];
+
+      $cantidadIngresos += $resultados['cantidad'];
+
+      $totalPesoIng += ($resultados['cantidad'] * $resultados['pesoPromedio']);
+
+
+      $kgMinIng = ($kgMinIng > $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMinIng;
+      $kgMaxIng = ($kgMaxIng < $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMaxIng;
+
       $fecha = $resultados['fecha'];
+
       /// INGRESO POR MESES
       $mesFecha = date('n',strtotime($fecha));
       if ($mesFecha != $mesFechaTemp) {
@@ -132,18 +145,33 @@ $cantidadEgresos = 0;
 
   /// EGRESOS
 
-    $sqlIng = "SELECT * FROM egresos WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha";
+    $sqlIng = "SELECT * FROM registroegresos WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha";
+
     $queryIng = mysqli_query($conexion,$sqlIng);
+
     $mesFecha = "";
+
     $mesFechaTemp = "";
+
     $egresosPorMes = $meses;
+
     while($resultados = mysqli_fetch_array($queryIng)){
-      $cantEgr++;
-      $cantidadEgresos++;
-      $totalPesoEgr += $resultados['peso'];
+
+      $cantEgr += $resultados['cantidad'];
+
+      $cantidadEgresos += $resultados['cantidad'];
+
+      $totalPesoEgr += ($resultados['cantidad'] * $resultados['pesoPromedio']);
+
+      $kgMinEgr = ($kgMinEgr > $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMinEgr;
+      $kgMaxEgr = ($kgMaxEgr < $resultados['pesoPromedio']) ? $resultados['pesoPromedio'] : $kgMaxEgr;
+
       $fecha = $resultados['fecha'];
+
       $mesFecha = date('n',strtotime($fecha));
+
       if ($mesFecha != $mesFechaTemp) {
+
         $cantidadEgresos = 1;
       }
       foreach ($meses as $numero => $nombreMes) {
@@ -202,9 +230,13 @@ $cantidadEgresos = 0;
       $ingresosPorMesComp = $mesesComp; 
       $fechaTempComp = "";
       while($resultadosComp = mysqli_fetch_array($queryIngComp)){
+
         $cantIngComp++;
+        
         $cantidadIngresosComp++;
+        
         $totalPesoIngComp += $resultadosComp['peso'];
+        
         $fechaComp = $resultadosComp['fecha'];
 
         /// INGRESO POR MESES

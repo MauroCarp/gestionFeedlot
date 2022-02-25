@@ -94,37 +94,37 @@ include "muertes.php";
         }
       });
 
-      let ctxIngEgr = document.getElementById('canvasIngEgr').getContext('2d');
-      window.myLine = Chart.Line(ctxIngEgr, {
-        data: lineChartDataIngEgr,
-        options: {
-          responsive: true,
-          hoverMode: 'index',
-          stacked: false,
-          title: {
-            display: true,
-            text: 'Relación Ingresos/Egresos'
-          },
-          scales: {
-            yAxes: [{
-              type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-              display: true,
-              position: 'left',
-              id: 'y-axis-1',
-            }, {
-              type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-              display: true,
-              position: 'right',
-              id: 'y-axis-2',
+      // let ctxIngEgr = document.getElementById('canvasIngEgr').getContext('2d');
+      // window.myLine = Chart.Line(ctxIngEgr, {
+      //   data: lineChartDataIngEgr,
+      //   options: {
+      //     responsive: true,
+      //     hoverMode: 'index',
+      //     stacked: false,
+      //     title: {
+      //       display: true,
+      //       text: 'Relación Ingresos/Egresos'
+      //     },
+      //     scales: {
+      //       yAxes: [{
+      //         type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+      //         display: true,
+      //         position: 'left',
+      //         id: 'y-axis-1',
+      //       }, {
+      //         type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+      //         display: true,
+      //         position: 'right',
+      //         id: 'y-axis-2',
 
-              // grid line settings
-              gridLines: {
-                drawOnChartArea: false, // only want the grid lines for one axis to show up
-              },
-            }],
-          }
-        }
-      });
+      //         // grid line settings
+      //         gridLines: {
+      //           drawOnChartArea: false, // only want the grid lines for one axis to show up
+      //         },
+      //       }],
+      //     }
+      //   }
+      // });
 
       let sexoEgr = document.getElementById('chart-areaEgr').getContext('2d');
       window.myPie = new Chart(sexoEgr, configEgr);
@@ -153,6 +153,9 @@ include "muertes.php";
       
       let cantidadPesos = document.getElementById('chart-areaPesos').getContext('2d');
       window.myDoughnut = new Chart(cantidadPesos, cantPesos);
+      
+      let cantidadPesosEgr = document.getElementById('chart-areaPesosEgr').getContext('2d');
+      window.myDoughnutEgr = new Chart(cantidadPesosEgr, cantPesosEgr);
 
       calculaCPS();
 
@@ -160,11 +163,19 @@ include "muertes.php";
 
     function calculaCPS(){
 
-      let desde = <?php echo $_GET['v1'];?>;
-      let hasta = <?php echo $_GET['v2'];?>;
+
+      let desdeIng = <?php echo $_GET['v1'];?>;
+      let hastaIng = <?php echo $_GET['v2'];?>;
+
+      let desdeEgr = <?php echo $_GET['v1Egr'];?>;
+      let hastaEgr = <?php echo $_GET['v2Egr'];?>;
+
+      
       let fechaDesde = <?php echo "'".$desde."'";?>;
       let fechaHasta = <?php echo "'".$hasta."'";?>;
-      let datos = 'desde=' + desde + '&hasta=' + hasta + '&fDesde=' + fechaDesde + '&fHasta=' + fechaHasta;
+
+      let datos = `seccion=ingresos&desde=${desdeIng}&hasta=${hastaIng}&fDesde=${fechaDesde}&fHasta=${fechaHasta}`
+
       let url = '../cantidadSegunPesoInforme.php';
 
 
@@ -173,13 +184,36 @@ include "muertes.php";
         url:url,
         data:datos,
         success: function(datos){
-          console.log(datos);
+
           datos = datos.split(",");
+
           myDoughnut.data.datasets[0].data[0] = datos[0];
           myDoughnut.data.datasets[0].data[1] = datos[1];
           myDoughnut.update();
+          
         }
+
       });
+
+      datos = `seccion=egresos&desde=${desdeEgr}&hasta=${hastaEgr}&fDesde=${fechaDesde}&fHasta=${fechaHasta}`
+      
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:datos,
+        success: function(datos){
+
+          datos = datos.split(",");
+
+          myDoughnutEgr.data.datasets[0].data[0] = datos[0];
+          myDoughnutEgr.data.datasets[0].data[1] = datos[1];
+          myDoughnutEgr.update();
+          
+        }
+
+      });
+
+
 
     } 
 

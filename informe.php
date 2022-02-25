@@ -652,11 +652,19 @@ require 'head.php';
 
         let comparacionValido = <?php echo ($comparacionValido == TRUE) ? 1 : 0;?>;
         if (!comparacionValido) {
-        let v1 = $('#pesoDesde').val();
-        let v2 = $('#pesoHasta').val();
-        window.open('imprimir/informe.php?desde=<?php echo $desde;?>&hasta=<?php echo $hasta;?>&seccion=<?php echo $seccion;?>&v1=' + v1 + '&v2=' + v2);
+          
+          let v1 = $('#pesoDesde').val();
+          let v2 = $('#pesoHasta').val();
+          
+          let v1Egr = $('#pesoDesdeEgr').val();
+          let v2Egr = $('#pesoHastaEgr').val();
+
+          window.open('imprimir/informe.php?desde=<?php echo $desde;?>&hasta=<?php echo $hasta;?>&seccion=<?php echo $seccion;?>&v1=' + v1 + '&v2=' + v2 + '&v1Egr=' + v1Egr + '&v2Egr=' + v2Egr);
+
         }else{
-        window.open('imprimir/informeComparacion.php?desde=<?php echo $desde;?>&hasta=<?php echo $hasta;?>&desdeComp=<?php echo $desdeComp;?>&hastaComp=<?php echo $hastaComp;?>&seccion=<?php echo $seccion;?>');
+
+          window.open('imprimir/informeComparacion.php?desde=<?php echo $desde;?>&hasta=<?php echo $hasta;?>&desdeComp=<?php echo $desdeComp;?>&hastaComp=<?php echo $hastaComp;?>&seccion=<?php echo $seccion;?>');
+        
         }
 
     }
@@ -664,7 +672,7 @@ require 'head.php';
     const calculaCPS = (seccion)=>{
 
       let desde = $(`#pesoDesde${seccion}`).val();
-      let hasta = $(`#pesoHasta${seccion}`).val();
+      let hasta =( $(`#pesoHasta${seccion}`).val() == 0) ? 10000 : $(`#pesoHasta${seccion}`).val()
 
       let fechaDesde = <?php echo "'".$desde."'";?>;
       let fechaHasta = <?php echo "'".$hasta."'";?>;

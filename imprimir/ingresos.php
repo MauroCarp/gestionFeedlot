@@ -17,11 +17,17 @@
 				<li>
 					<b>- Dif. Kg Ing/Egr: </b><?php echo formatearNum($diferenciaIngEgr)." Kg";?>
 				</li>
+				<li>
+					<b>-  Kg Min. Prom:: </b><?php echo formatearNum($kgMinIng)." Kg";?>
+				</li>
+				<li>
+					<b>-  Kg Max. Prom:: </b><?php echo formatearNum($kgMaxIng)." Kg";?>
+				</li>
 			</ul>
 		</td>
 		<td style="width: 350px;"><canvas id="chart-areaPesos"></canvas></td>
 	</tr>
-	<tr><td></td><td style="text-align: center;"><b><?php echo "Entre ".$_GET['v1']." Kilos y ".$_GET['v2']." Kilos"?></b></td></tr>
+	<tr><td></td><td style="text-align: center;font-size:.7em;line-height:.7em;"><b><?php echo "Entre ".$_GET['v1']." Kilos y ".$_GET['v2']." Kilos"?></b></td></tr>
 </table>
 <table class="table table-stripped" align="left">
 	<tr>
@@ -33,13 +39,12 @@
 <script type="text/javascript">
 
 	// INGRESOS SEGUN SEXP Y PESO
-
 		let cantPesos = {
 			type: 'doughnut',
 			data: {
 			datasets: [{
 				data: [
-				0,0
+				//TODO:CARGAR DATA DEL GRAFICO DINAMICO
 				],
 				backgroundColor: [
 				'#FF6D88',
