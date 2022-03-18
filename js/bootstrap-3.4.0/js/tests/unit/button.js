@@ -133,13 +133,13 @@ $(function () {
   QUnit.test('should check for closest matching toggle', function (assert) {
     assert.expect(12)
     var groupHTML = '<div class="btn-group" data-toggle="buttons">'
-      + '<label class="btn btn-primary active">'
+      + '<label class="btn btn-default active">'
       + '<input type="radio" name="options" id="option1" checked="true"> Option 1'
       + '</label>'
-      + '<label class="btn btn-primary">'
+      + '<label class="btn btn-default">'
       + '<input type="radio" name="options" id="option2"> Option 2'
       + '</label>'
-      + '<label class="btn btn-primary">'
+      + '<label class="btn btn-default">'
       + '<input type="radio" name="options" id="option3"> Option 3'
       + '</label>'
       + '</div>'

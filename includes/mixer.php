@@ -56,7 +56,7 @@
 
               <td>
 
-                <button class="btn btn-primary btn-block" id="cargarMixer">Cargar</button>
+                <button class="btn btn-default btn-block" id="cargarMixer">Cargar</button>
 
               </td>
 
@@ -338,13 +338,13 @@
 
                       </div>
 
-                      <button type="submit" class="btn btn-primary" style=": right;margin-top: 10px;">Cargar</button>
+                      <button type="submit" class="btn btn-default" style=": right;margin-top: 10px;">Cargar</button>
 
                       <?php
 
                       if ($resultado['redondeo'] != '') { ?>
 
-                      <a href="" class="btn btn-primary" style=": right;margin-top: 10px;margin-right: 5px;" onclick="imprimirMixer('<?php echo $resultado['id'];?>')">Imprimir</a>
+                      <a href="" class="btn btn-default" style=": right;margin-top: 10px;margin-right: 5px;" onclick="imprimirMixer('<?php echo $resultado['id'];?>')">Imprimir</a>
 
                       <?php
 

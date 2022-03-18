@@ -8,7 +8,7 @@
 
             <div class="span6">
 
-              <label for="file-uploadIng" class="btn btn-primary" style="font-size:1em;">
+              <label for="file-uploadIng" class="btn btn-default" style="font-size:1em;">
 
                   <i class="fas fa-cloud-upload-alt"></i> Seleccionar archivo
 
@@ -68,7 +68,7 @@
 
             <div class="span12">
 
-              <button type="submit" name="submit" class="btn btn-large btn-block btn-primary" accept=".xls,.xlsx">Cargar Registro</button>
+              <button type="submit" name="submit" class="btn btn-large btn-block btn-default" accept=".xls,.xlsx">Cargar Registro</button>
 
             </div>
 

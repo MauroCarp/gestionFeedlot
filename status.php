@@ -3,111 +3,12 @@ include("includes/init_session.php");
 require("includes/conexion.php");
 require("includes/funciones.php");
 
-$accionValido = array_key_exists("accion", $_REQUEST);
-
-if ($accionValido) {
-  $accion = $_GET['accion'];
-
-  if ($accion == 'modificar') {
-    $tropa = $_GET['tropa'];
-    $procedimiento = $_POST['procedimiento'];
-    $fechaRealizado = $_POST['fechaRealizado'];
-    $operario = $_POST['operario'];
-    $otroOperario = $_POST['operarioOtro'];
-
-    if ($operario == 'otro') {
-      $operario = $otroOperario;
-      $sqlNueva = "INSERT INTO operarios(feedlot,nombre) VALUES ('$feedlot','$operario')";
-      $queryNueva = mysqli_query($conexion,$sqlNueva);
-
-    }
-
-    $consulta = "";
-
-    switch ($procedimiento) {
-      case 'Metafilaxis':
-        $consulta = "operario1 = '".$operario."', metafilaxis = '1', fechaMetafilaxis = '".$fechaRealizado."'";
-        break;
-      
-      case '1er Dosis':
-        $consulta = "operario2 = '".$operario."', vacuna = '1', fechaVacuna = '".$fechaRealizado."'";
-        break;
-
-      case 'Refuerzo':
-        $consulta = "operario3 = '".$operario."', refuerzo = '1', fechaRefuerzo = '".$fechaRealizado."'";
-      break; 
-
-      default:
-        # code...
-        break;
-    }
-    $sql = "UPDATE status SET
-    operario = '$operario',
-    procedimiento = '$procedimiento',
-    fechaRealizado = '$fechaRealizado',
-    $consulta,
-    notificado = 0
-    WHERE tropa = '$tropa' AND feedlot = '$feedlot'";
-    $query = mysqli_query($conexion,$sql);
-
-    echo "<script>
-	    window.location = 'status.php';
-    </script>";
-  }
-
-  if ($accion == 'notificar') {
-    $tropa = $_GET['tropa'];
-
-    $sql = "UPDATE status SET
-    notificado = 1
-    WHERE tropa = '$tropa' AND feedlot = '$feedlot'";
-    $query = mysqli_query($conexion,$sql);
-    
-    echo "<script>
-    window.location = 'status.php';
-  </script>";
-  }
-}
+include('status.backend.php');
+include('head.php');
 
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <title>JORGE CORNALE - GESTION DE FEEDLOT</title>
-    <link rel="icon" href="img/ico.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <?php
-          include("includes/nav.php");
-          ?>
-        </div>
-      </div>
-    </div>
-    <div class="container" style="padding-top: 50px;">
+<div class="container" style="padding-top: 50px;">
       <h1 style="display: inline-block;">STATUS SANITARIO</h1>
       <h4 style="display: inline-block;float: right;"><?php echo "<b>".$feedlot."</b> -  Fecha: ".$fechaDeHoy;?></h4>
       <hr>
@@ -292,7 +193,7 @@ if ($accionValido) {
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary">Modificar</button>
+                          <button type="submit" class="btn btn-default">Modificar</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                       </form>
@@ -396,8 +297,8 @@ if ($accionValido) {
     </script>
 
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/functions.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/functions.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
 
     
   </body>

@@ -168,10 +168,10 @@ if ($seccion == 'egresos') {
         <br>
         <?php
         if ($seccion == 'ingresos') { ?>
-          <a href="stock.php?seccion=ingreso" class="btn btn-primary btn-large">Volver</a>
+          <a href="stock.php?seccion=ingreso" class="btn btn-default btn-large">Volver</a>
         <?php }
         if ($seccion == 'egresos') { ?>
-          <a href="stock.php?seccion=egreso" class="btn btn-primary btn-large">Volver</a>
+          <a href="stock.php?seccion=egreso" class="btn btn-default btn-large">Volver</a>
         <?php }
         ?>
     </div>

@@ -4,14 +4,14 @@
     <form name="f1" class="form-horizontal" method="POST" action="subirEgreso.php" enctype="multipart/form-data"> 
       <div class="row-fluid">
         <div class="span2">
-          <label for="file-upload" class="btn btn-primary btn-block">
+          <label for="file-upload" class="btn btn-default btn-block">
               <i class="fas fa-cloud-upload-alt"></i> Seleccionar archivo
           </label>
           <input id="file-upload" onchange='cambiar()' type="file" style='display: none;'/>
         </div>
         <div class="span3" id="info" style="text-align: left;font-weight: bold;">No se eligi&oacute; archivo.</div>
         <div class="span3">
-          <input type="submit" class="btn btn-primary btn-block" name="submit" value="Cargar"/>
+          <input type="submit" class="btn btn-default btn-block" name="submit" value="Cargar"/>
         </div>
       </div>
         <!-- <input type="file" name="file" required /> -->

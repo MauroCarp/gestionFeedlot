@@ -257,7 +257,7 @@
 
           <div class="span4">
 
-            <button type="submit" class="btn btn-large btn-primary btnCargarPremix">Modificar Premix</button>
+            <button type="submit" class="btn btn-large btn-default btnCargarPremix">Modificar Premix</button>
 
           </div>
 
@@ -505,7 +505,7 @@
                             
                               <div class="span6">
                               
-                                <button class="btn btn-primary" onclick='imprimirPremix(<?php echo $id; ?>)'>Imprimir</button>
+                                <button class="btn btn-default" onclick='imprimirPremix(<?php echo $id; ?>)'>Imprimir</button>
 
                               </div>
 
@@ -534,7 +534,7 @@
       
         <div class="span12">
                 
-          <button class="btn btn-primary" id="btnNuevoInsumo" data-toggle="modal" data-target="#nuevoInsumo">Nuevo Insumo</button>
+          <button class="btn btn-default" id="btnNuevoInsumo" data-toggle="modal" data-target="#nuevoInsumo">Nuevo Insumo</button>
 
         </div>
 

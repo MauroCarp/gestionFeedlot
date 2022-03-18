@@ -33,18 +33,31 @@
   }
 
   function cargaMuertes(){
+
     $('#paginadoMuertes').html('<br><div class="loading"><img src="img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
+
     datosPagM = 'desde=' + desde; 
-    var urlPaginadorMuertes = 'paginadorMuertes.php';
+    
+    let urlPaginadorMuertes = 'paginadorMuertes.php';
+    
     $.ajax({
-    type:'POST',
-    url:urlPaginadorMuertes,
-    data:datosPagM,
-    success: function(datosPagM){
-      $('#paginadoMuertes').html(datosPagM);
-    }
+    
+      type:'POST',
+    
+      url:urlPaginadorMuertes,
+    
+      data:datosPagM,
+    
+      success: function(datosPagM){
+    
+        $('#paginadoMuertes').html(datosPagM);
+    
+      }
+    
     });
-  }   
+ 
+  } 
+
     
 setTimeout(() => {
   

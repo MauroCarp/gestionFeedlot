@@ -78,7 +78,7 @@
     </div>
     <div class="row-fluid">
       <div class="span12">
-        <input type="submit" class="btn btn-large btn-block btn-primary" value="Cargar"/>
+        <input type="submit" class="btn btn-large btn-block btn-default" value="Cargar"/>
       </div>
     </div>
     </form>

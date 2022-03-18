@@ -28,6 +28,14 @@
     <script src="js/functions.js"></script>
     
     <script src="js/formulas.js"></script>
+    
+    <script src="js/informes.js"></script>
+    
+    <script src="js/mixer.js"></script>
+    
+    <script src="js/insumos.js"></script>
+    
+    <script src="js/premix.js"></script>
 
     <script src="js/bootstrap.min.js"></script>
 

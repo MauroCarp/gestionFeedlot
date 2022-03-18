@@ -381,6 +381,6 @@ if( isset($_POST["submit"]) ){
 
 ?>
 <!-- <form name="f1" class="form-horizontal" method="POST" action="ingresoMixer2.php" enctype="multipart/form-data"> 
-<input type="submit" class="btn btn-primary btn-lg" name="submit" value="Subir" accept=".xls,.xlsx" />
+<input type="submit" class="btn btn-default btn-lg" name="submit" value="Subir" accept=".xls,.xlsx" />
 <input type="file" name="file" required />
 </form> -->

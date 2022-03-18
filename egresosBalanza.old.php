@@ -13,7 +13,7 @@
       <li><b>- Kg Neto Ingreso: </b><?php echo number_format($pesoTotalEgr,2,",",".")." Kg";?></li>
       <li><b>- Kg Egreso Promedio: </b><?php echo number_format($kgEgrProm,2,",",".")." Kg";?></li>
       <li><b>- Diferencia Kg Ing/Egr: </b><?php echo number_format($diferenciaIngEgr,2,",",".")." Kg";?>
-      <span style="float:right;"><a href="imprimir/stockGeneral.php" style="font-size:18px;" class="btn btn-primary btn-large" target="_blank"><b>Imprimir</b></a></span>
+      <span style="float:right;"><a href="imprimir/stockGeneral.php" style="font-size:18px;" class="btn btn-default btn-large" target="_blank"><b>Imprimir</b></a></span>
       </li>
       <li>&nbsp</li>
     </ul>

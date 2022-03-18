@@ -43,9 +43,13 @@
         </div>
 
         <div class="row-fluid">
+          
           <div class="span12">
+
             <b>Composici&oacute;n de la Dieta</b>
+          
           </div>
+        
         </div>
 
         <div class="row-fluid">
@@ -88,10 +92,7 @@
 
             </div>
 
-            <div class="span2" id="precio0">
-
-
-            </div>
+            <div class="span2" id="precio0"></div>
 
             <div class="span2">
 
@@ -99,9 +100,7 @@
 
             </div>
 
-            <div class="span1">
-
-            </div>
+            <div class="span1"></div>
 
           </div>
 
@@ -157,7 +156,7 @@
 
           <div class="span4">
 
-            <button type="submit" class="btn btn-large btn-primary botonCarga">Cargar Formula</button>
+            <button type="submit" class="btn btn-large btn-default botonCarga">Cargar Formula</button>
 
           </div>
 
@@ -183,35 +182,36 @@
 
         <tbody>
 
-          <?php
+        <?php
 
-          $sqlFormulas = "SELECT * FROM formulas ORDER BY tipo ASC, nombre ASC";
+            $sqlFormulas = "SELECT * FROM formulas ORDER BY tipo ASC, nombre ASC";
 
-          $queryFormulas = mysqli_query($conexion,$sqlFormulas);
+            $queryFormulas = mysqli_query($conexion,$sqlFormulas);
 
-          $tipo = '';
+            $tipo = '';
 
-          while($fila = mysqli_fetch_array($queryFormulas)){ 
+            while($fila = mysqli_fetch_array($queryFormulas)){ 
 
-            $id = $fila['id'];
+              $id = $fila['id'];
 
-            if($fila['tipo'] != $tipo){ ?>
+              if($fila['tipo'] != $tipo){ 
+              
+                echo "
+                  <tr>
 
-            <tr>
+                    <td><b>".$fila['tipo']."</b></td>
 
-              <td><b><?php echo $fila['tipo']?></b></td>
+                    <td></td>
 
-              <td></td>
+                    <td></td>
 
-              <td></td>
+                    <td></td>
 
-              <td></td>
+                  </tr>";
 
-            </tr>
-
-            <?php
-
-            }?>
+              }
+            
+              ?>
 
             <tr>
 
@@ -238,11 +238,10 @@
               </td>
 
             </tr>
-            
 
             <!-- MODAL FORMULA  -->
             
-            <div class="modal fade zindex-<?php echo $id;?>" style="width: 1350px;height:500px;margin: 0 auto;margin-left:-675px;z-index:99!important;background-color:transparent" id="formula<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="modalFormula" aria-hidden="true">
+            <div class="modal fade zindex-<?php echo $id;?>" style="width: 70%;height:500px;margin: 0 auto;margin-left:-35%;z-index:99!important;" id="formula<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="modalFormula" aria-hidden="true">
 
                 <div class="modal-dialog" style="width:auto;" role="document">
 
@@ -257,9 +256,10 @@
                     </div>
 
                     <div class="modal-body">
-
+                      
                       <div id="dieta">
-
+                        
+                    
                         <div class="row-fluid">
 
                           <div class="span12">
@@ -307,6 +307,7 @@
                           <div class="span2"><b>% MS en la Dieta</b></div>
                         
                         </div>
+                        
                         
                         <div class="row-fluid" style="border-bottom: 1px solid #7D7D7D">
 
@@ -364,8 +365,11 @@
 
                           <div class="span1 precioKgMS<?php echo $id;?>">
                           <?php
+
                             $porMS = obtenerMSinsumo($fila['p1'],$conexion);
-                            
+                              
+                            $porMS = floatval($porMS);
+
                             $precioKgMS = (100 * $precioInsumo) / $porMS;
 
                             echo "$ ".number_format($precioKgMS,2,',','.');        
@@ -454,9 +458,12 @@
 
                               </div>
                             </div>
-                        <?php  }
+
+                        <?php  
+                          }
                         }
                         ?>
+
 
                         <div class="row-fluid">
 
@@ -496,10 +503,11 @@
 
 </div>
  
- <script>
+<script>
  $(document).ready(function(){
 
   selectInsumos('producto0');
 
   });
- </script>
+   
+  </script>

@@ -4,7 +4,7 @@
             <div class="row-fluid">
 
               <div class="span2">
-                <label for="file-uploadMuertes" class="btn btn-primary btn-block">
+                <label for="file-uploadMuertes" class="btn btn-default btn-block">
                     <i class="fas fa-cloud-upload-alt"></i> Seleccionar archivo
                 </label>
                 <input id="file-uploadMuertes" onchange="cambiar('file-uploadMuertes','infoMuertes')" type="file" name="fileMuertes" style='display: none;' required/>
@@ -35,14 +35,14 @@
               </div>
 
               <div class="span1">
-                <input type="submit" class="btn btn-primary btn-block" name="submitIng" value="Cargar" required="TRUE" />
+                <input type="submit" class="btn btn-default btn-block" name="submitIng" value="Cargar" required="TRUE" />
               </div>
             </div>
   </form>
 </div>
     <ul class="totales"  style="padding-top:10px;margin-bottom:10px;">
       <li><b>- Total Muertes: </b><?php echo number_format($cantMuertes,0,",",".");?>
-      <span style="float:right;"><a href="imprimir/stockGeneral.php" style="font-size:18px;" class="btn btn-primary btn-large" target="_blank">Imprimir</a></span>
+      <span style="float:right;"><a href="imprimir/stockGeneral.php" style="font-size:18px;" class="btn btn-default btn-large" target="_blank">Imprimir</a></span>
       </li>
       <li>&nbsp</li>
     </ul>

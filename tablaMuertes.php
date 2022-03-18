@@ -53,7 +53,9 @@
         <thead style="border-top:3px solid #fde327;border-bottom:3px solid #fde327";>
             <tr>
             <th scope="col">Fecha Muerte</th>
-            <th scope="col">Cantidad</th>
+            <th scope="col">Origen</th>
+            <th scope="col">Proveedor</th>
+            <!-- <th scope="col">Cantidad</th> -->
             <th scope="col">Causa Muerte</th>
             <td scope="col"></td>
             <td scope="col"></td>

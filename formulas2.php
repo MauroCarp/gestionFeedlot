@@ -110,7 +110,7 @@
         <div class="row-fluid">
           <div class="span8"></div>
           <div class="span4">
-            <button type="submit" class="btn btn-large btn-primary botonCarga">Cargar Formula</button>
+            <button type="submit" class="btn btn-large btn-default botonCarga">Cargar Formula</button>
           </div>
         </div>
       </form>

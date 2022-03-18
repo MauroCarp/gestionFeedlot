@@ -41,7 +41,7 @@
             </div>
           </div>           
         </div>
-        <button type="submit" class="btn btn-large btn-block btn-primary">Cargar</button>
+        <button type="submit" class="btn btn-large btn-block btn-default">Cargar</button>
       </div>
     </form>
     <ul class="totales">

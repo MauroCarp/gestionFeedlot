@@ -47,21 +47,21 @@ require 'head.php';
               
                 <div class="span6"><b>- Proveedor: </b><?php echo $proveedor;?></div>
               
-                  <div class="span6"><b>- Origen: </b><?php echo $origen;?></div>
+                <div class="span6"><b>- Kg Neto Ingreso: </b><?php echo number_format($totalPesoIng,0,",",".")." Kg";?></div>
+                
+              </div>
               
+              <div class="row-fluid" style="background-color:#eeeeee">
+                
+                <div class="span6"><b>- Estado: </b><?php echo $estado;?></div>
+                
+                <div class="span6"><b>- Kg Ingreso Promedio: </b><?php echo number_format($kgIngProm,0,",",".")." Kg";?></div>
+                  
                 </div>
-              
-                <div class="row-fluid" style="background-color:#eeeeee">
-              
-                  <div class="span6"><b>- Estado: </b><?php echo $estado;?></div>
-              
-                  <div class="span6"><b>- Corral: </b><?php echo $corral;?></div> 
-              
-                </div>
-              
+                
                 <div class="row-fluid">
-              
-                  <div class="span6"><b>- Kg Neto Ingreso: </b><?php echo number_format($totalPesoIng,0,",",".")." Kg";?></div>
+                  
+                  <div class="span6"><b>- Corral: </b><?php echo $corral;?></div> 
               
                   <div class="span6"><b>- Peso Min: </b><?php echo $pesoMin." Kg";?></div>
                   
@@ -69,7 +69,7 @@ require 'head.php';
                 
                 <div class="row-fluid">
                   
-                  <div class="span6"><b>- Kg Ingreso Promedio: </b><?php echo number_format($kgIngProm,2,",",".")." Kg";?></div>
+                  <div class="span6"><b>- Origen: </b><?php echo $origen;?></div>
               
                   <div class="span6"><b>- Peso Max.: </b><?php echo $pesoMax." Kg";?></div>
               
@@ -77,7 +77,9 @@ require 'head.php';
               
                 <div class="row-fluid" style="background-color:#eeeeee">
               
-                  <div class="span12"><b>- Notas: </b><?php echo $notas;?></div>
+                  <div class="span6"><b>- Notas: </b><?php echo $notas;?></div>
+                  
+                  <div class="span6"><b>- Desvio Estandar: </b><?php echo '';?></div>
               
                 </div>
               

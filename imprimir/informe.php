@@ -50,7 +50,7 @@ require("datosInforme.php");
     <div class="conteiner">
       <table width="900px">
         <tr>
-          <td><h1>Informe Stock</h1></td><td style="text-align: right;"><img src="../img/logo.png"></td>
+          <td><h1>Informe Stock</h1></td><td style="text-align: right;"><img src="../img/logo1.png"></td>
         </tr>
       </table>
     <hr>
@@ -67,6 +67,59 @@ include "muertes.php";
 </div>
 
 <script type="text/javascript" async="async">
+    
+    function calculaCPS(){
+
+      let desdeIng = <?php echo $_GET['v1'];?>;
+      let hastaIng = (<?php echo $_GET['v2'];?> == 0) ? 1000 : <?php echo $_GET['v2'];?>;
+
+      let desdeEgr = <?php echo $_GET['v1Egr'];?>;
+      let hastaEgr = (<?php echo $_GET['v2Egr'];?> == 0) ? 1000 : <?php echo $_GET['v2Egr'];?>;
+
+      let fechaDesde = <?php echo "'".$desde."'";?>;
+      let fechaHasta = <?php echo "'".$hasta."'";?>;
+
+      let datos = `seccion=ingresos&desde=${desdeIng}&hasta=${hastaIng}&fDesde=${fechaDesde}&fHasta=${fechaHasta}`
+
+      let url = '../cantidadSegunPesoInforme.php';
+
+
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:datos,
+        success: function(datos){
+          
+          datos = datos.split(",");
+
+          myDoughnut.data.datasets[0].data[0] = datos[0];
+          myDoughnut.data.datasets[0].data[1] = datos[1];
+          myDoughnut.update();
+          
+        }
+
+      });
+
+      datos = `seccion=egresos&desde=${desdeEgr}&hasta=${hastaEgr}&fDesde=${fechaDesde}&fHasta=${fechaHasta}`
+
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:datos,
+        success: function(datos){
+
+          datos = datos.split(",");
+
+          myDoughnutEgr.data.datasets[0].data[0] = datos[0];
+          myDoughnutEgr.data.datasets[0].data[1] = datos[1];
+          myDoughnutEgr.update();
+          
+        }
+
+      });
+
+    } 
+
     $(document).ready(function() {
 
       let sexo = document.getElementById('chart-area').getContext('2d');
@@ -160,62 +213,6 @@ include "muertes.php";
       calculaCPS();
 
     });
-
-    function calculaCPS(){
-
-
-      let desdeIng = <?php echo $_GET['v1'];?>;
-      let hastaIng = <?php echo $_GET['v2'];?>;
-
-      let desdeEgr = <?php echo $_GET['v1Egr'];?>;
-      let hastaEgr = <?php echo $_GET['v2Egr'];?>;
-
-      
-      let fechaDesde = <?php echo "'".$desde."'";?>;
-      let fechaHasta = <?php echo "'".$hasta."'";?>;
-
-      let datos = `seccion=ingresos&desde=${desdeIng}&hasta=${hastaIng}&fDesde=${fechaDesde}&fHasta=${fechaHasta}`
-
-      let url = '../cantidadSegunPesoInforme.php';
-
-
-      $.ajax({
-        type:'POST',
-        url:url,
-        data:datos,
-        success: function(datos){
-
-          datos = datos.split(",");
-
-          myDoughnut.data.datasets[0].data[0] = datos[0];
-          myDoughnut.data.datasets[0].data[1] = datos[1];
-          myDoughnut.update();
-          
-        }
-
-      });
-
-      datos = `seccion=egresos&desde=${desdeEgr}&hasta=${hastaEgr}&fDesde=${fechaDesde}&fHasta=${fechaHasta}`
-      
-      $.ajax({
-        type:'POST',
-        url:url,
-        data:datos,
-        success: function(datos){
-
-          datos = datos.split(",");
-
-          myDoughnutEgr.data.datasets[0].data[0] = datos[0];
-          myDoughnutEgr.data.datasets[0].data[1] = datos[1];
-          myDoughnutEgr.update();
-          
-        }
-
-      });
-
-
-
-    } 
 
 
     setTimeout(function () { window.print(); }, 1300);

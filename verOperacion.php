@@ -434,7 +434,7 @@ function mostrarReceta($id_receta,$archivo,$conexion){
         
           <hr>
         
-        <a href="raciones.php" class="btn btn-primary">Volver</a>
+        <a href="raciones.php" class="btn btn-default">Volver</a>
     </div>
     
 
