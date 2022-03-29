@@ -190,9 +190,6 @@ if ($accionValido) {
       $sqlEliminar = "DELETE FROM muertes WHERE tropa = '$tropa'";
       mysqli_query($conexion,$sqlEliminar);
 
-      $sqlEliminar = "DELETE FROM registromuertes WHERE tropa = '$tropa'";
-      mysqli_query($conexion,$sqlEliminar);
-
       header("Location:stock.php?seccion=muerte");
     }
 /****************////
@@ -267,7 +264,7 @@ $pesoTotalEgr = 0;
 
 
 
-  $sqlMuertes = "SELECT SUM(cantidad) as cantidad FROM registromuertes WHERE feedlot = '$feedlot' ORDER BY fecha ASC";
+  $sqlMuertes = "SELECT COUNT(*) as cantidad FROM muertes WHERE feedlot = '$feedlot' ORDER BY fecha ASC";
   $queryMuertes = mysqli_query($conexion,$sqlMuertes);
   $resultados = mysqli_fetch_array($queryMuertes);
   $cantMuertes = $resultados['cantidad'];

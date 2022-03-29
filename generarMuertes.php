@@ -34,7 +34,7 @@ if ($sql != "") {
 }
 
 //EJECUTAMOS LA CONSULTA DE BUSQUEDA
-$sqlQuery = "SELECT id, fecha, cantidad, causaMuerte, tropa FROM registromuertes $sql ORDER BY fecha $orden";
+$sqlQuery = "SELECT id, fecha, COUNT(*) as cantidad, causaMuerte, tropa FROM muertes $sql ORDER BY fecha $orden";
 $query = mysqli_query($conexion,$sqlQuery);
 echo mysqli_error($conexion);
 //CREAMOS NUESTRA VISTA Y LA DEVOLVEMOS AL AJAX

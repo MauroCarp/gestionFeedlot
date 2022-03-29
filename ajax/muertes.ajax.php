@@ -6,7 +6,7 @@ $idMuerte = $_POST['id'];
 
 $causa = $_POST['causa'];
 
-$sql  = "UPDATE registromuertes SET causaMuerte = '$causa' WHERE id = '$idMuerte'";
+$sql  = "UPDATE muertes SET causaMuerte = '$causa' WHERE id = '$idMuerte'";
 
 if(mysqli_query($conexion,$sql)){
     echo "ok";

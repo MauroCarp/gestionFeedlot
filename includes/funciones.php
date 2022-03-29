@@ -150,7 +150,8 @@ function getLabels($feedlot,$conexion){
 }
 
 function cantidadCausa($feedlot,$conexion,$causa){
-	$sql = "SELECT SUM(cantidad) as total FROM registromuertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causa'";
+
+	$sql = "SELECT COUNT(*) as total FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causa'";
 	$query = mysqli_query($conexion,$sql);
 	$resultado = mysqli_fetch_array($query);
 	return $resultado['total'];
@@ -199,7 +200,7 @@ function stock($fecha,$feedlot,$conexion){
     $cantEgr = $resultadoEgr['cantidad'];
 
 
-    $sqlMuertes = "SELECT SUM(cantidad) AS cantidad FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '2010-01-01' AND '$fecha'";
+    $sqlMuertes = "SELECT COUNT(*) AS cantidad FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '2010-01-01' AND '$fecha'";
     $queryMuertes = mysqli_query($conexion,$sqlMuertes);
     $resultadoMuertes = mysqli_fetch_array($queryMuertes);
     $cantMuertes = $resultadoMuertes['cantidad'];

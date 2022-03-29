@@ -170,7 +170,7 @@
         <div class="pagination pagination-mini pagination-centered">
         <ul>
           <?php
-          echo paginador('registromuertes',$feedlot,$conexion);
+          echo paginador('muertes',$feedlot,$conexion);
           ?>
         </ul>
       </div>

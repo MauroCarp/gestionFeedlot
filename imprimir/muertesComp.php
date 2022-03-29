@@ -146,7 +146,7 @@
 	      	
 	        $labelsMuertes = "";
 			$cantidadMuertes = 0;
-			$sqlMuertes = "SELECT fecha,causaMuerte,cantidad FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
+			$sqlMuertes = "SELECT fecha,causaMuerte,COUNT(*) as cantidad FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
 
 			$queryMuertes = mysqli_query($conexion,$sqlMuertes);
 			if (!empty($queryMuertes)) {
@@ -321,7 +321,7 @@
 		
 			$cantidadMuertesComp = 0;
 		
-			$sqlMuertesComp = "SELECT fecha, causaMuerte, cantidad FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
+			$sqlMuertesComp = "SELECT fecha, causaMuerte, COUNT(*) as cantidad FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
 		
 			$queryMuertesComp = mysqli_query($conexion,$sqlMuertesComp);
 		

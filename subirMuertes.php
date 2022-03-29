@@ -26,8 +26,6 @@ if(strtolower(end($chk_ext)) == "csv"){
 
 	$tropa = substr($tropaTemp,0,-4);
 
-	$totalAnimales = 0;
-
 	$causaMuerte = $_POST['causaMuerte'];
 
 	$contador = 0;
@@ -80,9 +78,7 @@ if(strtolower(end($chk_ext)) == "csv"){
 			mysqli_query($conexion,$sql);
 
 			// or die('<b>Error: Compuebe que el archivo este correcto.</b><br>Intente descargandolo nuevamente, y volviendolo a cargar en el sistema.<br>Para volver a la pagina anterior, click en la flecha ATRAS del navegador.');
-			// echo mysqli_error($conexion);
-			$totalAnimales++;
-			
+			// echo mysqli_error($conexion);			
 		}
 
 		$contador++;
@@ -90,10 +86,7 @@ if(strtolower(end($chk_ext)) == "csv"){
 	}
 	
 	//cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
-	
-	$sql = "INSERT INTO registromuertes(feedlot,tropa,fecha,cantidad,causaMuerte) VALUES('$feedlot','$tropa','$fecha','$totalAnimales','$causaMuerte')";
-	$query = mysqli_query($conexion,$sql);
-	echo mysqli_error($conexion);
+
 	
 	fclose($handle);
 	echo '<script>

@@ -229,7 +229,7 @@ $cantidadEgresos = 0;
 
   /// MUERTES 
 
-    $sqlMuertes = "SELECT SUM(cantidad) as totalMuertes FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha";
+    $sqlMuertes = "SELECT COUNT(*) as totalMuertes FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha";
     $queryMuertes = mysqli_query($conexion,$sqlMuertes);
     $resultadoMuertes = mysqli_fetch_array($queryMuertes);
     $totalMuertes = $resultadoMuertes['totalMuertes'];
@@ -387,7 +387,7 @@ $cantidadEgresos = 0;
           }
     /// MUERTES 
 
-      $sqlMuertesComp = "SELECT SUM(cantidad) as totalMuertes FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
+      $sqlMuertesComp = "SELECT COUNT(*) as totalMuertes FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp'";
       $queryMuertesComp = mysqli_query($conexion,$sqlMuertesComp);
       $resultadoMuertesComp = mysqli_fetch_array($queryMuertesComp);
       $totalMuertesComp = $resultadoMuertesComp['totalMuertes'];

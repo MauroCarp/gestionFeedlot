@@ -74,7 +74,7 @@
 
         <ul>
         <?php
-        echo paginador('registromuertes',$feedlot,$conexion);
+        echo paginador('muertes',$feedlot,$conexion);
         ?>
         </ul>
 

@@ -89,7 +89,7 @@ if(!$comparacionValido){
 
 					$colores = array();
 
-					$sqlTipo = "SELECT DISTINCT causaMuerte FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY causaMuerte ASC";
+					$sqlTipo = "SELECT DISTINCT causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY causaMuerte ASC";
 
 					$queryTipo = mysqli_query($conexion,$sqlTipo);
 
@@ -104,7 +104,7 @@ if(!$comparacionValido){
 
 							$causa = $resultadoTipo['causaMuerte'];
 
-							$sql = "SELECT SUM(cantidad) as muertes FROM registromuertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causa' AND fecha BETWEEN '$desde' AND '$hasta'";
+							$sql = "SELECT COUNT(*) as muertes FROM muertes WHERE feedlot = '$feedlot' AND causaMuerte = '$causa' AND fecha BETWEEN '$desde' AND '$hasta'";
 
 							$query = mysqli_query($conexion,$sql);
 
@@ -175,7 +175,7 @@ if(!$comparacionValido){
 	      	
 	        $labelsMuertes = "";
 			$cantidadMuertes = 0;
-			$sqlMuertes = "SELECT fecha,causaMuerte,cantidad FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
+			$sqlMuertes = "SELECT fecha,causaMuerte,COUNT(*) as cantidad FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
 
 			$queryMuertes = mysqli_query($conexion,$sqlMuertes);
 			if (!empty($queryMuertes)) {
@@ -353,7 +353,7 @@ if(!$comparacionValido){
 	
 		$cantidadMuertesComp = 0;
 	
-		$sqlMuertesComp = "SELECT fecha, causaMuerte, cantidad FROM registromuertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
+		$sqlMuertesComp = "SELECT fecha, causaMuerte, COUNT(*) as cantidad FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desdeComp' AND '$hastaComp' ORDER BY fecha ASC";
 	
 		$queryMuertesComp = mysqli_query($conexion,$sqlMuertesComp);
 	
