@@ -128,7 +128,7 @@ if(isset($_POST["btnIngresar"])){
       <h4 class="h3 mb-3 font-weight-ligth">Contrase&ntilde;a</h4>
       <input type="password" name="ingPassword" id="ingPassword" required autofocus>
       
-      <button class="btn btn-lg btn-default btn-block" type="submit" name="btnIngresar">Ingresar</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnIngresar">Ingresar</button>
 
     </form>
 

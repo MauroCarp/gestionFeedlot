@@ -28,7 +28,7 @@
         
       <div class="span4">
 
-          <label for="file-uploadIng" class="btn btn-default btn-block">
+          <label for="file-uploadIng" class="btn btn-primary btn-block">
 
             <i class="fas fa-cloud-upload-alt"></i> Seleccionar archivo
 
@@ -43,7 +43,7 @@
       
       <div class="span3">
         
-        <input type="submit" class="btn btn-default btn-block" name="submitIng" value="Cargar" required="TRUE" />
+        <input type="submit" class="btn btn-primary btn-block" name="submitIng" value="Cargar" required="TRUE" />
         
       </div>
 

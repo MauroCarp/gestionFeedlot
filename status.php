@@ -193,7 +193,7 @@ include('head.php');
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="submit" class="btn btn-default">Modificar</button>
+                          <button type="submit" class="btn btn-primary">Modificar</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                       </form>

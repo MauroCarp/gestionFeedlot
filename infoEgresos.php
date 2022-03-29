@@ -20,7 +20,7 @@
 
         <li><b>- Peso Max.: </b><?php echo number_format($kgMaxEgr,0,",",".")." Kg";?></li>
 
-            <span style="float:right;"><a href="imprimir/stockGeneral.php" style="font-size:18px;" class="btn btn-default" target="_blank"><span class="icon-printer iconos"></span></a></span>
+            <span style="float:right;"><a href="imprimir/stockGeneral.php" style="font-size:18px;" class="btn btn-primary" target="_blank"><span class="icon-printer iconos"></span></a></span>
 
      
         </li>

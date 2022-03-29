@@ -82,7 +82,7 @@
         </div>
         <div class="row-fluid">
           <div class="span12">
-            <button type="submit" class="btn btn-large btn-block btn-default">Ingresar Registro</button>
+            <button type="submit" class="btn btn-large btn-block btn-primary">Ingresar Registro</button>
           </div>
         </div>
     </form>
@@ -198,7 +198,7 @@
                         </div> 
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">Modificar</button>
+                        <button type="submit" class="btn btn-primary">Modificar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                       </div>
                     </form>

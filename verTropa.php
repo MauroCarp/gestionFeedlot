@@ -87,7 +87,7 @@ require 'head.php';
               
                   <div class="span6">
                 
-                    <a href="#" data-toggle="modal" data-target="#modificarTropa" class="btn btn-default" onclick="zindexModal()"><b>Modificar</b></a>
+                    <a href="#" data-toggle="modal" data-target="#modificarTropa" class="btn btn-primary" onclick="zindexModal()"><b>Modificar</b></a>
               
                   </div>
               
@@ -280,7 +280,7 @@ require 'head.php';
                   
                         <div class="modal-footer" style="padding: 10px 15px 10px 0;">
                 
-                          <button type="submit" class="btn btn-default"><b>Modificar</b></button>
+                          <button type="submit" class="btn btn-primary"><b>Modificar</b></button>
                 
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 
@@ -296,13 +296,13 @@ require 'head.php';
 
               </div>
 
-              <a href="#" class="btn btn-default btn-small" style="margin-top: 10px;margin-bottom: -5px;" id="verDetalles"><b>Detalle de Tropa</b></a>
+              <a href="#" class="btn btn-primary btn-small" style="margin-top: 10px;margin-bottom: -5px;" id="verDetalles"><b>Detalle de Tropa</b></a>
             
               <div id="detalleTropa" style="display:none;" class="row-fluid">
                 
                 <div class="span12" style="height: 250px;overflow-y: scroll;margin-top:10px;">
-                  <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>&seccion=ingresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-printer iconos"></span></a>
-                  <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>&seccion=ingresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-file-excel iconos"></span></a>
+                  <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>&seccion=ingresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-primary"><span class="icon-printer iconos"></span></a>
+                  <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>&seccion=ingresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-primary"><span class="icon-file-excel iconos"></span></a>
                   <table class="table table-striped table-hover">
                     <thead>
                       <th>IDE</th>
@@ -363,14 +363,14 @@ require 'head.php';
 
             </div>
 
-            <a href="#" class="btn btn-default btn-small" style="margin-top: 10px;margin-bottom: -5px;" id="verDetalles"><b>Detalle de Tropa</b></a>
+            <a href="#" class="btn btn-primary btn-small" style="margin-top: 10px;margin-bottom: -5px;" id="verDetalles"><b>Detalle de Tropa</b></a>
 
             <div id="detalleTropa" style="display:none;" class="row-fluid">
               
               <div class="span12" style="height: 250px;overflow-y: scroll;margin-top:10px;">
                 
-                <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>&seccion=egresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-printer iconos"></span></a>
-                <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>&seccion=egresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-default"><span class="icon-file-excel iconos"></span></a>
+                <a  href="imprimir/imprimirTropa.php?tropa=<?php echo $tropa;?>&seccion=egresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-primary"><span class="icon-printer iconos"></span></a>
+                <a  href="exportar/detalleTropa.php?tropa=<?php echo $tropa;?>&seccion=egresos" target="_blank"  style="float:right;font-size:1.3em;"  class="btn btn-primary"><span class="icon-file-excel iconos"></span></a>
                 
                 <table class="table table-striped table-hover">
                   <thead>
@@ -466,7 +466,7 @@ require 'head.php';
               </div>
             </div>
 
-            <a href="stock.php?seccion=ingreso" class="btn btn-default btn-large">Volver</a>
+            <a href="stock.php?seccion=ingreso" class="btn btn-primary btn-large">Volver</a>
 
           <?php 
           }
@@ -499,7 +499,7 @@ require 'head.php';
 
             <hr>
 
-            <a href="stock.php?seccion=egreso" class="btn btn-default btn-large">Volver</a>
+            <a href="stock.php?seccion=egreso" class="btn btn-primary btn-large">Volver</a>
 
           <?php 
           }
@@ -765,7 +765,7 @@ require 'head.php';
   
         <div class="modal-footer" style="padding: 10px 15px 10px 0;">
 
-          <button type="submit" class="btn btn-default" id="btnEditarAnimal"><b>Modificar</b></button>
+          <button type="submit" class="btn btn-primary" id="btnEditarAnimal"><b>Modificar</b></button>
 
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 

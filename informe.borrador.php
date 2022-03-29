@@ -56,7 +56,7 @@ require 'head.php';
 
         </div>
 
-        <button class="btn btn-default" onclick="imprimir()">Imprimir</button>
+        <button class="btn btn-primary" onclick="imprimir()">Imprimir</button>
         
         <span class="ir-arriba icon-arrow-up2"></span>
         

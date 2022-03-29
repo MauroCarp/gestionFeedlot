@@ -48,7 +48,7 @@
 
     <div class="span4">
       
-      <label for="file-uploadMuertes" class="btn btn-default btn-block">
+      <label for="file-uploadMuertes" class="btn btn-primary btn-block">
           <i class="fas fa-cloud-upload-alt"></i> Seleccionar archivo
       </label>
       
@@ -65,7 +65,7 @@
     
     <div class="span3">
 
-      <button type="submit" class="btn btn-default btn-block" name="submitIng"><b>Cargar</b></button>
+      <button type="submit" class="btn btn-primary btn-block" name="submitIng"><b>Cargar</b></button>
       
     </div>
 

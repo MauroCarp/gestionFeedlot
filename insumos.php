@@ -120,7 +120,7 @@
 
                     <div class="modal-footer" style="padding: 10px 15px 10px 0;">
 
-                      <button type="submit" class="btn btn-default">Modificar</button>
+                      <button type="submit" class="btn btn-primary">Modificar</button>
 
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
@@ -186,7 +186,7 @@
     
     <div class="span6">
     
-      <button type="submit" class="btn btn-medium btn-default" id="agregarInsumo" style="float:right;margin-top:5px;margin-right:25px;" data-toggle="modal" data-target="#modal-agregarInsumo" onclick="zIndexModalNuevoInsumo()">+ Agregar Insumo</button>
+      <button type="submit" class="btn btn-medium btn-primary" id="agregarInsumo" style="float:right;margin-top:5px;margin-right:25px;" data-toggle="modal" data-target="#modal-agregarInsumo" onclick="zIndexModalNuevoInsumo()">+ Agregar Insumo</button>
 
     </div>
     
@@ -282,7 +282,7 @@
         
           <div class="span12">
           
-                <button type="submit" class="btn btn-large btn-default">Agregar Insumo</button>
+                <button type="submit" class="btn btn-large btn-primary">Agregar Insumo</button>
           
           </div>
 

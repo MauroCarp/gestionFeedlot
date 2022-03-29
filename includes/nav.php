@@ -143,9 +143,9 @@ $menu['Salir'] = 'logout.php';
 
         <div class="modal-footer" style="padding: 0; padding-right: 15px;">
 
-          <button type="submit" class="btn btn-default"><b>Generar</b></button>
+          <button type="submit" class="btn btn-primary"><b>Generar</b></button>
 
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
 
         </div>
 
@@ -175,8 +175,8 @@ $menu['Salir'] = 'logout.php';
         </div>
 
         <div class="modal-footer" style="padding: 0; padding-right: 15px;">
-          <button type="submit" class="btn btn-default">Imprimir</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Imprimir</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
       </form>
     </div>
@@ -208,7 +208,7 @@ $menu['Salir'] = 'logout.php';
         </div>
 
         <div class="modal-footer" style="padding: 0; padding-right: 15px;">
-          <button type="submit" class="btn btn-default">Generar</button>
+          <button type="submit" class="btn btn-primary">Generar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       </form>

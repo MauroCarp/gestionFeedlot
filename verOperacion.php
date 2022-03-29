@@ -283,7 +283,7 @@ function mostrarReceta($id_receta,$archivo,$conexion){
       
         </div>
             
-          <button class="btn btn-default" id='btnTablaCargas'><b>Cargas <span style='color:green;'><b>&uarr;</b></span></b></button><br>
+          <button class="btn btn-primary" id='btnTablaCargas'><b>Cargas <span style='color:green;'><b>&uarr;</b></span></b></button><br>
 
           <div class="tablasOperaciones" id="tablaCargas">
 
@@ -338,13 +338,13 @@ function mostrarReceta($id_receta,$archivo,$conexion){
 
                           if ($mixer == 'Autoconsumo') { ?>
 
-                            <button class="btn btn-default"> - </button>
+                            <button class="btn btn-primary"> - </button>
                             
                           <?php
 
                           }else{ ?>
 
-                            <button class="btn btn-default" data-toggle="modal" data-target="#modalReceta" onclick="cargarReceta('<?php echo $id_receta;?>','<?php echo $archivo;?>')"><?php echo mostrarReceta($id_receta,$archivo,$conexion);?></button>  
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalReceta" onclick="cargarReceta('<?php echo $id_receta;?>','<?php echo $archivo;?>')"><?php echo mostrarReceta($id_receta,$archivo,$conexion);?></button>  
 
                          <?php }
                         ?>
@@ -353,9 +353,9 @@ function mostrarReceta($id_receta,$archivo,$conexion){
 
                         <td>
 
-                        <button class="btn btn-default btnVerOperacion" data-toggle="modal" data-target="#modalVerOperacion" operacion="carga" fechaOperacion='<?php echo $cargas['fecha'];?>' idOperacion='<?php echo $cargas['id_carga'];?>'><i class="icon-eye"></i></button>  
+                        <button class="btn btn-primary btnVerOperacion" data-toggle="modal" data-target="#modalVerOperacion" operacion="carga" fechaOperacion='<?php echo $cargas['fecha'];?>' idOperacion='<?php echo $cargas['id_carga'];?>'><i class="icon-eye"></i></button>  
 
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modalCarga" onclick="cargarCarga('<?php echo $cargas['id'];?>','<?php echo $archivo;?>')"><i class="icon-pencil"></i></button>  
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarga" onclick="cargarCarga('<?php echo $cargas['id'];?>','<?php echo $archivo;?>')"><i class="icon-pencil"></i></button>  
                         </td>
                         
                     <?php
@@ -372,7 +372,7 @@ function mostrarReceta($id_receta,$archivo,$conexion){
 
           <hr>
 
-          <button class="btn btn-default" id='btnTablaDescargas'><b>Descargas <span style='color:blue'>&darr;</span></b></button>
+          <button class="btn btn-primary" id='btnTablaDescargas'><b>Descargas <span style='color:blue'>&darr;</span></b></button>
 
           <div class="tablasOperaciones" id="tablaDescargas">
 
@@ -416,8 +416,8 @@ function mostrarReceta($id_receta,$archivo,$conexion){
 
                         <td>
 
-                        <button class="btn btn-default btnVerOperacion" data-toggle="modal" data-target="#modalVerOperacion" operacion='descarga' fechaOperacion='<?php echo $descargas['fecha'];?>' idOperacion='<?php echo $descargas['id_descarga'];?>'><i class="icon-eye"></i></button>  
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modalDescarga" onclick="cargarDescarga('<?php echo $descargas['id'];?>','<?php echo $archivo;?>')"><i class="icon-pencil"></i></button>  
+                        <button class="btn btn-primary btnVerOperacion" data-toggle="modal" data-target="#modalVerOperacion" operacion='descarga' fechaOperacion='<?php echo $descargas['fecha'];?>' idOperacion='<?php echo $descargas['id_descarga'];?>'><i class="icon-eye"></i></button>  
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalDescarga" onclick="cargarDescarga('<?php echo $descargas['id'];?>','<?php echo $archivo;?>')"><i class="icon-pencil"></i></button>  
                         </td>                       
 
 
@@ -434,7 +434,7 @@ function mostrarReceta($id_receta,$archivo,$conexion){
         
           <hr>
         
-        <a href="raciones.php" class="btn btn-default">Volver</a>
+        <a href="raciones.php" class="btn btn-primary">Volver</a>
     </div>
     
 

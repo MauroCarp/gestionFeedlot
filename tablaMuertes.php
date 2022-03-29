@@ -148,7 +148,7 @@
                                             
                         <div class="controls">
                     
-                            <button class="btn btn-default" id="btnEditarCausa" idMuerte="">Editar Causa</button>
+                            <button class="btn btn-primary" id="btnEditarCausa" idMuerte="">Editar Causa</button>
             
                         </div>
                     

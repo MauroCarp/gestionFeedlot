@@ -7,7 +7,7 @@
     
     <div class="span4">
     
-      <label for="file-uploadEgr" class="btn btn-default btn-block"><i class="fas fa-cloud-upload-alt"></i>Seleccionar archivo</label>
+      <label for="file-uploadEgr" class="btn btn-primary btn-block"><i class="fas fa-cloud-upload-alt"></i>Seleccionar archivo</label>
       
       <input id="file-uploadEgr" onchange="cambiar('file-uploadEgr','infoEgr')" type="file" name="fileEgr" style='display: none;' required/>
     
@@ -17,7 +17,7 @@
     
     <div class="span3">
   
-      <button type="submit" class="btn btn-default btn-block" name="submitEgr"><b>Cargar</b></button>
+      <button type="submit" class="btn btn-primary btn-block" name="submitEgr"><b>Cargar</b></button>
   
     </div>
     

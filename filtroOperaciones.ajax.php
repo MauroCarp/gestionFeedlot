@@ -56,7 +56,7 @@ if($tipo == 'descarga'){
 if($tipo != 'cargaDescarga'){
         
     $query = mysqli_query($conexion,$sql);
-    echo "<button class='btn btn-default' id='".$btn."'><b>".$title." <span style='color:".$arrow."</span></b></button>
+    echo "<button class='btn btn-primary' id='".$btn."'><b>".$title." <span style='color:".$arrow."</span></b></button>
 
     <div class='tablasOperaciones' id='".$id."'>
     <table class='table table-striped'>
