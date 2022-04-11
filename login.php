@@ -47,7 +47,7 @@ if(isset($_POST["btnIngresar"])){
   
         let expires = date.toGMTString()
       
-        document.cookie = `feedlot = ".$feedlot.";path=/gestionFeedlot;Expires=` + expires
+        document.cookie = `feedlot = ".$feedlot.";path=/;Expires=` + expires
         
         window.location = 'index.php'
       

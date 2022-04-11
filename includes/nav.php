@@ -61,9 +61,9 @@ $menu['Salir'] = 'logout.php';
 
               }else if($titulo == 'Informes'){ ?>
 
-                <li><a class="dropdown-item btnInforme" style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modal-Stock" seccion="ingresos">Ingresos</a></li>
-                <li><a class="dropdown-item btnInforme" style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modal-Stock" seccion="egresos">Egresos</a></li>
-                <li><a class="dropdown-item btnInforme" style="cursor:pointer;font-size:18px;" data-toggle="modal" data-target="#modal-Stock" seccion="muertes">Muertes</a></li>
+                <li><a class="dropdown-item btnInforme" style="cursor:not-allowed;pointer-events:none;font-size:18px;" data-toggle="modal" data-target="#modal-Stock" seccion="ingresos">Ingresos</a></li>
+                <li><a class="dropdown-item btnInforme" style="cursor:not-allowed;pointer-events:none;font-size:18px;" data-toggle="modal" data-target="#modal-Stock" seccion="egresos">Egresos</a></li>
+                <li><a class="dropdown-item btnInforme" style="cursor:not-allowed;pointer-events:none;font-size:18px;" data-toggle="modal" data-target="#modal-Stock" seccion="muertes">Muertes</a></li>
 
               <?php 
               }else{

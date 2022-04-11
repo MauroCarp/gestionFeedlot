@@ -54,7 +54,7 @@ $.ajax({
     success:(response)=>{
 
         let data = JSON.parse(response)
-        
+
         let config = {
             type: 'pie',
             data: {

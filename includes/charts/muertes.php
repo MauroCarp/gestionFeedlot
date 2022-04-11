@@ -164,8 +164,9 @@ if(!$comparacionValido){
 
 			}
 		};
-
+		
 	// MUERTES
+
 	   	let muertes = {
 	      type: 'line',
 	      data: {
@@ -175,18 +176,38 @@ if(!$comparacionValido){
 	      	
 	        $labelsMuertes = "";
 			$cantidadMuertes = 0;
-			$sqlMuertes = "SELECT fecha,causaMuerte,COUNT(*) as cantidad FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
+			$sqlMuertes = "SELECT fecha,causaMuerte FROM muertes WHERE feedlot = '$feedlot' AND fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
 
 			$queryMuertes = mysqli_query($conexion,$sqlMuertes);
+
 			if (!empty($queryMuertes)) {
-			
+				
+				$arrayMuertes = array();
+
+				$fechaTemp = '';
+
 				while ($filaMuertes = mysqli_fetch_array($queryMuertes)) {
-					$cantidadMuertes = $cantidadMuertes.",".$filaMuertes['cantidad'];
-					$labelsMuertes = $labelsMuertes.",'".formatearFecha($filaMuertes['fecha'])."'";
+
+					$fecha = formatearFecha($filaMuertes['fecha']);
+
+					if($fecha == $fechaTemp){
+
+						$arrayMuertes["'".$fecha."'"]++;
+						
+						$fechaTemp = $fecha;
+						
+					}else{
+						
+						$arrayMuertes["'".$fecha."'"] = 1;
+						
+						$fechaTemp = $fecha;
+					
+					}
+					
 				}
-				$labelsMuertes = substr($labelsMuertes,1);
-				$cantidadMuertes = substr($cantidadMuertes, 2);
-				echo $labelsMuertes;
+
+				echo implode(',',array_keys($arrayMuertes));
+
 			}
 
 	        ?>
@@ -198,7 +219,9 @@ if(!$comparacionValido){
 	          borderColor: window.chartColors.red,
 	          data: [
 	            <?php
-				echo $cantidadMuertes;
+				
+				echo implode(',',array_values($arrayMuertes));
+
 	            ?>
 	          ],
 	          fill: false,
@@ -240,6 +263,8 @@ if(!$comparacionValido){
 	      }
 	    };
 
+		console.log(muertes);
+		
 	comparacionValido = (comparacionValido == 1) ? true : false;
 
 	// TIPO COMPARACION
